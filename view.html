@@ -10,37 +10,36 @@
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .subpage-item { transition: all 0.2s; }
-        .subpage-item:hover { background-color: #f1f5f9; }
-        .subpage-active { background-color: #dbeafe; border-left: 4px solid #3b82f6; }
+        .subpage-active { background-color: #1e3a8a; border-left: 4px solid #60a5fa; }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
-        <!-- 左側：分類 -->
-        <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
+        <!-- 左側：分類（深色） -->
+        <div class="w-72 bg-slate-900 border-r border-slate-700 p-6 flex flex-col">
             <div class="flex items-center gap-3 mb-10">
-                <div class="w-11 h-11 bg-blue-500 rounded-2xl flex items-center justify-center text-3xl">📚</div>
+                <div class="w-11 h-11 bg-blue-600 rounded-2xl flex items-center justify-center text-3xl">📚</div>
                 <h1 class="text-2xl font-bold">NEO活動資料庫</h1>
             </div>
             <div id="categoryList" class="flex-1 space-y-2"></div>
         </div>
 
         <!-- 中間：分頁直欄列表 -->
-        <div class="w-80 bg-white border-r overflow-auto">
-            <div class="sticky top-0 bg-white border-b p-6">
-                <h3 id="categoryTitle" class="font-medium text-xl">分類名稱</h3>
+        <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
+            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-6">
+                <h3 id="categoryTitle" class="font-medium text-xl text-white">分類名稱</h3>
             </div>
             <div id="subpageList" class="p-4"></div>
         </div>
 
         <!-- 右側：內容顯示區 -->
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <div class="h-16 bg-white border-b flex items-center px-8">
-                <h2 id="subpageTitleDisplay" class="text-3xl font-bold text-slate-800">請選擇分頁</h2>
+        <div class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+            <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8">
+                <h2 id="subpageTitleDisplay" class="text-3xl font-bold text-white">請選擇分頁</h2>
             </div>
             
-            <div class="flex-1 p-10 overflow-auto bg-slate-50" id="contentArea">
-                <div id="pageContent" class="max-w-4xl mx-auto bg-white rounded-3xl shadow p-10"></div>
+            <div class="flex-1 p-10 overflow-auto" id="contentArea">
+                <div id="pageContent" class="max-w-4xl mx-auto"></div>
             </div>
         </div>
     </div>
@@ -56,9 +55,9 @@
                 if (categories.length > 0) selectCategory(0);
             } else {
                 document.getElementById("pageContent").innerHTML = `
-                    <div class="text-center py-40 text-slate-400">
-                        <p class="text-2xl">目前沒有資料</p>
-                        <p class="mt-4">請先在編輯版 (index.html) 儲存資料後再刷新此頁</p>
+                    <div class="text-center py-40 text-slate-500">
+                        <p class="text-2xl">尚未有資料</p>
+                        <p class="mt-4">請先在編輯版儲存資料後再刷新此頁</p>
                     </div>`;
             }
         }
@@ -95,7 +94,7 @@
 
             subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
-                div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer mb-2 ${index === currentSubpageIndex ? 'subpage-active' : ''}`;
+                div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer mb-2 ${index === currentSubpageIndex ? 'subpage-active' : 'hover:bg-slate-800'}`;
                 div.textContent = sub.title;
                 div.onclick = () => {
                     currentSubpageIndex = index;
@@ -106,7 +105,7 @@
             });
 
             if (subpages.length === 0) {
-                container.innerHTML = `<div class="p-16 text-center text-slate-400">此分類尚無分頁</div>`;
+                container.innerHTML = `<div class="p-16 text-center text-slate-500">此分類尚無分頁</div>`;
             }
         }
 
@@ -119,23 +118,23 @@
             container.innerHTML = "";
 
             if (!sub.blocks || sub.blocks.length === 0) {
-                container.innerHTML = `<p class="text-slate-400 text-center py-20">此分頁沒有內容</p>`;
+                container.innerHTML = `<p class="text-slate-500 text-center py-20">此分頁沒有內容</p>`;
                 return;
             }
 
             sub.blocks.forEach(block => {
                 if (block.type === "text" && block.content) {
                     const div = document.createElement("div");
-                    div.className = "prose prose-slate max-w-none mb-12 leading-relaxed";
+                    div.className = "prose prose-invert prose-slate max-w-none mb-12 leading-relaxed text-slate-200";
                     div.innerHTML = block.content.replace(/\n/g, '<br>');
                     container.appendChild(div);
                 } 
                 else if (block.type === "table") {
-                    let html = `<div class="mb-10"><div class="font-medium text-lg mb-4">${block.title || "資料表格"}</div>`;
+                    let html = `<div class="mb-10"><div class="font-medium text-lg mb-4 text-slate-100">${block.title || "資料表格"}</div>`;
                     html += "<table class='w-full border-collapse text-sm'>";
-                    html += "<thead><tr>" + block.headers.map(h => `<th class='border p-4 bg-slate-100 font-medium'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    html += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-700 p-4 bg-slate-800 text-slate-200'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => {
-                        html += "<tr>" + row.map(cell => `<td class='border p-4 align-top'>${cell || ''}</td>`).join("") + "</tr>";
+                        html += "<tr>" + row.map(cell => `<td class='border border-slate-700 p-4 text-slate-300'>${cell || ''}</td>`).join("") + "</tr>";
                     });
                     html += "</tbody></table></div>";
                     container.innerHTML += html;
