@@ -3,382 +3,137 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活動資料庫(編輯版)</title>
+    <title>活動資料庫</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
-        .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        td, th { padding: 12px; border: 1px solid #334155; }
-        td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
-            outline: 2px solid #60a5fa; background-color: #1e2937; 
-        }
+        .subpage-active { background-color: #1e3a8a; border-left: 4px solid #60a5fa; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
-        <!-- 左側分類 -->
-        <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">NEO活動資料庫</h1>
+        <!-- 左側：分類 -->
+        <div class="w-72 bg-slate-900 border-r border-slate-700 p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10">
+                <img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/imgi_25_bi-bnsneo-type1.png" 
+                     alt="圖標" class="w-11 h-11 object-contain rounded-2xl">
+                <h1 class="text-2xl font-bold">活動資料庫</h1>
+            </div>
             <div id="categoryList" class="flex-1 space-y-2"></div>
-            <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表 -->
+        <!-- 中間：分頁列表 -->
         <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
-            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
-                <h3 class="font-medium">分頁列表</h3>
-                <button onclick="addSubpage()" 
-                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
-                    <span class="text-xl">+</span> 新增分頁
-                </button>
+            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-6">
+                <h3 id="categoryTitle" class="font-medium text-xl text-white">分類名稱</h3>
             </div>
             <div id="subpageList" class="p-4"></div>
         </div>
 
-        <!-- 右側內容 -->
-        <div class="flex-1 flex flex-col">
-            <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8 justify-between">
-                <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
-                <button onclick="exportForPublic()" 
-                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
-                    ☁️ 匯出給公開版
-                </button>
+        <!-- 右側：內容顯示區 -->
+        <div class="flex-1 flex flex-col overflow-hidden bg-slate-950">
+            <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8">
+                <h2 id="subpageTitleDisplay" class="text-3xl font-bold text-white">請選擇分頁</h2>
             </div>
-
-            <div class="flex-1 p-8 overflow-auto bg-slate-950" id="contentArea">
-                <div class="max-w-5xl mx-auto bg-slate-900 rounded-3xl shadow-xl p-8">
-                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b border-slate-600 pb-4 focus:outline-none bg-transparent text-white" placeholder="分頁標題" onblur="saveCurrent()">
-
-                    <div id="contentBlocks" class="mt-10 space-y-12"></div>
-
-                    <div class="mt-12 flex gap-4">
-                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊 (Markdown)</button>
-                        <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增表格</button>
-                    </div>
-                </div>
+            
+            <div class="flex-1 p-10 overflow-auto" id="contentArea">
+                <div id="pageContent" class="max-w-4xl mx-auto"></div>
             </div>
-
-            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4">
-                <button onclick="showMarkdownHelp()" class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-3xl text-sm">Markdown 101</button>
-                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽 Markdown</button>
-                <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
-                <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Markdown 教學彈窗 -->
-    <div id="markdownHelp" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-        <div class="bg-slate-900 rounded-3xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-6 border-b border-slate-700 sticky top-0 bg-slate-900 flex justify-between">
-                <h3 class="text-xl font-bold">Markdown 語法快速參考</h3>
-                <button onclick="closeMarkdownHelp()" class="text-3xl text-slate-400">×</button>
-            </div>
-            <div class="p-8 prose prose-invert max-w-none text-slate-300 text-sm">
-                <table class="w-full border-collapse">
-                    <tr><td>**粗體**</td><td><strong>粗體</strong></td></tr>
-                    <tr><td>*斜體*</td><td><em>斜體</em></td></tr>
-                    <tr><td># 大標題</td><td>大標題</td></tr>
-                    <tr><td>## 中標題</td><td>中標題</td></tr>
-                    <tr><td>- 列表項目</td><td>• 列表項目</td></tr>
-                    <tr><td>[文字](連結)</td><td>超連結</td></tr>
-                    <tr><td>![描述](圖片網址)</td><td>插入圖片</td></tr>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    <!-- 預覽彈窗 -->
-    <div id="previewModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-slate-900 rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-6 border-b border-slate-700 flex justify-between sticky top-0 bg-slate-900">
-                <h3 id="previewTitle" class="text-2xl font-bold text-white"></h3>
-                <button onclick="closePreview()" class="text-3xl text-slate-400">×</button>
-            </div>
-            <div id="previewBody" class="p-8 prose prose-invert max-w-none"></div>
         </div>
     </div>
 
     <script>
-        let categories = [
-            { id: 1, name: "通行證", subpages: [] },
-            { id: 2, name: "金幣箱", subpages: [] },
-            { id: 3, name: "華仲師兄", subpages: [] },
-            { id: 4, name: "服裝箱", subpages: [] },
-            { id: 5, name: "福利活動", subpages: [] },
-            { id: 6, name: "排行活動", subpages: [] }
-        ];
+        let categories = [];
 
-        let currentCategoryIndex = 0;
-        let currentSubpageIndex = -1;
-        let currentBlocks = [];
+        async function loadPublicData() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/Nerine52/game-database/main/public-data.json');
+                if (!response.ok) throw new Error("No data");
+                categories = await response.json();
 
-        function loadData() {
-            const saved = localStorage.getItem("gameDatabase");
-            if (saved) categories = JSON.parse(saved);
+                renderCategories();
+                if (categories.length > 0) selectCategory(0);
+            } catch (e) {
+                document.getElementById("pageContent").innerHTML = `
+                    <div class="text-center py-40 text-slate-400">
+                        <p class="text-2xl">資料尚未準備好</p>
+                        <p class="mt-4">請在編輯版點擊「匯出給公開版」後上傳 public-data.json</p>
+                    </div>`;
+            }
         }
 
-        function saveAllData() {
-            localStorage.setItem("gameDatabase", JSON.stringify(categories));
-        }
-
-        function renderCategoryList() {
+        function renderCategories() {
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
-            categories.forEach((cat, i) => {
+            categories.forEach((cat, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${i === currentCategoryIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all hover:bg-slate-800 ${index === 0 ? 'bg-slate-700' : ''}`;
                 div.textContent = cat.name;
-                div.onclick = () => selectCategory(i);
+                div.onclick = () => selectCategory(index);
                 container.appendChild(div);
             });
         }
 
+        let currentCategoryIndex = 0;
+        let currentSubpageIndex = 0;
+
         function selectCategory(index) {
             currentCategoryIndex = index;
-            currentSubpageIndex = categories[index].subpages.length > 0 ? 0 : -1;
-            renderCategoryList();
+            currentSubpageIndex = 0;
+            renderCategories();
+            document.getElementById("categoryTitle").textContent = categories[index].name;
             renderSubpageList();
-            if (currentSubpageIndex >= 0) selectSubpage(currentSubpageIndex);
+            showSubpage(0);
         }
 
         function renderSubpageList() {
             const container = document.getElementById("subpageList");
             container.innerHTML = "";
-            categories[currentCategoryIndex].subpages.forEach((sub, i) => {
+
+            const subpages = categories[currentCategoryIndex].subpages || [];
+            subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 ${i === currentSubpageIndex ? 'bg-slate-700' : ''}`;
+                div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer mb-2 ${index === currentSubpageIndex ? 'subpage-active' : 'hover:bg-slate-800'}`;
                 div.textContent = sub.title;
-                div.onclick = () => selectSubpage(i);
+                div.onclick = () => {
+                    currentSubpageIndex = index;
+                    renderSubpageList();
+                    showSubpage(index);
+                };
                 container.appendChild(div);
             });
         }
 
-        function selectSubpage(index) {
-            currentSubpageIndex = index;
+        function showSubpage(index) {
             const sub = categories[currentCategoryIndex].subpages[index];
-            document.getElementById("currentTitle").textContent = sub.title;
-            document.getElementById("subpageTitle").value = sub.title || "";
+            if (!sub) return;
 
-            currentBlocks = sub.blocks || [
-                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
-                { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
-            ];
-
-            renderAllBlocks();
-        }
-
-        function renderAllBlocks() {
-            const container = document.getElementById("contentBlocks");
+            document.getElementById("subpageTitleDisplay").textContent = sub.title;
+            const container = document.getElementById("pageContent");
             container.innerHTML = "";
 
-            currentBlocks.forEach((block, i) => {
-                const div = document.createElement("div");
-                div.className = "border border-slate-700 rounded-3xl p-6 bg-slate-900 relative";
-
-                div.innerHTML += `
-                    <div class="absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1">
-                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
-                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
-                        <button onclick="deleteBlock(${i})" class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
-                    </div>
-                `;
-
-                if (block.type === "text") {
-                    div.innerHTML += `
-                        <div class="text-xs text-slate-400 mb-3 flex justify-between">
-                            <span>支援 Markdown 語法</span>
-                            <button onclick="showMarkdownHelp()" class="text-blue-400 hover:text-blue-300">Markdown 101 →</button>
-                        </div>
-                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl text-lg bg-slate-950 text-slate-200 resize-y" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
-                    `;
-                } else if (block.type === "table") {
-                    div.innerHTML += `
-                        <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
-                        <div class="flex gap-3 mb-4">
-                            <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
-                            <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
-                        </div>
-                        <table class="w-full border border-slate-700" id="table-${i}"></table>
-                    `;
+            (sub.blocks || []).forEach(block => {
+                if (block.type === "text" && block.content) {
+                    const div = document.createElement("div");
+                    div.className = "prose prose-invert max-w-none mb-12 text-slate-200 leading-relaxed";
+                    div.innerHTML = block.content.replace(/\n/g, '<br><br>');
                     container.appendChild(div);
-                    renderSingleTable(i);
-                    return;
-                }
-                container.appendChild(div);
-            });
-        }
-
-        function renderSingleTable(index) {
-            const block = currentBlocks[index];
-            const el = document.getElementById(`table-${index}`);
-            if (!el) return;
-
-            let html = "<thead><tr>";
-            block.headers.forEach((h, c) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
-            });
-            html += "</tr></thead><tbody>";
-            block.rows.forEach((row, r) => {
-                html += "<tr>";
-                row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
-                });
-                html += "</tr>";
-            });
-            html += "</tbody>";
-            el.innerHTML = html;
-        }
-
-        function updateText(i, val) { currentBlocks[i].content = val; }
-        function updateTableTitle(i, val) { currentBlocks[i].title = val; }
-        function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
-        function updateCell(blockIdx, row, col, text) { currentBlocks[blockIdx].rows[row][col] = text; }
-
-        function addTextBlock() {
-            currentBlocks.push({ type: "text", content: "" });
-            renderAllBlocks();   // 關鍵：每次新增後都重新渲染
-        }
-
-        function addNewTable() {
-            currentBlocks.push({
-                type: "table",
-                title: "新表格",
-                headers: ["項目", "數量", "備註"],
-                rows: []
-            });
-            renderAllBlocks();   // 關鍵：每次新增後都重新渲染
-        }
-
-        function addTableRow(blockIdx) {
-            if (!currentBlocks[blockIdx]) return;
-            currentBlocks[blockIdx].rows.push(Array(currentBlocks[blockIdx].headers.length).fill(""));
-            renderAllBlocks();
-        }
-
-        function addTableColumn(blockIdx) {
-            if (!currentBlocks[blockIdx]) return;
-            const name = prompt("新欄位名稱", `欄位 ${currentBlocks[blockIdx].headers.length + 1}`);
-            if (!name) return;
-            currentBlocks[blockIdx].headers.push(name);
-            currentBlocks[blockIdx].rows.forEach(r => r.push(""));
-            renderAllBlocks();
-        }
-
-        function moveBlock(index, dir) {
-            const newIndex = index + dir;
-            if (newIndex < 0 || newIndex >= currentBlocks.length) return;
-            [currentBlocks[index], currentBlocks[newIndex]] = [currentBlocks[newIndex], currentBlocks[index]];
-            renderAllBlocks();
-        }
-
-        function deleteBlock(index) {
-            if (!confirm("確定刪除這個區塊嗎？")) return;
-            currentBlocks.splice(index, 1);
-            renderAllBlocks();
-        }
-
-        function addSubpage() {
-            const title = prompt("新分頁名稱", `分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
-            if (!title) return;
-
-            categories[currentCategoryIndex].subpages.push({
-                title: title,
-                blocks: [
-                    { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
-                    { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
-                ]
-            });
-
-            renderSubpageList();
-            selectSubpage(categories[currentCategoryIndex].subpages.length - 1);
-        }
-
-        function addCategory() {
-            const name = prompt("新分類名稱", "新分類");
-            if (!name) return;
-            categories.push({ id: Date.now(), name: name, subpages: [] });
-            renderCategoryList();
-            selectCategory(categories.length - 1);
-        }
-
-        function saveCurrent() {
-            if (currentSubpageIndex === -1) return;
-            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            sub.title = document.getElementById("subpageTitle").value;
-            sub.blocks = currentBlocks;
-            saveAllData();
-            alert("✅ 已儲存！");
-        }
-
-        function deleteCurrentSubpage() {
-            if (currentSubpageIndex === -1 || !confirm("確定刪除此分頁？")) return;
-            categories[currentCategoryIndex].subpages.splice(currentSubpageIndex, 1);
-            currentSubpageIndex = -1;
-            document.getElementById("contentArea").classList.add("hidden");
-            renderSubpageList();
-            saveAllData();
-        }
-
-        function previewContent() {
-            if (currentSubpageIndex === -1) return;
-            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<h2 class="text-2xl font-bold mb-6">${sub.title}</h2>`;
-
-            currentBlocks.forEach(block => {
-                if (block.type === "text") {
-                    const previewHTML = marked.parse(block.content || "");
-                    html += `<div class="prose prose-invert max-w-none mb-10">${previewHTML}</div>`;
                 } else if (block.type === "table") {
-                    let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
-                    t += "<table class='w-full border-collapse mt-3 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                    block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>");
-                    t += "</tbody></table>";
-                    html += t;
+                    let html = `<div class="mb-10"><div class="font-medium text-lg mb-4">${block.title || "資料表格"}</div>`;
+                    html += "<table class='w-full border-collapse text-sm'>";
+                    html += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-700 p-4 bg-slate-800 text-slate-200'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    block.rows.forEach(row => {
+                        html += "<tr>" + row.map(cell => `<td class='border border-slate-700 p-4 text-slate-300'>${cell || ''}</td>`).join("") + "</tr>";
+                    });
+                    html += "</tbody></table></div>";
+                    container.innerHTML += html;
                 }
             });
-
-            document.getElementById("previewTitle").innerHTML = html;
-            document.getElementById("previewModal").classList.remove("hidden");
         }
 
-        function closePreview() {
-            document.getElementById("previewModal").classList.add("hidden");
-        }
-
-        function showMarkdownHelp() {
-            document.getElementById("markdownHelp").classList.remove("hidden");
-        }
-
-        function closeMarkdownHelp() {
-            document.getElementById("markdownHelp").classList.add("hidden");
-        }
-
-        function exportForPublic() {
-            const dataStr = JSON.stringify(categories, null, 2);
-            const blob = new Blob([dataStr], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "public-data.json";
-            a.click();
-            URL.revokeObjectURL(url);
-            alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
-        }
-
-        window.onload = () => {
-            loadData();
-            renderCategoryList();
-            if (categories[0].subpages.length > 0) {
-                selectSubpage(0);
-            } else {
-                selectCategory(0);
-            }
-        };
+        window.onload = loadPublicData;
     </script>
 </body>
 </html>
