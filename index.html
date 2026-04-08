@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯資料庫</title>
+    <title>編輯用資料庫</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -11,7 +11,10 @@
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        td, th { padding: 12px; border: 1px solid #334155; text-align: center; vertical-align: middle; }
+        
+        table { width: 100%; border-collapse: collapse; table-layout: auto; }
+        th, td { padding: 12px; border: 1px solid #334155; text-align: center; vertical-align: middle; }
+        th { background-color: #1e2937; font-weight: 500; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { outline: 2px solid #60a5fa; background-color: #1e2937; }
     </style>
 </head>
@@ -24,16 +27,18 @@
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表（可收合） -->
-        <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
+        <!-- 中間分頁列表（可完整收合） -->
+        <div id="middlePanel" class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto transition-all duration-300">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
                 <h3 class="font-medium">分頁列表</h3>
                 <div class="flex items-center gap-3">
-                    <button onclick="addSubpage()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
+                    <button onclick="addSubpage()" 
+                            class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
                         <span class="text-xl">+</span> 新增
                     </button>
-                    <button onclick="toggleSubpageList()" id="toggleBtn" class="text-slate-400 hover:text-slate-300 text-sm font-medium">
-                        收合 ▲
+                    <button onclick="toggleMiddlePanel()" id="toggleBtn"
+                            class="text-slate-400 hover:text-slate-300 text-sm font-medium flex items-center gap-1">
+                        收合 <span class="text-lg">→</span>
                     </button>
                 </div>
             </div>
@@ -44,7 +49,8 @@
         <div class="flex-1 flex flex-col">
             <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8 justify-between">
                 <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
-                <button onclick="exportForPublic()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
+                <button onclick="exportForPublic()" 
+                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
                     ☁️ 匯出給公開版
                 </button>
             </div>
@@ -116,7 +122,7 @@
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
         let currentBlocks = [];
-        let isSubpageListVisible = true;
+        let isMiddlePanelVisible = true;
 
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
@@ -165,17 +171,17 @@
             }
         }
 
-        function toggleSubpageList() {
-            isSubpageListVisible = !isSubpageListVisible;
-            const list = document.getElementById("subpageList");
+        function toggleMiddlePanel() {
+            isMiddlePanelVisible = !isMiddlePanelVisible;
+            const panel = document.getElementById("middlePanel");
             const btn = document.getElementById("toggleBtn");
-            
-            if (isSubpageListVisible) {
-                list.style.display = "block";
-                btn.textContent = "收合 ▲";
+
+            if (isMiddlePanelVisible) {
+                panel.style.width = "20rem";   // 恢復正常寬度 (320px)
+                btn.innerHTML = `收合 <span class="text-lg">→</span>`;
             } else {
-                list.style.display = "none";
-                btn.textContent = "展開 ▼";
+                panel.style.width = "0";       // 完全收合
+                btn.innerHTML = `展開 <span class="text-lg">←</span>`;
             }
         }
 
