@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO活動資料(可編輯)</title>
+    <title>NEO活動資料庫(可編輯)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
-        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 4px; }
+        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        td, th { padding: 12px; border: 1px solid #e2e8f0; text-align: left; }
+        td, th { padding: 12px; border: 1px solid #e2e8f0; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
             outline: 2px solid #3b82f6; background-color: #f0f9ff; 
         }
@@ -39,8 +39,12 @@
 
         <!-- 右側內容 -->
         <div class="flex-1 flex flex-col">
-            <div class="h-16 bg-white border-b flex items-center px-8">
+            <div class="h-16 bg-white border-b flex items-center px-8 justify-between">
                 <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
+                <button onclick="exportForPublic()" 
+                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
+                    ☁️ 匯出給公開版
+                </button>
             </div>
 
             <div class="flex-1 p-8 overflow-auto bg-slate-50" id="contentArea">
@@ -123,7 +127,7 @@
             container.innerHTML = "";
             categories[currentCategoryIndex].subpages.forEach((sub, i) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-100 ${i === currentSubpageIndex ? 'bg-blue-50 border-2 border-blue-500' : ''}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-100 ${i === currentSubpageIndex ? 'bg-blue-50 border border-blue-200' : ''}`;
                 div.textContent = sub.title;
                 div.onclick = () => selectSubpage(i);
                 container.appendChild(div);
@@ -133,7 +137,6 @@
         function selectSubpage(index) {
             currentSubpageIndex = index;
             const sub = categories[currentCategoryIndex].subpages[index];
-
             document.getElementById("currentTitle").textContent = sub.title;
             document.getElementById("subpageTitle").value = sub.title || "";
 
@@ -186,15 +189,11 @@
             if (!el) return;
 
             let html = "<thead><tr>";
-            block.headers.forEach((h, c) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${index}, ${c}, this.innerText)" class="bg-slate-100">${h}</th>`;
-            });
+            block.headers.forEach((h, c) => html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-100">${h}</th>`);
             html += "</tr></thead><tbody>";
             block.rows.forEach((row, r) => {
                 html += "<tr>";
-                row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${index}, ${r}, ${c}, this.innerText)">${cell || ''}</td>`;
-                });
+                row.forEach((cell, c) => html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`);
                 html += "</tr>";
             });
             html += "</tbody>";
@@ -296,7 +295,7 @@
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
-                    html += `<div class="mt-6 prose">${block.content || ""}</div>`;
+                    html += `<div class="prose mb-8">${block.content || ""}</div>`;
                 } else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-3 text-sm'>";
@@ -315,7 +314,18 @@
             document.getElementById("previewModal").classList.add("hidden");
         }
 
-        // 初始化
+        function exportForPublic() {
+            const dataStr = JSON.stringify(categories, null, 2);
+            const blob = new Blob([dataStr], {type: "application/json"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "public-data.json";
+            a.click();
+            URL.revokeObjectURL(url);
+            alert("✅ 已下載 public-data.json\n\n請上傳這個檔案到 GitHub，覆蓋原有的 public-data.json");
+        }
+
         window.onload = () => {
             loadData();
             renderCategoryList();
