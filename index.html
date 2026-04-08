@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯用資料庫</title>
+    <title>編輯資料庫</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -27,12 +27,12 @@
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表（可完整收合） -->
-        <div id="middlePanel" class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto transition-all duration-300">
+        <!-- 中間分頁列表（可收合，收合後保留展開按鈕） -->
+        <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
-                <h3 class="font-medium">分頁列表</h3>
+                <h3 id="middleTitle" class="font-medium">分頁列表</h3>
                 <div class="flex items-center gap-3">
-                    <button onclick="addSubpage()" 
+                    <button onclick="addSubpage()" id="addSubpageBtn"
                             class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
                         <span class="text-xl">+</span> 新增
                     </button>
@@ -42,7 +42,7 @@
                     </button>
                 </div>
             </div>
-            <div id="subpageList" class="p-4"></div>
+            <div id="subpageList" class="flex-1 p-4 overflow-auto"></div>
         </div>
 
         <!-- 右側內容 -->
@@ -174,13 +174,19 @@
         function toggleMiddlePanel() {
             isMiddlePanelVisible = !isMiddlePanelVisible;
             const panel = document.getElementById("middlePanel");
+            const title = document.getElementById("middleTitle");
+            const addBtn = document.getElementById("addSubpageBtn");
             const btn = document.getElementById("toggleBtn");
 
             if (isMiddlePanelVisible) {
-                panel.style.width = "20rem";   // 恢復正常寬度 (320px)
+                panel.style.width = "320px";
+                title.style.display = "block";
+                addBtn.style.display = "flex";
                 btn.innerHTML = `收合 <span class="text-lg">→</span>`;
             } else {
-                panel.style.width = "0";       // 完全收合
+                panel.style.width = "68px";   // 只保留按鈕空間
+                title.style.display = "none";
+                addBtn.style.display = "none";
                 btn.innerHTML = `展開 <span class="text-lg">←</span>`;
             }
         }
