@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的遊戲資料庫 - 預覽版</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
+        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="max-w-6xl mx-auto p-8">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold">📚 我的遊戲資料庫</h1>
+            <p class="text-slate-500 mt-2">僅供查看 • 資料最後更新時間</p>
+        </div>
+
+        <div id="viewContent" class="space-y-16"></div>
+    </div>
+
+    <script>
+        // 這裡會自動從你的編輯版資料載入最新內容
+        let categories = [];
+
+        function loadData() {
+            // 從 localStorage 讀取你編輯版的資料
+            const saved = localStorage.getItem("gameDatabase");
+            if (saved) {
+                categories = JSON.parse(saved);
+                renderView();
+            } else {
+                document.getElementById("viewContent").innerHTML = `
+                    <div class="text-center py-20 text-slate-400">
+                        尚未有資料，請先在編輯版中儲存資料後再刷新此頁
+                    </div>`;
+            }
+        }
+
+        function renderView() {
+            const container = document.getElementById("viewContent");
+            container.innerHTML = "";
+
+            categories.forEach(cat => {
+                const catDiv = document.createElement("div");
+                catDiv.className = "bg-white rounded-3xl shadow p-8";
+                catDiv.innerHTML = `<h2 class="text-3xl font-bold mb-8 border-b pb-4">${cat.name}</h2>`;
+
+                cat.subpages.forEach(sub => {
+                    const subDiv = document.createElement("div");
+                    subDiv.className = "mb-12";
+                    subDiv.innerHTML = `<h3 class="text-2xl font-semibold mb-6">${sub.title}</h3>`;
+
+                    if (sub.blocks && sub.blocks.length > 0) {
+                        sub.blocks.forEach(block => {
+                            if (block.type === "text" && block.content) {
+                                subDiv.innerHTML += `<div class="prose prose-slate mb-8">${block.content}</div>`;
+                            } else if (block.type === "table") {
+                                let tableHTML = `<div class="font-medium mb-3">${block.title || "資料表格"}</div>`;
+                                tableHTML += "<table class='w-full border-collapse text-sm mb-8'>";
+                                tableHTML += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                                block.rows.forEach(row => {
+                                    tableHTML += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>";
+                                });
+                                tableHTML += "</tbody></table>";
+                                subDiv.innerHTML += tableHTML;
+                            }
+                        });
+                    }
+                    catDiv.appendChild(subDiv);
+                });
+                container.appendChild(catDiv);
+            });
+        }
+
+        window.onload = loadData;
+    </script>
+</body>
+</html>
