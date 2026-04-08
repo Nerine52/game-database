@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯資料版</title>
+    <title>編輯資料庫</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -16,6 +16,11 @@
         th, td { padding: 12px; border: 1px solid #334155; text-align: center; vertical-align: middle; }
         th { background-color: #1e2937; font-weight: 500; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { outline: 2px solid #60a5fa; background-color: #1e2937; }
+
+        /* 文字方塊字體大小 */
+        .text-small { font-size: 14px; line-height: 1.6; }
+        .text-medium { font-size: 16px; line-height: 1.7; }
+        .text-large { font-size: 20px; line-height: 1.6; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
@@ -29,7 +34,6 @@
 
         <!-- 中間分頁列表（可收合） -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
-            <!-- 標題列 -->
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 flex items-center justify-between">
                 <h3 id="middleTitle" class="font-medium">分頁列表</h3>
                 <div class="flex items-center gap-2">
@@ -43,7 +47,6 @@
                     </button>
                 </div>
             </div>
-            <!-- 分頁列表內容 -->
             <div id="subpageList" class="flex-1 p-4 overflow-auto"></div>
         </div>
 
@@ -181,13 +184,11 @@
             const btn = document.getElementById("toggleBtn");
 
             if (isMiddlePanelVisible) {
-                // 展開
                 panel.style.width = "320px";
                 title.style.display = "block";
                 addBtn.style.display = "flex";
                 btn.innerHTML = `收合 <span class="text-lg">→</span>`;
             } else {
-                // 收合
                 panel.style.width = "72px";
                 title.style.display = "none";
                 addBtn.style.display = "none";
@@ -202,7 +203,7 @@
             document.getElementById("subpageTitle").value = sub.title || "";
 
             currentBlocks = sub.blocks || [
-                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
+                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
                 { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
             ];
 
@@ -226,12 +227,17 @@
                 `;
 
                 if (block.type === "text") {
+                    const fontClass = block.fontSize === "small" ? "text-small" : block.fontSize === "large" ? "text-large" : "text-medium";
                     div.innerHTML += `
-                        <div class="text-xs text-slate-400 mb-3 flex justify-between">
-                            <span>支援 Markdown 語法</span>
-                            <button onclick="showMarkdownHelp()" class="text-blue-400 hover:text-blue-300">Markdown 101 →</button>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="text-xs text-slate-400">支援 Markdown 語法</div>
+                            <div class="flex gap-1">
+                                <button onclick="changeFontSize(${i}, 'small')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='small' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">小</button>
+                                <button onclick="changeFontSize(${i}, 'medium')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='medium' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">中</button>
+                                <button onclick="changeFontSize(${i}, 'large')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='large' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">大</button>
+                            </div>
                         </div>
-                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl text-lg bg-slate-950 text-slate-200 resize-y" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
+                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
                 } else if (block.type === "table") {
                     div.innerHTML += `
@@ -248,6 +254,11 @@
                 }
                 container.appendChild(div);
             });
+        }
+
+        function changeFontSize(blockIndex, size) {
+            currentBlocks[blockIndex].fontSize = size;
+            renderAllBlocks();
         }
 
         function renderSingleTable(index) {
@@ -277,7 +288,7 @@
         function updateCell(blockIdx, row, col, text) { currentBlocks[blockIdx].rows[row][col] = text; }
 
         function addTextBlock() {
-            currentBlocks.push({ type: "text", content: "" });
+            currentBlocks.push({ type: "text", content: "", fontSize: "medium" });
             renderAllBlocks();
         }
 
@@ -326,7 +337,7 @@
             categories[currentCategoryIndex].subpages.push({
                 title: title,
                 blocks: [
-                    { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
+                    { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
                     { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
                 ]
             });
