@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯資料庫</title>
+    <title>我的遊戲資料庫 - 編輯版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -12,28 +12,39 @@
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
         
-        table { width: 100%; border-collapse: collapse; table-layout: auto; }
-        th, td { padding: 12px; border: 1px solid #334155; text-align: center; vertical-align: middle; }
-        th { background-color: #1e2937; font-weight: 500; }
-        td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { outline: 2px solid #60a5fa; background-color: #1e2937; }
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            table-layout: auto; 
+        }
+        th, td { 
+            padding: 12px; 
+            border: 1px solid #334155; 
+            text-align: center; 
+            vertical-align: middle;
+            white-space: pre-wrap;     /* 重要：允許換行 */
+            word-break: break-all;
+        }
+        th { 
+            background-color: #1e2937; 
+            font-weight: 500;
+        }
+        td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
+            outline: 2px solid #60a5fa; 
+            background-color: #1e2937; 
+        }
 
         /* 文字方塊字體大小 */
         .text-small { font-size: 14px; line-height: 1.6; }
         .text-medium { font-size: 16px; line-height: 1.7; }
         .text-large { font-size: 20px; line-height: 1.6; }
-
-        /* 加強 Markdown 預覽樣式（解決 Tailwind Preflight 重置問題） */
-        .prose h1 { font-size: 2.25rem; font-weight: 700; margin: 1.5em 0 0.5em; }
-        .prose h2 { font-size: 1.875rem; font-weight: 600; margin: 1.25em 0 0.5em; }
-        .prose ul { list-style-type: disc; padding-left: 1.5em; margin: 1em 0; }
-        .prose li { margin: 0.25em 0; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">📚 我的遊戲資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
@@ -79,20 +90,9 @@
                 </div>
             </div>
 
-            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4 flex-wrap">
+            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4">
                 <button onclick="showMarkdownHelp()" class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-3xl text-sm">Markdown 101</button>
                 <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽 Markdown</button>
-                
-                <!-- 同步功能按鈕 -->
-                <button onclick="exportData()" 
-                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
-                    📤 匯出資料
-                </button>
-                <button onclick="importData()" 
-                        class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
-                    📥 匯入資料
-                </button>
-
                 <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
                 <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
             </div>
@@ -278,7 +278,7 @@
             renderAllBlocks();
         }
 
-        function renderSingleTable(index) {
+function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
             if (!el) return;
@@ -291,14 +291,16 @@
             block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
+                    // 重要：支援換行顯示
+                    const displayCell = (cell || '').replace(/\n/g, '<br>');
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap;">${displayCell}</td>`;
                 });
                 html += "</tr>";
             });
             html += "</tbody>";
             el.innerHTML = html;
         }
-
+        
         function updateText(i, val) { currentBlocks[i].content = val; }
         function updateTableTitle(i, val) { currentBlocks[i].title = val; }
         function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
@@ -391,10 +393,10 @@
 
       // ... (前面所有函數保持不變，直到 previewContent)
 
-        function previewContent() {
+function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<h2 class="text-3xl font-bold mb-8">${sub.title}</h2>`;
+            let html = `<h2 class="text-2xl font-bold mb-6">${sub.title}</h2>`;
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
@@ -405,10 +407,16 @@
                     const previewHTML = marked.parse(block.content || "");
                     html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
                 } else if (block.type === "table") {
-                    let t = `<div class="mt-8 font-medium text-lg">${block.title || "資料表格"}</div>`;
-                    t += "<table class='w-full border-collapse mt-4 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                    block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border border-slate-600 p-3 text-center'>${cell || ''}</td>`).join("") + "</tr>");
+                    let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
+                    t += "<table class='w-full border-collapse mt-3 text-sm'>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    block.rows.forEach(row => {
+                        t += "<tr>" + row.map(cell => {
+                            // 預覽時也支援換行
+                            const displayCell = (cell || '').replace(/\n/g, '<br>');
+                            return `<td class='border p-3 text-center'>${displayCell}</td>`;
+                        }).join("") + "</tr>";
+                    });
                     t += "</tbody></table>";
                     html += t;
                 }
