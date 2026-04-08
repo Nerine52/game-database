@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯資料</title>
+    <title>NEO編輯資料庫</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -372,6 +372,7 @@
             saveAllData();
         }
 
+        // ==================== 修正重點：預覽時正確渲染 Markdown + 字體大小 ====================
         function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
@@ -379,9 +380,11 @@
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
+                    // 根據設定的字體大小套用 style
                     const sizeStyle = block.fontSize === "small" ? "font-size: 14px; line-height: 1.6;" 
                                    : block.fontSize === "large" ? "font-size: 20px; line-height: 1.6;" 
                                    : "font-size: 16px; line-height: 1.7;";
+
                     const previewHTML = marked.parse(block.content || "");
                     html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
                 } else if (block.type === "table") {
@@ -394,7 +397,7 @@
                 }
             });
 
-            document.getElementById("previewTitle").innerHTML = html;
+            document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
 
