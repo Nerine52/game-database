@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>活動資料庫(編輯)</title>
+    <title>資料庫(編輯版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -55,7 +55,7 @@
                     <div id="contentBlocks" class="mt-10 space-y-12"></div>
 
                     <div class="mt-12 flex gap-4">
-                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊 (Markdown)</button>
+                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊</button>
                         <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增表格</button>
                     </div>
                 </div>
@@ -83,7 +83,7 @@
                     <tr><td>*斜體*</td><td><em>斜體</em></td></tr>
                     <tr><td># 大標題</td><td>大標題</td></tr>
                     <tr><td>## 中標題</td><td>中標題</td></tr>
-                    <tr><td>- 列表</td><td>• 列表</td></tr>
+                    <tr><td>- 列表項目</td><td>• 列表項目</td></tr>
                     <tr><td>[文字](連結)</td><td>超連結</td></tr>
                     <tr><td>![描述](圖片網址)</td><td>插入圖片</td></tr>
                 </table>
@@ -189,9 +189,11 @@
 
                 if (block.type === "text") {
                     div.innerHTML += `
-                        <div class="text-xs text-slate-400 mb-3 flex justify-between">
-                            <span>支援 Markdown 語法</span>
-                            <button onclick="showMarkdownHelp()" class="text-blue-400 hover:text-blue-300">Markdown 101 →</button>
+                        <div class="flex justify-between items-center mb-3">
+                            <div class="text-xs text-slate-400">支援 Markdown 語法</div>
+                            <button onclick="insertImage(${i})" class="flex items-center gap-1 text-blue-400 hover:text-blue-300 text-sm">
+                                🖼️ 插入圖片
+                            </button>
                         </div>
                         <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl text-lg bg-slate-950 text-slate-200 resize-y" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
@@ -212,25 +214,22 @@
             });
         }
 
-        function renderSingleTable(index) {
-            const block = currentBlocks[index];
-            const el = document.getElementById(`table-${index}`);
-            if (!el) return;
+        // 新增：插入圖片功能
+        function insertImage(textBlockIndex) {
+            const url = prompt("請貼上圖片完整網址（jsDelivr 格式）\n\n範例：\nhttps://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/你的圖片.png", 
+                "https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/");
+            if (!url || url.trim() === "") return;
 
-            let html = "<thead><tr>";
-            block.headers.forEach((h, c) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
-            });
-            html += "</tr></thead><tbody>";
-            block.rows.forEach((row, r) => {
-                html += "<tr>";
-                row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
-                });
-                html += "</tr>";
-            });
-            html += "</tbody>";
-            el.innerHTML = html;
+            const textarea = document.getElementById(`text-${textBlockIndex}`);
+            if (textarea) {
+                const imgMarkdown = `![圖片描述](${url})`;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+                const text = textarea.value;
+                textarea.value = text.substring(0, start) + imgMarkdown + text.substring(end);
+                textarea.focus();
+                updateText(textBlockIndex, textarea.value);
+            }
         }
 
         function updateText(i, val) { currentBlocks[i].content = val; }
