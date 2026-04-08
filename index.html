@@ -3,20 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO活動資料庫(可編輯)</title>
+    <title>NEO活動資料庫(編輯)</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        td, th { padding: 12px; border: 1px solid #e2e8f0; }
+        td, th { padding: 12px; border: 1px solid #334155; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
-            outline: 2px solid #3b82f6; background-color: #f0f9ff; 
+            outline: 2px solid #60a5fa; background-color: #1e2937; 
+        }
+        .markdown-preview { 
+            line-height: 1.8; 
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
@@ -26,8 +30,8 @@
         </div>
 
         <!-- 中間分頁列表 -->
-        <div class="w-80 bg-white border-r overflow-auto">
-            <div class="sticky top-0 bg-white border-b p-5 flex justify-between items-center">
+        <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
+            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
                 <h3 class="font-medium">分頁列表</h3>
                 <button onclick="addSubpage()" 
                         class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
@@ -39,7 +43,7 @@
 
         <!-- 右側內容 -->
         <div class="flex-1 flex flex-col">
-            <div class="h-16 bg-white border-b flex items-center px-8 justify-between">
+            <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8 justify-between">
                 <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
                 <button onclick="exportForPublic()" 
                         class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
@@ -47,21 +51,21 @@
                 </button>
             </div>
 
-            <div class="flex-1 p-8 overflow-auto bg-slate-50" id="contentArea">
-                <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8">
-                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b pb-4 focus:outline-none" placeholder="分頁標題" onblur="saveCurrent()">
+            <div class="flex-1 p-8 overflow-auto bg-slate-950" id="contentArea">
+                <div class="max-w-5xl mx-auto bg-slate-900 rounded-3xl shadow-xl p-8">
+                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b border-slate-600 pb-4 focus:outline-none bg-transparent text-white" placeholder="分頁標題" onblur="saveCurrent()">
 
                     <div id="contentBlocks" class="mt-10 space-y-12"></div>
 
                     <div class="mt-12 flex gap-4">
-                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-100 hover:bg-slate-200 rounded-3xl text-sm font-medium">+ 新增文字方塊</button>
-                        <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-100 hover:bg-slate-200 rounded-3xl text-sm font-medium">+ 新增表格</button>
+                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊 (支援 Markdown)</button>
+                        <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增表格</button>
                     </div>
                 </div>
             </div>
 
-            <div class="h-16 bg-white border-t flex items-center px-8 gap-4">
-                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽</button>
+            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4">
+                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽 Markdown</button>
                 <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
                 <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
             </div>
@@ -70,12 +74,12 @@
 
     <!-- 預覽彈窗 -->
     <div id="previewModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-white rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-6 border-b flex justify-between sticky top-0 bg-white">
-                <h3 id="previewTitle" class="text-2xl font-bold"></h3>
+        <div class="bg-slate-900 rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
+            <div class="p-6 border-b border-slate-700 flex justify-between sticky top-0 bg-slate-900">
+                <h3 id="previewTitle" class="text-2xl font-bold text-white"></h3>
                 <button onclick="closePreview()" class="text-3xl text-slate-400">×</button>
             </div>
-            <div id="previewBody" class="p-8"></div>
+            <div id="previewBody" class="p-8 prose prose-invert max-w-none"></div>
         </div>
     </div>
 
@@ -127,7 +131,7 @@
             container.innerHTML = "";
             categories[currentCategoryIndex].subpages.forEach((sub, i) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-100 ${i === currentSubpageIndex ? 'bg-blue-50 border border-blue-200' : ''}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 ${i === currentSubpageIndex ? 'bg-slate-700' : ''}`;
                 div.textContent = sub.title;
                 div.onclick = () => selectSubpage(i);
                 container.appendChild(div);
@@ -141,7 +145,7 @@
             document.getElementById("subpageTitle").value = sub.title || "";
 
             currentBlocks = sub.blocks || [
-                { type: "text", content: "請在此輸入文字說明..." },
+                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
                 { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
             ];
 
@@ -154,26 +158,29 @@
 
             currentBlocks.forEach((block, i) => {
                 const div = document.createElement("div");
-                div.className = "border rounded-3xl p-6 bg-white relative";
+                div.className = "border border-slate-700 rounded-3xl p-6 bg-slate-900 relative";
 
                 div.innerHTML += `
-                    <div class="absolute -top-3 -right-3 flex gap-1 bg-white shadow rounded-xl p-1">
-                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 hover:bg-slate-100 rounded-lg">↑</button>
-                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 hover:bg-slate-100 rounded-lg">↓</button>
-                        <button onclick="deleteBlock(${i})" class="w-8 h-8 text-red-500 hover:bg-red-50 rounded-lg">×</button>
+                    <div class="absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1">
+                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
+                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
+                        <button onclick="deleteBlock(${i})" class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
                     </div>
                 `;
 
                 if (block.type === "text") {
-                    div.innerHTML += `<textarea class="w-full h-56 p-6 border rounded-3xl text-lg" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>`;
+                    div.innerHTML += `
+                        <div class="text-xs text-slate-400 mb-2">支援 Markdown 語法（**粗體**、*斜體*、列表、連結等）</div>
+                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl text-lg bg-slate-950 text-slate-200 resize-y" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
+                    `;
                 } else if (block.type === "table") {
                     div.innerHTML += `
-                        <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b focus:outline-none w-80 mb-4" onblur="updateTableTitle(${i}, this.value)">
+                        <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
                         <div class="flex gap-3 mb-4">
-                            <button onclick="addTableRow(${i})" class="bg-slate-100 hover:bg-slate-200 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
-                            <button onclick="addTableColumn(${i})" class="bg-slate-100 hover:bg-slate-200 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                            <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
+                            <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
                         </div>
-                        <table class="w-full border" id="table-${i}"></table>
+                        <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
                     container.appendChild(div);
                     renderSingleTable(i);
@@ -181,23 +188,6 @@
                 }
                 container.appendChild(div);
             });
-        }
-
-        function renderSingleTable(index) {
-            const block = currentBlocks[index];
-            const el = document.getElementById(`table-${index}`);
-            if (!el) return;
-
-            let html = "<thead><tr>";
-            block.headers.forEach((h, c) => html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-100">${h}</th>`);
-            html += "</tr></thead><tbody>";
-            block.rows.forEach((row, r) => {
-                html += "<tr>";
-                row.forEach((cell, c) => html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`);
-                html += "</tr>";
-            });
-            html += "</tbody>";
-            el.innerHTML = html;
         }
 
         function updateText(i, val) { currentBlocks[i].content = val; }
@@ -253,7 +243,7 @@
             categories[currentCategoryIndex].subpages.push({
                 title: title,
                 blocks: [
-                    { type: "text", content: "請在此輸入文字說明..." },
+                    { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法" },
                     { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
                 ]
             });
@@ -295,11 +285,12 @@
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
-                    html += `<div class="prose mb-8">${block.content || ""}</div>`;
+                    const previewHTML = marked.parse(block.content || "");
+                    html += `<div class="prose prose-invert max-w-none mb-10">${previewHTML}</div>`;
                 } else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-3 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>");
                     t += "</tbody></table>";
                     html += t;
@@ -323,7 +314,7 @@
             a.download = "public-data.json";
             a.click();
             URL.revokeObjectURL(url);
-            alert("✅ 已下載 public-data.json\n\n請上傳這個檔案到 GitHub，覆蓋原有的 public-data.json");
+            alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
         }
 
         window.onload = () => {
