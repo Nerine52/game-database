@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯資料庫</title>
+    <title>我的遊戲資料庫 - 編輯版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -12,44 +12,34 @@
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; display: block; margin: 0 auto; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
         
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            table-layout: auto; 
-        }
+        table { width: 100%; border-collapse: collapse; table-layout: auto; }
         th, td { 
             padding: 12px; 
             border: 1px solid #334155; 
             text-align: center; 
             vertical-align: middle;
-            white-space: pre-wrap;     /* 重要：允許換行 */
-            word-break: break-all;
+            white-space: pre-wrap;
         }
-        th { 
-            background-color: #1e2937; 
-            font-weight: 500;
-        }
-        td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
-            outline: 2px solid #60a5fa; 
-            background-color: #1e2937; 
-        }
+        th { background-color: #1e2937; font-weight: 500; }
 
-        /* 文字方塊字體大小 */
-        .text-small { font-size: 14px; line-height: 1.6; }
-        .text-medium { font-size: 16px; line-height: 1.7; }
-        .text-large { font-size: 20px; line-height: 1.6; }
+        /* 加強 Markdown 預覽樣式 */
+        .prose h1 { font-size: 2.25rem; font-weight: 700; margin: 1.25em 0 0.5em; }
+        .prose h2 { font-size: 1.875rem; font-weight: 600; margin: 1.25em 0 0.5em; }
+        .prose ul { list-style-type: disc; padding-left: 1.5em; margin: 1em 0; }
+        .prose li { margin: 0.25em 0; }
+        .prose strong { font-weight: 700; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">📚 我的遊戲資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表（可收合） -->
+        <!-- 中間分頁列表 -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 flex items-center justify-between">
                 <h3 id="middleTitle" class="font-medium">分頁列表</h3>
@@ -71,8 +61,7 @@
         <div class="flex-1 flex flex-col">
             <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8 justify-between">
                 <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
-                <button onclick="exportForPublic()" 
-                        class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
+                <button onclick="exportForPublic()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
                     ☁️ 匯出給公開版
                 </button>
             </div>
@@ -120,7 +109,7 @@
         </div>
     </div>
 
-<!-- 預覽彈窗部分重點修正 -->
+    <!-- 預覽彈窗 -->
     <div id="previewModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
         <div class="bg-slate-900 rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
             <div class="p-6 border-b border-slate-700 flex justify-between sticky top-0 bg-slate-900">
@@ -393,28 +382,29 @@ function renderSingleTable(index) {
 
       // ... (前面所有函數保持不變，直到 previewContent)
 
-function previewContent() {
+        function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<h2 class="text-2xl font-bold mb-6">${sub.title}</h2>`;
+            let html = `<h2 class="text-3xl font-bold mb-8 border-b pb-4">${sub.title}</h2>`;
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
-                    const sizeStyle = block.fontSize === "small" ? "font-size: 14px; line-height: 1.6;" 
-                                   : block.fontSize === "large" ? "font-size: 20px; line-height: 1.6;" 
-                                   : "font-size: 16px; line-height: 1.7;";
+                    const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
+                                   : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
+                                   : "font-size:16px;line-height:1.7;";
 
-                    const previewHTML = marked.parse(block.content || "");
+                    // 強制使用 marked 解析
+                    let previewHTML = marked.parse(block.content || "");
                     html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
-                } else if (block.type === "table") {
-                    let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
-                    t += "<table class='w-full border-collapse mt-3 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                } 
+                else if (block.type === "table") {
+                    let t = `<div class="mt-8 font-medium text-lg">${block.title || "資料表格"}</div>`;
+                    t += "<table class='w-full border-collapse mt-4 text-sm'>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => {
                         t += "<tr>" + row.map(cell => {
-                            // 預覽時也支援換行
                             const displayCell = (cell || '').replace(/\n/g, '<br>');
-                            return `<td class='border p-3 text-center'>${displayCell}</td>`;
+                            return `<td class='border border-slate-600 p-3 text-center align-top'>${displayCell}</td>`;
                         }).join("") + "</tr>";
                     });
                     t += "</tbody></table>";
