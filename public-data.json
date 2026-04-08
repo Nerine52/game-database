@@ -4,44 +4,41 @@
     "name": "通行證",
     "subpages": [
       {
-        "title": "分311",
+        "title": "NEO DAY：2VE 通行證",
         "blocks": [
           {
             "type": "text",
-            "content": "請在此輸入文字...1111111"
+            "content": "2月25日至3月4日 (1500神石)\n"
           },
           {
             "type": "table",
-            "title": "資料表格",
+            "title": "通行證獎勵",
             "headers": [
-              "項目",
+              "獎勵",
+              "獎勵名稱",
               "數量",
-              "備註"
+              "說明"
             ],
-            "rows": []
-          },
-          {
-            "type": "text",
-            "content": "11"
-          }
-        ]
-      },
-      {
-        "title": "分頁 2",
-        "blocks": [
-          {
-            "type": "text",
-            "content": "111"
-          },
-          {
-            "type": "table",
-            "title": "資料表格",
-            "headers": [
-              "項目",
-              "數量",
-              "備註"
-            ],
-            "rows": []
+            "rows": [
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_3_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "2VE 靈魂通行證箱",
+                "10",
+                "開啟時可獲得洪門庇護恢復藥 1個、\n渾天武功秘笈碎片箱 (最上級~傳說) 3個、\n廢礦圖畫箱 (英雄~傳說) 1個、\n強化材料選擇箱 3個"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_4_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "2VE 靈魂通行證鑄幣",
+                "2",
+                "可在飛龍工商交換道具"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_5_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "洪門靈魂金幣箱",
+                "30",
+                "根據指定機率，從洪門證書：1金\n1個、3個、5個、10個、20個中獲得1種"
+              ]
+            ]
           }
         ]
       },
