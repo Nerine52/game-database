@@ -22,25 +22,18 @@
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">活動資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表（可收合，收合後保留展開按鈕） -->
+        <!-- 中間分頁列表（可收合） -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
-            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
-                <h3 id="middleTitle" class="font-medium">分頁列表</h3>
-                <div class="flex items-center gap-3">
-                    <button onclick="addSubpage()" id="addSubpageBtn"
-                            class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
-                        <span class="text-xl">+</span> 新增
-                    </button>
-                    <button onclick="toggleMiddlePanel()" id="toggleBtn"
-                            class="text-slate-400 hover:text-slate-300 text-sm font-medium flex items-center gap-1">
-                        收合 <span class="text-lg">→</span>
-                    </button>
-                </div>
+            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 flex justify-end items-center">
+                <button onclick="toggleMiddlePanel()" id="toggleBtn"
+                        class="text-slate-400 hover:text-slate-300 text-sm font-medium flex items-center gap-1 px-3 py-2 rounded-2xl hover:bg-slate-800">
+                    收合 <span class="text-lg">→</span>
+                </button>
             </div>
             <div id="subpageList" class="flex-1 p-4 overflow-auto"></div>
         </div>
@@ -174,19 +167,13 @@
         function toggleMiddlePanel() {
             isMiddlePanelVisible = !isMiddlePanelVisible;
             const panel = document.getElementById("middlePanel");
-            const title = document.getElementById("middleTitle");
-            const addBtn = document.getElementById("addSubpageBtn");
             const btn = document.getElementById("toggleBtn");
 
             if (isMiddlePanelVisible) {
                 panel.style.width = "320px";
-                title.style.display = "block";
-                addBtn.style.display = "flex";
                 btn.innerHTML = `收合 <span class="text-lg">→</span>`;
             } else {
-                panel.style.width = "68px";   // 只保留按鈕空間
-                title.style.display = "none";
-                addBtn.style.display = "none";
+                panel.style.width = "68px";   // 只保留展開按鈕空間
                 btn.innerHTML = `展開 <span class="text-lg">←</span>`;
             }
         }
