@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的遊戲資料庫 - Nerine52</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
+        .image-preview { max-height: 460px; object-fit: contain; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
+        .folder-name { font-size: 0.85rem; color: #64748b; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- 左側分類 -->
+        <div class="w-80 bg-slate-900 text-white p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-10">
+                <div class="w-11 h-11 bg-blue-500 rounded-2xl flex items-center justify-center text-3xl">📚</div>
+                <div>
+                    <h1 class="text-2xl font-bold">我的遊戲資料庫</h1>
+                    <p class="text-xs text-slate-400">Nerine52</p>
+                </div>
+            </div>
+
+            <div class="flex-1 space-y-1" id="categoryList"></div>
+
+            <div class="text-[10px] text-slate-500 mt-8">
+                圖片託管於 game-images<br>
+                點擊分類即可編輯內容
+            </div>
+        </div>
+
+        <!-- 右側主內容 -->
+        <div class="flex-1 flex flex-col">
+            <div class="h-16 bg-white border-b flex items-center px-8 justify-between">
+                <h2 id="currentTitle" class="text-3xl font-bold text-slate-800">通行證</h2>
+                <div class="flex gap-3">
+                    <button onclick="previewContent()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-3xl text-sm font-medium">
+                        預覽
+                    </button>
+                    <button onclick="saveCurrent()" 
+                            class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-3xl text-sm font-medium">
+                        💾 儲存此頁
+                    </button>
+                </div>
+            </div>
+
+            <div class="flex-1 p-8 overflow-auto">
+                <textarea id="contentEditor" class="w-full h-full p-8 text-lg leading-relaxed border border-slate-300 rounded-3xl focus:outline-none focus:border-blue-400 resize-none" 
+                          placeholder="在此輸入文字，並貼上圖片程式碼..."></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- 預覽彈窗 -->
+    <div id="previewModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div class="bg-white rounded-3xl w-full max-w-4xl mx-4 max-h-[92vh] overflow-auto">
+            <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+                <h3 id="previewTitle" class="text-2xl font-bold"></h3>
+                <button onclick="closePreview()" class="text-3xl leading-none text-slate-400 hover:text-slate-600">×</button>
+            </div>
+            <div id="previewBody" class="p-8 prose prose-slate max-w-none"></div>
+        </div>
+    </div>
+
+    <script>
+        const categories = [
+            { id: 1, name: "通行證", folder: "通行證" },
+            { id: 2, name: "金幣箱", folder: "金幣箱" },
+            { id: 3, name: "華仲師兄", folder: "華仲師兄" },
+            { id: 4, name: "服裝箱", folder: "服裝箱" },
+            { id: 5, name: "福利活動", folder: "福利活動" },
+            { id: 6, name: "排行活動", folder: "排行活動" }
+        ];
+
+        let currentIndex = 0;
+        let data = {};   // 儲存每個分類的內容
+
+        // 渲染左側分類
+        function renderCategories() {
+            const container = document.getElementById("categoryList");
+            container.innerHTML = "";
+            
+            categories.forEach((cat, index) => {
+                const div = document.createElement("div");
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
+                div.innerHTML = `
+                    ${cat.name}
+                    <div class="folder-name mt-1">images/${cat.folder}/</div>
+                `;
+                div.onclick = () => switchCategory(index);
+                container.appendChild(div);
+            });
+        }
+
+        function switchCategory(index) {
+            // 先儲存目前正在編輯的內容
+            if (currentIndex !== index) {
+                data[categories[currentIndex].name] = document.getElementById("contentEditor").value;
+            }
+            
+            currentIndex = index;
+            renderCategories();
+            
+            const cat = categories[index];
+            document.getElementById("currentTitle").textContent = cat.name;
+            
+            // 載入該分類的內容
+            document.getElementById("contentEditor").value = data[cat.name] || 
+`# ${cat.name}
+
+在這裡輸入文字說明...
+
+<img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/${cat.folder}/你的測試圖片檔名.jpg" 
+     class="image-preview w-full mt-8" alt="${cat.name} 圖片">`;
+        }
+
+        function previewContent() {
+            const content = document.getElementById("contentEditor").value;
+            const cat = categories[currentIndex];
+            
+            document.getElementById("previewTitle").textContent = cat.name;
+            document.getElementById("previewBody").innerHTML = `
+                <div class="prose prose-slate max-w-none">${content}</div>
+            `;
+            document.getElementById("previewModal").classList.remove("hidden");
+        }
+
+        function closePreview() {
+            document.getElementById("previewModal").classList.add("hidden");
+        }
+
+        function saveCurrent() {
+            const catName = categories[currentIndex].name;
+            data[catName] = document.getElementById("contentEditor").value;
+            alert(`✅ 已儲存「${catName}」的內容！\n\n下次打開網頁仍會保留（同裝置同瀏覽器）。`);
+        }
+
+        // 初始化
+        window.onload = () => {
+            renderCategories();
+            switchCategory(0);   // 預設顯示第一個分類
+        };
+    </script>
+</body>
+</html>
