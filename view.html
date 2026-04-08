@@ -11,37 +11,42 @@
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .subpage-item { transition: all 0.2s; }
         .subpage-active { background-color: #1e3a8a; border-left: 4px solid #60a5fa; }
+        
+        /* 手機優化 */
+        @media (max-width: 768px) {
+            .desktop-only { display: none; }
+            .mobile-top { flex-direction: column; }
+        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
-    <div class="flex h-screen overflow-hidden">
-        <!-- 左側：分類（深色） -->
-        <div class="w-72 bg-slate-900 border-r border-slate-700 p-6 flex flex-col">
-            <div class="flex items-center gap-3 mb-10">
-                <!-- 改成你的自訂圖標 -->
+    <div class="flex flex-col md:flex-row h-screen overflow-hidden">
+        <!-- 左側分類（手機上變成上方） -->
+        <div class="w-full md:w-72 bg-slate-900 border-b md:border-r border-slate-700 p-5 md:p-6 flex flex-col">
+            <div class="flex items-center gap-3 mb-6 md:mb-10">
                 <img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/imgi_25_bi-bnsneo-type1.png" 
                      alt="遊戲資料庫圖標" 
-                     class="w-11 h-11 object-contain rounded-2xl">
+                     class="w-10 h-10 object-contain rounded-2xl">
                 <h1 class="text-2xl font-bold">活動資料庫</h1>
             </div>
-            <div id="categoryList" class="flex-1 space-y-2"></div>
+            <div id="categoryList" class="flex-1 space-y-2 overflow-auto"></div>
         </div>
 
-        <!-- 中間：分頁直欄列表 -->
-        <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
-            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-6">
-                <h3 id="categoryTitle" class="font-medium text-xl text-white">分類名稱</h3>
+        <!-- 中間：分頁列表 -->
+        <div class="w-full md:w-80 bg-slate-900 border-b md:border-r border-slate-700 overflow-auto">
+            <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5">
+                <h3 id="categoryTitle" class="font-medium text-lg text-white">分類名稱</h3>
             </div>
             <div id="subpageList" class="p-4"></div>
         </div>
 
         <!-- 右側：內容顯示區 -->
         <div class="flex-1 flex flex-col overflow-hidden bg-slate-950">
-            <div class="h-16 bg-slate-900 border-b border-slate-700 flex items-center px-8">
-                <h2 id="subpageTitleDisplay" class="text-3xl font-bold text-white">請選擇分頁</h2>
+            <div class="h-14 md:h-16 bg-slate-900 border-b border-slate-700 flex items-center px-6">
+                <h2 id="subpageTitleDisplay" class="text-xl md:text-3xl font-bold text-white">請選擇分頁</h2>
             </div>
             
-            <div class="flex-1 p-10 overflow-auto" id="contentArea">
+            <div class="flex-1 p-6 md:p-10 overflow-auto" id="contentArea">
                 <div id="pageContent" class="max-w-4xl mx-auto"></div>
             </div>
         </div>
@@ -58,8 +63,8 @@
                 if (categories.length > 0) selectCategory(0);
             } else {
                 document.getElementById("pageContent").innerHTML = `
-                    <div class="text-center py-40 text-slate-500">
-                        <p class="text-2xl">尚未有資料</p>
+                    <div class="text-center py-32 text-slate-500">
+                        <p class="text-xl">尚未有資料</p>
                         <p class="mt-4">請先在編輯版儲存資料後再刷新此頁</p>
                     </div>`;
             }
@@ -70,7 +75,7 @@
             container.innerHTML = "";
             categories.forEach((cat, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all hover:bg-slate-800 ${index === 0 ? 'bg-slate-700' : ''}`;
+                div.className = `px-5 py-4 rounded-2xl cursor-pointer transition-all hover:bg-slate-800 text-base ${index === 0 ? 'bg-slate-700' : ''}`;
                 div.textContent = cat.name;
                 div.onclick = () => selectCategory(index);
                 container.appendChild(div);
@@ -97,7 +102,7 @@
 
             subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
-                div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer mb-2 ${index === currentSubpageIndex ? 'subpage-active' : 'hover:bg-slate-800'}`;
+                div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer mb-3 text-base ${index === currentSubpageIndex ? 'subpage-active' : 'hover:bg-slate-800'}`;
                 div.textContent = sub.title;
                 div.onclick = () => {
                     currentSubpageIndex = index;
@@ -134,12 +139,12 @@
                 } 
                 else if (block.type === "table") {
                     let html = `<div class="mb-10"><div class="font-medium text-lg mb-4 text-slate-100">${block.title || "資料表格"}</div>`;
-                    html += "<table class='w-full border-collapse text-sm'>";
-                    html += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-700 p-4 bg-slate-800 text-slate-200'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    html += "<div class='overflow-x-auto'><table class='w-full border-collapse text-sm min-w-full'>";
+                    html += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-700 p-4 bg-slate-800 text-slate-200 whitespace-nowrap'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => {
                         html += "<tr>" + row.map(cell => `<td class='border border-slate-700 p-4 text-slate-300'>${cell || ''}</td>`).join("") + "</tr>";
                     });
-                    html += "</tbody></table></div>";
+                    html += "</tbody></table></div></div>";
                     container.innerHTML += html;
                 }
             });
