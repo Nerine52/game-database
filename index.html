@@ -14,6 +14,7 @@
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
             outline: 2px solid #3b82f6; background-color: #f0f9ff; 
         }
+        .block-item { transition: all 0.2s; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -28,9 +29,8 @@
         <!-- 中間分頁列表 -->
         <div class="w-80 bg-white border-r overflow-auto">
             <div class="sticky top-0 bg-white border-b p-5 flex justify-between items-center">
-                <h3 id="listTitle" class="font-medium">分頁列表</h3>
-                <button onclick="addSubpage()" 
-                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
+                <h3 class="font-medium">分頁列表</h3>
+                <button onclick="addSubpage()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
                     <span class="text-lg">+</span> 新增分頁
                 </button>
             </div>
@@ -47,19 +47,14 @@
                 <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8">
                     <input id="subpageTitle" class="w-full text-3xl font-bold border-b pb-3 focus:outline-none" placeholder="分頁標題" onblur="saveCurrent()">
 
-                    <!-- 文字 -->
-                    <div class="mt-8">
-                        <textarea id="textEditor" class="w-full h-52 p-6 border rounded-3xl text-lg resize-y" placeholder="在此輸入文字說明..."></textarea>
+                    <!-- 文字方塊與表格容器 -->
+                    <div id="contentBlocks" class="mt-8 space-y-10"></div>
+
+                    <!-- 新增按鈕區域 -->
+                    <div class="mt-10 flex gap-4">
+                        <button onclick="addTextBlock()" class="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-3xl text-sm font-medium">+ 新增文字方塊</button>
+                        <button onclick="addNewTable()" class="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-3xl text-sm font-medium">+ 新增表格</button>
                     </div>
-
-                    <!-- 表格區域 -->
-                    <div id="tablesContainer" class="mt-10 space-y-10"></div>
-
-                    <!-- 新增表格按鈕 -->
-                    <button onclick="addNewTable()" 
-                            class="mt-8 w-full bg-slate-100 hover:bg-slate-200 py-4 rounded-3xl text-sm font-medium flex items-center justify-center gap-2">
-                        <span class="text-lg">+</span> 新增一個表格
-                    </button>
                 </div>
             </div>
 
@@ -95,9 +90,8 @@
 
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
-        let currentTables = [];   // 一個分頁可以有多個表格
+        let currentBlocks = []; // 存放多個文字方塊與表格
 
-        // 載入資料
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
             if (saved) categories = JSON.parse(saved);
@@ -131,7 +125,6 @@
         function renderSubpageList() {
             const container = document.getElementById("subpageList");
             container.innerHTML = "";
-
             categories[currentCategoryIndex].subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
                 div.className = `px-6 py-4 mx-2 rounded-2xl cursor-pointer hover:bg-slate-100 ${index === currentSubpageIndex ? 'bg-blue-50 border border-blue-200' : ''}`;
@@ -139,7 +132,6 @@
                 div.onclick = () => selectSubpage(index);
                 container.appendChild(div);
             });
-
             if (categories[currentCategoryIndex].subpages.length === 0) {
                 container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點上方「+ 新增分頁」</div>`;
             }
@@ -148,50 +140,70 @@
         function selectSubpage(index) {
             currentSubpageIndex = index;
             const sub = categories[currentCategoryIndex].subpages[index];
-
             document.getElementById("currentTitle").textContent = sub.title;
-            document.getElementById("subpageTitle").value = sub.title;
-            document.getElementById("textEditor").value = sub.text || "";
+            document.getElementById("subpageTitle").value = sub.title || "";
+            document.getElementById("textEditor").value = ""; // 暫時不用單一文字區
 
-            currentTables = sub.tables || [{ title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }];
+            currentBlocks = sub.blocks || [
+                { type: "text", content: "在此輸入文字說明..." },
+                { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
+            ];
 
-            renderAllTables();
+            renderAllBlocks();
             document.getElementById("contentArea").classList.remove("hidden");
             renderSubpageList();
         }
 
-        function renderAllTables() {
-            const container = document.getElementById("tablesContainer");
+        function renderAllBlocks() {
+            const container = document.getElementById("contentBlocks");
             container.innerHTML = "";
 
-            currentTables.forEach((table, tableIndex) => {
-                const tableDiv = document.createElement("div");
-                tableDiv.className = "border rounded-3xl p-6 bg-white";
-                tableDiv.innerHTML = `
-                    <input value="${table.title || '資料表格'}" 
-                           class="text-xl font-medium bg-transparent border-b focus:outline-none px-2 py-1 w-64 mb-4" 
-                           onblur="updateTableTitle(${tableIndex}, this.value)">
-                    <table class="w-full" id="table-${tableIndex}"></table>
+            currentBlocks.forEach((block, index) => {
+                const div = document.createElement("div");
+                div.className = "block-item border rounded-3xl p-6 bg-white relative";
+                div.innerHTML = `
+                    <div class="absolute right-4 top-4 flex gap-2">
+                        <button onclick="moveBlock(${index}, -1)" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 rounded-lg">↑</button>
+                        <button onclick="moveBlock(${index}, 1)" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 rounded-lg">↓</button>
+                        <button onclick="deleteBlock(${index})" class="w-7 h-7 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg">×</button>
+                    </div>
                 `;
-                container.appendChild(tableDiv);
-                renderSingleTable(tableIndex);
+
+                if (block.type === "text") {
+                    div.innerHTML += `
+                        <textarea class="w-full h-52 p-6 border rounded-3xl text-lg resize-y" onblur="updateTextBlock(${index}, this.value)">${block.content || ""}</textarea>
+                    `;
+                } else if (block.type === "table") {
+                    div.innerHTML += `
+                        <input value="${block.title || '資料表格'}" class="text-xl font-medium bg-transparent border-b focus:outline-none px-2 py-1 w-64 mb-4" onblur="updateTableTitle(${index}, this.value)">
+                        <div class="flex gap-3 mb-3">
+                            <button onclick="addTableRow(${index})" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增列</button>
+                            <button onclick="addTableColumn(${index})" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                        </div>
+                        <table class="w-full border" id="table-${index}"></table>
+                    `;
+                    container.appendChild(div);
+                    renderSingleTable(index);
+                    return;
+                }
+                container.appendChild(div);
             });
         }
 
-        function renderSingleTable(tableIndex) {
-            const table = currentTables[tableIndex];
-            const tableEl = document.getElementById(`table-${tableIndex}`);
+        function renderSingleTable(blockIndex) {
+            const block = currentBlocks[blockIndex];
+            const tableEl = document.getElementById(`table-${blockIndex}`);
             if (!tableEl) return;
 
             let html = "<thead><tr>";
-            table.headers.forEach((h, i) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${tableIndex}, ${i}, this.innerText)" class="bg-slate-100">${h}</th>`;
+            block.headers.forEach((h, i) => {
+                html += `<th contenteditable="true" onblur="updateHeader(${blockIndex}, ${i}, this.innerText)" class="bg-slate-100">${h}</th>`;
             });
             html += "</tr></thead><tbody>";
-            table.rows.forEach((row, r) => {
+            block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${tableIndex}, ${r}, ${c}, this.innerText)">${cell || ''}</td>`;
+                    html += `<td contenteditable="true" onblur="updateCell(${blockIndex}, ${r}, ${c}, this.innerText)">${cell || ''}</td>`;
                 });
                 html += "</tr>";
             });
@@ -199,41 +211,61 @@
             tableEl.innerHTML = html;
         }
 
-        function updateTableTitle(tableIndex, newTitle) {
-            currentTables[tableIndex].title = newTitle;
+        function updateTextBlock(index, value) {
+            currentBlocks[index].content = value;
         }
 
-        function updateHeader(tableIndex, col, text) {
-            currentTables[tableIndex].headers[col] = text || "新欄位";
+        function updateTableTitle(index, value) {
+            currentBlocks[index].title = value;
         }
 
-        function updateCell(tableIndex, row, col, text) {
-            currentTables[tableIndex].rows[row][col] = text;
+        function updateHeader(blockIndex, col, text) {
+            currentBlocks[blockIndex].headers[col] = text || "新欄位";
         }
 
-        function addTableRow() {
-            // 預設對第一個表格新增列（可後續擴展）
-            if (currentTables.length === 0) return;
-            currentTables[0].rows.push(Array(currentTables[0].headers.length).fill(""));
-            renderAllTables();
+        function updateCell(blockIndex, row, col, text) {
+            currentBlocks[blockIndex].rows[row][col] = text;
         }
 
-        function addTableColumn() {
-            if (currentTables.length === 0) return;
-            const name = prompt("新欄位名稱", `欄位${currentTables[0].headers.length + 1}`);
-            if (!name) return;
-            currentTables[0].headers.push(name);
-            currentTables[0].rows.forEach(row => row.push(""));
-            renderAllTables();
+        function addTextBlock() {
+            currentBlocks.push({ type: "text", content: "新文字方塊..." });
+            renderAllBlocks();
         }
 
         function addNewTable() {
-            currentTables.push({
+            currentBlocks.push({
+                type: "table",
                 title: "新表格",
                 headers: ["項目", "數量", "備註"],
                 rows: []
             });
-            renderAllTables();
+            renderAllBlocks();
+        }
+
+        function addTableRow(blockIndex) {
+            currentBlocks[blockIndex].rows.push(Array(currentBlocks[blockIndex].headers.length).fill(""));
+            renderAllBlocks();
+        }
+
+        function addTableColumn(blockIndex) {
+            const name = prompt("新欄位名稱", `欄位${currentBlocks[blockIndex].headers.length + 1}`);
+            if (!name) return;
+            currentBlocks[blockIndex].headers.push(name);
+            currentBlocks[blockIndex].rows.forEach(row => row.push(""));
+            renderAllBlocks();
+        }
+
+        function moveBlock(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex < 0 || newIndex >= currentBlocks.length) return;
+            [currentBlocks[index], currentBlocks[newIndex]] = [currentBlocks[newIndex], currentBlocks[index]];
+            renderAllBlocks();
+        }
+
+        function deleteBlock(index) {
+            if (!confirm("確定刪除此區塊？")) return;
+            currentBlocks.splice(index, 1);
+            renderAllBlocks();
         }
 
         function addSubpage() {
@@ -242,8 +274,10 @@
 
             categories[currentCategoryIndex].subpages.push({
                 title: title,
-                text: "",
-                tables: [{ title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }]
+                blocks: [
+                    { type: "text", content: "在此輸入文字說明..." },
+                    { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
+                ]
             });
 
             renderSubpageList();
@@ -262,10 +296,9 @@
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
             sub.title = document.getElementById("subpageTitle").value;
-            sub.text = document.getElementById("textEditor").value;
-            sub.tables = currentTables;
+            sub.blocks = currentBlocks;
             saveAllData();
-            alert("✅ 已儲存！重新整理網頁後資料仍在。");
+            alert("✅ 已儲存此分頁！重新整理後資料仍在。");
         }
 
         function deleteCurrentSubpage() {
@@ -280,17 +313,21 @@
         function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<div class="prose">${document.getElementById("textEditor").value || "無文字內容"}</div>`;
+            let html = `<div class="prose">${sub.title}</div>`;
 
-            currentTables.forEach(table => {
-                let tableHTML = `<div class="mt-8 font-medium">${table.title || '資料表格'}</div>`;
-                tableHTML += "<table class='w-full border-collapse mt-2 text-sm'>";
-                tableHTML += "<thead><tr>" + table.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                table.rows.forEach(row => {
-                    tableHTML += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>";
-                });
-                tableHTML += "</tbody></table>";
-                html += tableHTML;
+            currentBlocks.forEach(block => {
+                if (block.type === "text") {
+                    html += `<div class="mt-6">${block.content || ""}</div>`;
+                } else if (block.type === "table") {
+                    let tableHTML = `<div class="mt-8 font-medium">${block.title || '資料表格'}</div>`;
+                    tableHTML += "<table class='w-full border-collapse mt-2 text-sm'>";
+                    tableHTML += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    block.rows.forEach(row => {
+                        tableHTML += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>";
+                    });
+                    tableHTML += "</tbody></table>";
+                    html += tableHTML;
+                }
             });
 
             document.getElementById("previewTitle").textContent = sub.title;
@@ -302,7 +339,6 @@
             document.getElementById("previewModal").classList.add("hidden");
         }
 
-        // 初始化
         window.onload = () => {
             loadData();
             renderCategoryList();
