@@ -442,7 +442,8 @@
             URL.revokeObjectURL(url);
             alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
         }
-                function exportData() {
+                
+        function exportData() {
             const dataStr = JSON.stringify(categories, null, 2);
             const blob = new Blob([dataStr], {type: "application/json"});
             const url = URL.createObjectURL(blob);
