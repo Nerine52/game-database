@@ -9,12 +9,11 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 4px; }
-        .nav-active { background-color: #1e40af; color: white; }
-        td, th { padding: 10px; border: 1px solid #e2e8f0; }
+        .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
+        td, th { padding: 12px; border: 1px solid #e2e8f0; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
             outline: 2px solid #3b82f6; background-color: #f0f9ff; 
         }
-        .block-item { transition: all 0.2s; }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -28,40 +27,38 @@
 
         <!-- 中間分頁列表 -->
         <div class="w-80 bg-white border-r overflow-auto">
-            <div class="sticky top-0 bg-white border-b p-5 flex justify-between items-center">
-                <h3 class="font-medium">分頁列表</h3>
-                <button onclick="addSubpage()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
-                    <span class="text-lg">+</span> 新增分頁
+            <div class="sticky top-0 bg-white border-b p-5 flex justify-between items-center shadow-sm">
+                <h3 class="font-medium text-lg" id="listTitle">分頁列表</h3>
+                <button onclick="addSubpage()" 
+                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-3xl text-sm font-medium">
+                    <span class="text-xl">+</span> 新增分頁
                 </button>
             </div>
-            <div id="subpageList" class="p-3"></div>
+            <div id="subpageList" class="p-4"></div>
         </div>
 
-        <!-- 右側內容 -->
+        <!-- 右側內容區 -->
         <div class="flex-1 flex flex-col">
             <div class="h-16 bg-white border-b flex items-center px-8">
-                <h2 id="currentTitle" class="text-3xl font-bold">請選擇分頁</h2>
+                <h2 id="currentTitle" class="text-3xl font-bold text-slate-800">請選擇分頁</h2>
             </div>
 
             <div class="flex-1 p-8 overflow-auto bg-slate-50" id="contentArea">
-                <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8">
-                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b pb-3 focus:outline-none" placeholder="分頁標題" onblur="saveCurrent()">
+                <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow-xl p-8 min-h-full">
+                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b pb-4 focus:outline-none" placeholder="分頁標題" onblur="saveCurrent()">
 
-                    <!-- 文字方塊與表格容器 -->
-                    <div id="contentBlocks" class="mt-8 space-y-10"></div>
+                    <div id="contentBlocks" class="mt-10 space-y-12"></div>
 
-                    <!-- 新增按鈕區域 -->
-                    <div class="mt-10 flex gap-4">
-                        <button onclick="addTextBlock()" class="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-3xl text-sm font-medium">+ 新增文字方塊</button>
-                        <button onclick="addNewTable()" class="flex-1 bg-slate-100 hover:bg-slate-200 py-4 rounded-3xl text-sm font-medium">+ 新增表格</button>
+                    <div class="mt-12 flex gap-4 border-t pt-8">
+                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-100 hover:bg-slate-200 rounded-3xl text-sm font-medium">+ 新增文字方塊</button>
+                        <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-100 hover:bg-slate-200 rounded-3xl text-sm font-medium">+ 新增表格</button>
                     </div>
                 </div>
             </div>
 
-            <!-- 底部工具列 -->
             <div class="h-16 bg-white border-t flex items-center px-8 gap-4">
                 <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽</button>
-                <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm">💾 儲存此分頁</button>
+                <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
                 <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
             </div>
         </div>
@@ -90,7 +87,7 @@
 
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
-        let currentBlocks = []; // 存放多個文字方塊與表格
+        let currentBlocks = [];
 
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
@@ -104,128 +101,122 @@
         function renderCategoryList() {
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
-            categories.forEach((cat, index) => {
+            categories.forEach((cat, i) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentCategoryIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${i === currentCategoryIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
                 div.textContent = cat.name;
-                div.onclick = () => selectCategory(index);
+                div.onclick = () => selectCategory(i);
                 container.appendChild(div);
             });
         }
 
         function selectCategory(index) {
             currentCategoryIndex = index;
-            currentSubpageIndex = -1;
+            currentSubpageIndex = categories[index].subpages.length > 0 ? 0 : -1;
             renderCategoryList();
             renderSubpageList();
-            document.getElementById("currentTitle").textContent = categories[index].name + " - 請選擇分頁";
-            document.getElementById("contentArea").classList.add("hidden");
+            
+            if (currentSubpageIndex >= 0) {
+                selectSubpage(currentSubpageIndex);
+            } else {
+                document.getElementById("contentArea").classList.add("hidden");
+            }
         }
 
         function renderSubpageList() {
             const container = document.getElementById("subpageList");
             container.innerHTML = "";
-            categories[currentCategoryIndex].subpages.forEach((sub, index) => {
+
+            const subpages = categories[currentCategoryIndex].subpages;
+            
+            subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 mx-2 rounded-2xl cursor-pointer hover:bg-slate-100 ${index === currentSubpageIndex ? 'bg-blue-50 border border-blue-200' : ''}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-100 transition-all ${index === currentSubpageIndex ? 'bg-blue-50 border-2 border-blue-500' : ''}`;
                 div.textContent = sub.title;
-                div.onclick = () => selectSubpage(index);
+                div.onclick = () => selectSubpage(index);   // 這裡加強點擊
                 container.appendChild(div);
             });
-            if (categories[currentCategoryIndex].subpages.length === 0) {
-                container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點上方「+ 新增分頁」</div>`;
+
+            if (subpages.length === 0) {
+                container.innerHTML = `<div class="p-16 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」按鈕</div>`;
             }
         }
 
         function selectSubpage(index) {
             currentSubpageIndex = index;
             const sub = categories[currentCategoryIndex].subpages[index];
+
             document.getElementById("currentTitle").textContent = sub.title;
-            document.getElementById("subpageTitle").value = sub.title || "";
-            document.getElementById("textEditor").value = ""; // 暫時不用單一文字區
+            document.getElementById("subpageTitle").value = sub.title || "未命名分頁";
 
             currentBlocks = sub.blocks || [
-                { type: "text", content: "在此輸入文字說明..." },
+                { type: "text", content: "請在此輸入文字說明..." },
                 { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
             ];
 
             renderAllBlocks();
             document.getElementById("contentArea").classList.remove("hidden");
-            renderSubpageList();
+            renderSubpageList();   // 重新渲染以顯示選中狀態
         }
 
+        // ==================== 以下為內容區塊相關 ====================
         function renderAllBlocks() {
             const container = document.getElementById("contentBlocks");
             container.innerHTML = "";
 
-            currentBlocks.forEach((block, index) => {
+            currentBlocks.forEach((block, i) => {
                 const div = document.createElement("div");
                 div.className = "block-item border rounded-3xl p-6 bg-white relative";
-                div.innerHTML = `
-                    <div class="absolute right-4 top-4 flex gap-2">
-                        <button onclick="moveBlock(${index}, -1)" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 rounded-lg">↑</button>
-                        <button onclick="moveBlock(${index}, 1)" class="w-7 h-7 bg-slate-100 hover:bg-slate-200 rounded-lg">↓</button>
-                        <button onclick="deleteBlock(${index})" class="w-7 h-7 bg-red-100 hover:bg-red-200 text-red-600 rounded-lg">×</button>
+
+                // 操作按鈕
+                div.innerHTML += `
+                    <div class="absolute -top-3 -right-3 flex gap-1 bg-white shadow rounded-xl p-1">
+                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 flex items-center justify-center hover:bg-slate-100 rounded-lg">↑</button>
+                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 flex items-center justify-center hover:bg-slate-100 rounded-lg">↓</button>
+                        <button onclick="deleteBlock(${i})" class="w-8 h-8 flex items-center justify-center text-red-500 hover:bg-red-50 rounded-lg">×</button>
                     </div>
                 `;
 
                 if (block.type === "text") {
-                    div.innerHTML += `
-                        <textarea class="w-full h-52 p-6 border rounded-3xl text-lg resize-y" onblur="updateTextBlock(${index}, this.value)">${block.content || ""}</textarea>
-                    `;
+                    div.innerHTML += `<textarea class="w-full h-56 p-6 border rounded-3xl text-lg" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>`;
                 } else if (block.type === "table") {
                     div.innerHTML += `
-                        <input value="${block.title || '資料表格'}" class="text-xl font-medium bg-transparent border-b focus:outline-none px-2 py-1 w-64 mb-4" onblur="updateTableTitle(${index}, this.value)">
-                        <div class="flex gap-3 mb-3">
-                            <button onclick="addTableRow(${index})" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增列</button>
-                            <button onclick="addTableColumn(${index})" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                        <input value="${block.title || '資料表格'}" class="text-xl font-medium w-80 border-b focus:outline-none mb-4" onblur="updateTableTitle(${i}, this.value)">
+                        <div class="flex gap-3 mb-4">
+                            <button onclick="addTableRow(${i})" class="bg-slate-100 hover:bg-slate-200 px-6 py-2.5 rounded-3xl text-sm">+ 新增列</button>
+                            <button onclick="addTableColumn(${i})" class="bg-slate-100 hover:bg-slate-200 px-6 py-2.5 rounded-3xl text-sm">+ 新增欄</button>
                         </div>
-                        <table class="w-full border" id="table-${index}"></table>
+                        <table class="w-full border" id="table-${i}"></table>
                     `;
                     container.appendChild(div);
-                    renderSingleTable(index);
+                    renderSingleTable(i);
                     return;
                 }
                 container.appendChild(div);
             });
         }
 
-        function renderSingleTable(blockIndex) {
-            const block = currentBlocks[blockIndex];
-            const tableEl = document.getElementById(`table-${blockIndex}`);
-            if (!tableEl) return;
+        function renderSingleTable(index) {
+            const block = currentBlocks[index];
+            const el = document.getElementById(`table-${index}`);
+            if (!el) return;
 
             let html = "<thead><tr>";
-            block.headers.forEach((h, i) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${blockIndex}, ${i}, this.innerText)" class="bg-slate-100">${h}</th>`;
-            });
+            block.headers.forEach((h, c) => html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-100">${h}</th>`);
             html += "</tr></thead><tbody>";
             block.rows.forEach((row, r) => {
                 html += "<tr>";
-                row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${blockIndex}, ${r}, ${c}, this.innerText)">${cell || ''}</td>`;
-                });
+                row.forEach((cell, c) => html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell||''}</td>`);
                 html += "</tr>";
             });
             html += "</tbody>";
-            tableEl.innerHTML = html;
+            el.innerHTML = html;
         }
 
-        function updateTextBlock(index, value) {
-            currentBlocks[index].content = value;
-        }
-
-        function updateTableTitle(index, value) {
-            currentBlocks[index].title = value;
-        }
-
-        function updateHeader(blockIndex, col, text) {
-            currentBlocks[blockIndex].headers[col] = text || "新欄位";
-        }
-
-        function updateCell(blockIndex, row, col, text) {
-            currentBlocks[blockIndex].rows[row][col] = text;
-        }
+        function updateText(i, val) { currentBlocks[i].content = val; }
+        function updateTableTitle(i, val) { currentBlocks[i].title = val; }
+        function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
+        function updateCell(blockIdx, row, col, text) { currentBlocks[blockIdx].rows[row][col] = text; }
 
         function addTextBlock() {
             currentBlocks.push({ type: "text", content: "新文字方塊..." });
@@ -242,40 +233,40 @@
             renderAllBlocks();
         }
 
-        function addTableRow(blockIndex) {
-            currentBlocks[blockIndex].rows.push(Array(currentBlocks[blockIndex].headers.length).fill(""));
+        function addTableRow(blockIdx) {
+            currentBlocks[blockIdx].rows.push(Array(currentBlocks[blockIdx].headers.length).fill(""));
             renderAllBlocks();
         }
 
-        function addTableColumn(blockIndex) {
-            const name = prompt("新欄位名稱", `欄位${currentBlocks[blockIndex].headers.length + 1}`);
+        function addTableColumn(blockIdx) {
+            const name = prompt("新欄位名稱", `欄位 ${currentBlocks[blockIdx].headers.length + 1}`);
             if (!name) return;
-            currentBlocks[blockIndex].headers.push(name);
-            currentBlocks[blockIndex].rows.forEach(row => row.push(""));
+            currentBlocks[blockIdx].headers.push(name);
+            currentBlocks[blockIdx].rows.forEach(r => r.push(""));
             renderAllBlocks();
         }
 
-        function moveBlock(index, direction) {
-            const newIndex = index + direction;
-            if (newIndex < 0 || newIndex >= currentBlocks.length) return;
-            [currentBlocks[index], currentBlocks[newIndex]] = [currentBlocks[newIndex], currentBlocks[index]];
+        function moveBlock(index, dir) {
+            const newIdx = index + dir;
+            if (newIdx < 0 || newIdx >= currentBlocks.length) return;
+            [currentBlocks[index], currentBlocks[newIdx]] = [currentBlocks[newIdx], currentBlocks[index]];
             renderAllBlocks();
         }
 
         function deleteBlock(index) {
-            if (!confirm("確定刪除此區塊？")) return;
+            if (!confirm("刪除這個區塊？")) return;
             currentBlocks.splice(index, 1);
             renderAllBlocks();
         }
 
         function addSubpage() {
-            const title = prompt("新分頁名稱", `新分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
+            const title = prompt("新分頁名稱", `分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
             if (!title) return;
 
             categories[currentCategoryIndex].subpages.push({
                 title: title,
                 blocks: [
-                    { type: "text", content: "在此輸入文字說明..." },
+                    { type: "text", content: "請在此輸入文字..." },
                     { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
                 ]
             });
@@ -298,7 +289,7 @@
             sub.title = document.getElementById("subpageTitle").value;
             sub.blocks = currentBlocks;
             saveAllData();
-            alert("✅ 已儲存此分頁！重新整理後資料仍在。");
+            alert("✅ 已儲存！");
         }
 
         function deleteCurrentSubpage() {
@@ -313,25 +304,22 @@
         function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<div class="prose">${sub.title}</div>`;
+            let html = `<h2 class="text-2xl font-bold mb-6">${sub.title}</h2>`;
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
-                    html += `<div class="mt-6">${block.content || ""}</div>`;
+                    html += `<div class="prose mt-6">${block.content || ""}</div>`;
                 } else if (block.type === "table") {
-                    let tableHTML = `<div class="mt-8 font-medium">${block.title || '資料表格'}</div>`;
-                    tableHTML += "<table class='w-full border-collapse mt-2 text-sm'>";
-                    tableHTML += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                    block.rows.forEach(row => {
-                        tableHTML += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>";
-                    });
-                    tableHTML += "</tbody></table>";
-                    html += tableHTML;
+                    let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
+                    t += "<table class='w-full border-collapse mt-3 text-sm'>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>");
+                    t += "</tbody></table>";
+                    html += t;
                 }
             });
 
-            document.getElementById("previewTitle").textContent = sub.title;
-            document.getElementById("previewBody").innerHTML = html;
+            document.getElementById("previewTitle").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
 
@@ -339,10 +327,15 @@
             document.getElementById("previewModal").classList.add("hidden");
         }
 
+        // 初始化
         window.onload = () => {
             loadData();
             renderCategoryList();
-            selectCategory(0);
+            if (categories[0].subpages.length > 0) {
+                selectSubpage(0);
+            } else {
+                selectCategory(0);
+            }
         };
     </script>
 </body>
