@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>編輯neo資料庫</title>
+    <title>NEO資料庫(編輯版)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -21,13 +21,12 @@
             padding: 12px; 
             border: 1px solid #334155; 
             text-align: center; 
-            vertical-align: middle;     /* 垂直置中 */
+            vertical-align: middle;        /* 垂直置中 */
             white-space: pre-wrap;
         }
         th { 
             background-color: #1e2937; 
             font-weight: 500;
-            vertical-align: middle;
         }
 
         /* 文字方塊字體大小 */
@@ -44,14 +43,14 @@
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
-        <!-- 左側分類（保持不變） -->
+        <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
             <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表 -->
+        <!-- 中間分頁列表（可收合） -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 flex items-center justify-between">
                 <h3 id="middleTitle" class="font-medium">分頁列表</h3>
@@ -91,9 +90,17 @@
                 </div>
             </div>
 
-            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4">
+            <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4 flex-wrap">
                 <button onclick="showMarkdownHelp()" class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-3xl text-sm">Markdown 101</button>
                 <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽 Markdown</button>
+                
+                <button onclick="exportData()" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
+                    📤 匯出資料
+                </button>
+                <button onclick="importData()" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
+                    📥 匯入資料
+                </button>
+
                 <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
                 <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
             </div>
@@ -301,39 +308,6 @@
             el.innerHTML = html;
         }
 
-        function previewContent() {
-            if (currentSubpageIndex === -1) return;
-            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<h2 class="text-3xl font-bold mb-8 border-b pb-4">${sub.title}</h2>`;
-
-            currentBlocks.forEach(block => {
-                if (block.type === "text") {
-                    const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
-                                   : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
-                                   : "font-size:16px;line-height:1.7;";
-
-                    const previewHTML = marked.parse(block.content || "");
-                    html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
-                } 
-                else if (block.type === "table") {
-                    let t = `<div class="mt-8 font-medium text-lg">${block.title || "資料表格"}</div>`;
-                    t += "<table class='w-full border-collapse mt-4 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                    block.rows.forEach(row => {
-                        t += "<tr>" + row.map(cell => {
-                            const displayCell = (cell || '').replace(/\n/g, '<br>');
-                            return `<td class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${displayCell}</td>`;
-                        }).join("") + "</tr>";
-                    });
-                    t += "</tbody></table>";
-                    html += t;
-                }
-            });
-
-            document.getElementById("previewBody").innerHTML = html;
-            document.getElementById("previewModal").classList.remove("hidden");
-        }
-        
         function updateText(i, val) { currentBlocks[i].content = val; }
         function updateTableTitle(i, val) { currentBlocks[i].title = val; }
         function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
@@ -424,8 +398,6 @@
             saveAllData();
         }
 
-      // ... (前面所有函數保持不變，直到 previewContent)
-
         function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
@@ -437,18 +409,16 @@
                                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
                                    : "font-size:16px;line-height:1.7;";
 
-                    // 強制使用 marked 解析
-                    let previewHTML = marked.parse(block.content || "");
+                    const previewHTML = marked.parse(block.content || "");
                     html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
-                } 
-                else if (block.type === "table") {
+                } else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium text-lg">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-4 text-sm'>";
                     t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => {
                         t += "<tr>" + row.map(cell => {
                             const displayCell = (cell || '').replace(/\n/g, '<br>');
-                            return `<td class='border border-slate-600 p-3 text-center align-top'>${displayCell}</td>`;
+                            return `<td class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${displayCell}</td>`;
                         }).join("") + "</tr>";
                     });
                     t += "</tbody></table>";
@@ -459,8 +429,7 @@
             document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
-        
-// 其餘函數不變...
+
         function closePreview() {
             document.getElementById("previewModal").classList.add("hidden");
         }
@@ -473,7 +442,7 @@
             document.getElementById("markdownHelp").classList.add("hidden");
         }
 
-        function exportForPublic() {
+        function exportData() {
             const dataStr = JSON.stringify(categories, null, 2);
             const blob = new Blob([dataStr], {type: "application/json"});
             const url = URL.createObjectURL(blob);
@@ -484,18 +453,6 @@
             URL.revokeObjectURL(url);
             alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
         }
-                
-        function exportData() {
-            const dataStr = JSON.stringify(categories, null, 2);
-            const blob = new Blob([dataStr], {type: "application/json"});
-            const url = URL.createObjectURL(blob);
-            const a = document.createElement("a");
-            a.href = url;
-            a.download = "public-data.json";
-            a.click();
-            URL.revokeObjectURL(url);
-            alert("✅ 已下載 public-data.json\n\n請把這個檔案上傳到 GitHub，覆蓋原本的 public-data.json");
-        }
 
         function importData() {
             const input = document.createElement("input");
@@ -504,7 +461,6 @@
             input.onchange = e => {
                 const file = e.target.files[0];
                 if (!file) return;
-                
                 const reader = new FileReader();
                 reader.onload = function(event) {
                     try {
@@ -512,18 +468,21 @@
                         saveAllData();
                         renderCategoryList();
                         selectCategory(0);
-                        alert("✅ 資料匯入成功！\n現在資料已同步");
+                        alert("✅ 資料匯入成功！");
                     } catch(err) {
-                        alert("❌ 檔案格式錯誤，請確認選擇的是 public-data.json");
+                        alert("❌ 檔案格式錯誤，請確認是 public-data.json");
                     }
                 };
                 reader.readAsText(file);
             };
             input.click();
         }
-        
 
-window.onload = () => {
+        function exportForPublic() {
+            exportData();
+        }
+
+        window.onload = () => {
             loadData();
             renderCategoryList();
             if (categories[0].subpages.length > 0) {
