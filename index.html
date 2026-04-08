@@ -9,124 +9,177 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
         .image-preview { max-height: 460px; object-fit: contain; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
-        .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        .folder-name { font-size: 0.85rem; color: #64748b; }
+        .nav-active { background-color: #1e40af; color: white; }
     </style>
 </head>
 <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
-        <div class="w-80 bg-slate-900 text-white p-6 flex flex-col">
-            <div class="flex items-center gap-3 mb-10">
-                <div class="w-11 h-11 bg-blue-500 rounded-2xl flex items-center justify-center text-3xl">📚</div>
-                <div>
-                    <h1 class="text-2xl font-bold">我的遊戲資料庫</h1>
-                    <p class="text-xs text-slate-400">Nerine52</p>
-                </div>
+        <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold flex items-center gap-3">
+                    📚 我的遊戲資料庫
+                </h1>
+                <p class="text-slate-400 text-sm mt-1">Nerine52</p>
             </div>
 
-            <div class="flex-1 space-y-1" id="categoryList"></div>
+            <div id="categoryList" class="flex-1 space-y-1"></div>
 
-            <div class="text-[10px] text-slate-500 mt-8">
-                圖片託管於 game-images<br>
-                點擊分類即可編輯內容
-            </div>
+            <button onclick="addNewCategory()" 
+                    class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">
+                + 新增分類
+            </button>
         </div>
 
-        <!-- 右側主內容 -->
+        <!-- 右側區域 -->
         <div class="flex-1 flex flex-col">
+            <!-- 分類標題 + 新增分頁按鈕 -->
             <div class="h-16 bg-white border-b flex items-center px-8 justify-between">
-                <h2 id="currentTitle" class="text-3xl font-bold text-slate-800">通行證</h2>
-                <div class="flex gap-3">
-                    <button onclick="previewContent()" 
-                            class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-3xl text-sm font-medium">
-                        預覽
-                    </button>
-                    <button onclick="saveCurrent()" 
-                            class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-3xl text-sm font-medium">
-                        💾 儲存此頁
-                    </button>
-                </div>
+                <h2 id="currentCategoryTitle" class="text-3xl font-bold">通行證</h2>
+                <button onclick="addNewSubpage()" 
+                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm">
+                    <span class="text-lg">+</span> 新增分頁
+                </button>
             </div>
 
+            <!-- 分頁標籤列 -->
+            <div id="subpageTabs" class="h-14 bg-white border-b flex items-center px-6 gap-2 overflow-x-auto"></div>
+
+            <!-- 內容編輯區 -->
             <div class="flex-1 p-8 overflow-auto">
-                <textarea id="contentEditor" class="w-full h-full p-8 text-lg leading-relaxed border border-slate-300 rounded-3xl focus:outline-none focus:border-blue-400 resize-none" 
-                          placeholder="在此輸入文字，並貼上圖片程式碼..."></textarea>
+                <textarea id="contentEditor" 
+                          class="w-full h-full p-8 text-lg border border-slate-300 rounded-3xl focus:outline-none focus:border-blue-400 resize-none leading-relaxed"
+                          placeholder="在此輸入文字、攻略、說明，並貼上圖片程式碼..."></textarea>
+            </div>
+
+            <!-- 底部工具列 -->
+            <div class="h-16 bg-white border-t flex items-center px-8 gap-4">
+                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">預覽</button>
+                <button onclick="saveCurrentSubpage()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
+                <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-4 py-3 text-sm">刪除此分頁</button>
             </div>
         </div>
     </div>
 
     <!-- 預覽彈窗 -->
     <div id="previewModal" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
-        <div class="bg-white rounded-3xl w-full max-w-4xl mx-4 max-h-[92vh] overflow-auto">
-            <div class="sticky top-0 bg-white border-b p-6 flex justify-between items-center">
+        <div class="bg-white rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
+            <div class="p-6 border-b flex justify-between sticky top-0 bg-white">
                 <h3 id="previewTitle" class="text-2xl font-bold"></h3>
-                <button onclick="closePreview()" class="text-3xl leading-none text-slate-400 hover:text-slate-600">×</button>
+                <button onclick="closePreview()" class="text-3xl text-slate-400 hover:text-black">×</button>
             </div>
             <div id="previewBody" class="p-8 prose prose-slate max-w-none"></div>
         </div>
     </div>
 
     <script>
-        const categories = [
-            { id: 1, name: "通行證", folder: "通行證" },
-            { id: 2, name: "金幣箱", folder: "金幣箱" },
-            { id: 3, name: "華仲師兄", folder: "華仲師兄" },
-            { id: 4, name: "服裝箱", folder: "服裝箱" },
-            { id: 5, name: "福利活動", folder: "福利活動" },
-            { id: 6, name: "排行活動", folder: "排行活動" }
+        let categories = [
+            { id: 1, name: "通行證", subpages: [] },
+            { id: 2, name: "金幣箱", subpages: [] },
+            { id: 3, name: "華仲師兄", subpages: [] },
+            { id: 4, name: "服裝箱", subpages: [] },
+            { id: 5, name: "福利活動", subpages: [] },
+            { id: 6, name: "排行活動", subpages: [] }
         ];
 
-        let currentIndex = 0;
-        let data = {};   // 儲存每個分類的內容
+        let currentCategoryIndex = 0;
+        let currentSubpageIndex = -1;
 
         // 渲染左側分類
         function renderCategories() {
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
-            
             categories.forEach((cat, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
-                div.innerHTML = `
-                    ${cat.name}
-                    <div class="folder-name mt-1">images/${cat.folder}/</div>
-                `;
-                div.onclick = () => switchCategory(index);
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentCategoryIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
+                div.textContent = cat.name;
+                div.onclick = () => selectCategory(index);
                 container.appendChild(div);
             });
         }
 
-        function switchCategory(index) {
-            // 先儲存目前正在編輯的內容
-            if (currentIndex !== index) {
-                data[categories[currentIndex].name] = document.getElementById("contentEditor").value;
-            }
-            
-            currentIndex = index;
+        function selectCategory(index) {
+            currentCategoryIndex = index;
+            currentSubpageIndex = categories[index].subpages.length > 0 ? 0 : -1;
             renderCategories();
-            
-            const cat = categories[index];
-            document.getElementById("currentTitle").textContent = cat.name;
-            
-            // 載入該分類的內容
-            document.getElementById("contentEditor").value = data[cat.name] || 
-`# ${cat.name}
+            document.getElementById("currentCategoryTitle").textContent = categories[index].name;
+            renderSubpageTabs();
+        }
 
-在這裡輸入文字說明...
+        // 渲染分頁標籤
+        function renderSubpageTabs() {
+            const container = document.getElementById("subpageTabs");
+            container.innerHTML = "";
 
-<img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/${cat.folder}/你的測試圖片檔名.jpg" 
-     class="image-preview w-full mt-8" alt="${cat.name} 圖片">`;
+            const subpages = categories[currentCategoryIndex].subpages;
+            
+            if (subpages.length === 0) {
+                container.innerHTML = `<div class="text-slate-400 px-4 italic">此分類還沒有分頁，請點擊「新增分頁」</div>`;
+                document.getElementById("contentEditor").value = "";
+                return;
+            }
+
+            subpages.forEach((sub, index) => {
+                const tab = document.createElement("div");
+                tab.className = `px-5 py-2 text-sm font-medium rounded-3xl cursor-pointer whitespace-nowrap transition-all ${index === currentSubpageIndex ? 'bg-blue-600 text-white' : 'hover:bg-slate-100'}`;
+                tab.textContent = sub.title;
+                tab.onclick = () => selectSubpage(index);
+                container.appendChild(tab);
+            });
+
+            if (currentSubpageIndex >= 0) {
+                document.getElementById("contentEditor").value = subpages[currentSubpageIndex].content || "";
+            }
+        }
+
+        function selectSubpage(index) {
+            currentSubpageIndex = index;
+            renderSubpageTabs();
+        }
+
+        function addNewSubpage() {
+            const title = prompt("新分頁名稱（例如：第1季、活動說明）", `新分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
+            if (!title) return;
+
+            categories[currentCategoryIndex].subpages.push({
+                title: title,
+                content: `這是「${title}」的分頁內容\n\n請在此輸入文字並貼上圖片...`
+            });
+
+            currentSubpageIndex = categories[currentCategoryIndex].subpages.length - 1;
+            renderSubpageTabs();
+            alert(`已新增分頁：「${title}」`);
+        }
+
+        function addNewCategory() {
+            const name = prompt("新分類名稱", "新活動");
+            if (!name) return;
+            categories.push({ id: Date.now(), name: name, subpages: [] });
+            renderCategories();
+            selectCategory(categories.length - 1);
+        }
+
+        function saveCurrentSubpage() {
+            if (currentSubpageIndex === -1) return;
+            categories[currentCategoryIndex].subpages[currentSubpageIndex].content = document.getElementById("contentEditor").value;
+            alert("✅ 已儲存此分頁內容！");
+        }
+
+        function deleteCurrentSubpage() {
+            if (currentSubpageIndex === -1 || !confirm("確定刪除此分頁？")) return;
+            categories[currentCategoryIndex].subpages.splice(currentSubpageIndex, 1);
+            currentSubpageIndex = categories[currentCategoryIndex].subpages.length > 0 ? 0 : -1;
+            renderSubpageTabs();
         }
 
         function previewContent() {
-            const content = document.getElementById("contentEditor").value;
-            const cat = categories[currentIndex];
-            
-            document.getElementById("previewTitle").textContent = cat.name;
-            document.getElementById("previewBody").innerHTML = `
-                <div class="prose prose-slate max-w-none">${content}</div>
-            `;
+            const content = document.getElementById("contentEditor").value || "沒有內容";
+            const title = currentSubpageIndex >= 0 ? 
+                categories[currentCategoryIndex].subpages[currentSubpageIndex].title : 
+                categories[currentCategoryIndex].name;
+
+            document.getElementById("previewTitle").textContent = title;
+            document.getElementById("previewBody").innerHTML = `<div class="prose prose-slate">${content}</div>`;
             document.getElementById("previewModal").classList.remove("hidden");
         }
 
@@ -134,16 +187,10 @@
             document.getElementById("previewModal").classList.add("hidden");
         }
 
-        function saveCurrent() {
-            const catName = categories[currentIndex].name;
-            data[catName] = document.getElementById("contentEditor").value;
-            alert(`✅ 已儲存「${catName}」的內容！\n\n下次打開網頁仍會保留（同裝置同瀏覽器）。`);
-        }
-
         // 初始化
         window.onload = () => {
             renderCategories();
-            switchCategory(0);   // 預設顯示第一個分類
+            selectCategory(0);
         };
     </script>
 </body>
