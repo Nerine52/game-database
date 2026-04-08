@@ -8,55 +8,65 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
-        .image-preview { max-height: 460px; object-fit: contain; border-radius: 16px; box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .image-preview { max-height: 180px; width: 180px; object-fit: contain; border-radius: 8px; }
         .nav-active { background-color: #1e40af; color: white; }
+        table { table-layout: fixed; width: 100%; }
+        td, th { padding: 12px; border: 1px solid #e2e8f0; min-width: 120px; }
+        td[contenteditable="true"]:focus { outline: 2px solid #3b82f6; }
     </style>
 </head>
 <body class="bg-gray-50">
     <div class="flex h-screen overflow-hidden">
-        <!-- 左側分類 -->
-        <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <div class="mb-8">
-                <h1 class="text-2xl font-bold flex items-center gap-3">
-                    📚 我的遊戲資料庫
-                </h1>
-                <p class="text-slate-400 text-sm mt-1">Nerine52</p>
-            </div>
-
-            <div id="categoryList" class="flex-1 space-y-1"></div>
-
-            <button onclick="addNewCategory()" 
-                    class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">
-                + 新增分類
-            </button>
+        <!-- 左側分類（下拉式） -->
+        <div class="w-80 bg-slate-900 text-white p-6 flex flex-col overflow-auto">
+            <h1 class="text-2xl font-bold mb-8">📚 我的遊戲資料庫</h1>
+            <div id="categoryList" class="flex-1 space-y-2"></div>
+            <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm">+ 新增分類</button>
         </div>
 
-        <!-- 右側區域 -->
+        <!-- 右側內容 -->
         <div class="flex-1 flex flex-col">
-            <!-- 分類標題 + 新增分頁按鈕 -->
             <div class="h-16 bg-white border-b flex items-center px-8 justify-between">
                 <h2 id="currentCategoryTitle" class="text-3xl font-bold">通行證</h2>
-                <button onclick="addNewSubpage()" 
-                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm">
-                    <span class="text-lg">+</span> 新增分頁
+                <button onclick="addSubpage()" class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-3xl text-sm">
+                    + 新增分頁
                 </button>
             </div>
 
-            <!-- 分頁標籤列 -->
+            <!-- 分頁標籤 -->
             <div id="subpageTabs" class="h-14 bg-white border-b flex items-center px-6 gap-2 overflow-x-auto"></div>
 
-            <!-- 內容編輯區 -->
-            <div class="flex-1 p-8 overflow-auto">
-                <textarea id="contentEditor" 
-                          class="w-full h-full p-8 text-lg border border-slate-300 rounded-3xl focus:outline-none focus:border-blue-400 resize-none leading-relaxed"
-                          placeholder="在此輸入文字、攻略、說明，並貼上圖片程式碼..."></textarea>
+            <!-- 內容區 -->
+            <div class="flex-1 p-8 overflow-auto bg-slate-50" id="contentArea">
+                <div class="max-w-5xl mx-auto bg-white rounded-3xl shadow p-8">
+                    <input id="subpageTitle" class="w-full text-3xl font-bold border-b pb-2 focus:outline-none" placeholder="分頁標題" onblur="saveCurrent()">
+
+                    <!-- 文字區 -->
+                    <div class="mt-8">
+                        <textarea id="textEditor" class="w-full h-52 p-5 border rounded-3xl text-lg" placeholder="在此輸入文字說明..."></textarea>
+                    </div>
+
+                    <!-- 表格區 -->
+                    <div class="mt-10">
+                        <div class="flex justify-between mb-4">
+                            <span class="text-xl font-medium">📋 資料表格</span>
+                            <div class="flex gap-3">
+                                <button onclick="addTableRow()" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增列</button>
+                                <button onclick="addTableColumn()" class="bg-slate-100 hover:bg-slate-200 px-5 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                            </div>
+                        </div>
+                        <div class="border rounded-3xl overflow-hidden">
+                            <table id="dataTable" class="w-full"></table>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- 底部工具列 -->
             <div class="h-16 bg-white border-t flex items-center px-8 gap-4">
-                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">預覽</button>
-                <button onclick="saveCurrentSubpage()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
-                <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-4 py-3 text-sm">刪除此分頁</button>
+                <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽</button>
+                <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm">💾 儲存此分頁</button>
+                <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600">刪除分頁</button>
             </div>
         </div>
     </div>
@@ -66,9 +76,9 @@
         <div class="bg-white rounded-3xl w-full max-w-4xl mx-4 max-h-[90vh] overflow-auto">
             <div class="p-6 border-b flex justify-between sticky top-0 bg-white">
                 <h3 id="previewTitle" class="text-2xl font-bold"></h3>
-                <button onclick="closePreview()" class="text-3xl text-slate-400 hover:text-black">×</button>
+                <button onclick="closePreview()" class="text-3xl text-slate-400">×</button>
             </div>
-            <div id="previewBody" class="p-8 prose prose-slate max-w-none"></div>
+            <div id="previewBody" class="p-8"></div>
         </div>
     </div>
 
@@ -84,102 +94,163 @@
 
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
+        let currentTable = null;
 
-        // 渲染左側分類
         function renderCategories() {
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
-            categories.forEach((cat, index) => {
-                const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentCategoryIndex ? 'nav-active' : 'hover:bg-slate-800'}`;
-                div.textContent = cat.name;
-                div.onclick = () => selectCategory(index);
-                container.appendChild(div);
+            categories.forEach((cat, cIndex) => {
+                const catDiv = document.createElement("div");
+                catDiv.className = "mb-2";
+                catDiv.innerHTML = `
+                    <div onclick="toggleCategory(${cIndex})" class="px-6 py-4 bg-slate-800 hover:bg-slate-700 rounded-2xl cursor-pointer flex justify-between items-center ${cIndex === currentCategoryIndex ? 'nav-active' : ''}">
+                        <span class="font-medium">${cat.name}</span>
+                        <span class="text-xs bg-white/20 px-3 py-1 rounded-full">${cat.subpages.length} 分頁</span>
+                    </div>
+                    <div id="subpages-${cIndex}" class="ml-6 mt-1 space-y-1 hidden"></div>
+                `;
+                container.appendChild(catDiv);
+
+                // 渲染子分頁
+                const subContainer = document.getElementById(`subpages-${cIndex}`);
+                cat.subpages.forEach((sub, sIndex) => {
+                    const subDiv = document.createElement("div");
+                    subDiv.className = `px-6 py-3 text-sm rounded-2xl cursor-pointer hover:bg-slate-800 ${cIndex === currentCategoryIndex && sIndex === currentSubpageIndex ? 'bg-blue-600 text-white' : ''}`;
+                    subDiv.textContent = sub.title;
+                    subDiv.onclick = (e) => { e.stopImmediatePropagation(); selectSubpage(cIndex, sIndex); };
+                    subContainer.appendChild(subDiv);
+                });
             });
         }
 
-        function selectCategory(index) {
-            currentCategoryIndex = index;
-            currentSubpageIndex = categories[index].subpages.length > 0 ? 0 : -1;
+        function toggleCategory(cIndex) {
+            currentCategoryIndex = cIndex;
             renderCategories();
-            document.getElementById("currentCategoryTitle").textContent = categories[index].name;
-            renderSubpageTabs();
-        }
-
-        // 渲染分頁標籤
-        function renderSubpageTabs() {
-            const container = document.getElementById("subpageTabs");
-            container.innerHTML = "";
-
-            const subpages = categories[currentCategoryIndex].subpages;
-            
-            if (subpages.length === 0) {
-                container.innerHTML = `<div class="text-slate-400 px-4 italic">此分類還沒有分頁，請點擊「新增分頁」</div>`;
-                document.getElementById("contentEditor").value = "";
-                return;
-            }
-
-            subpages.forEach((sub, index) => {
-                const tab = document.createElement("div");
-                tab.className = `px-5 py-2 text-sm font-medium rounded-3xl cursor-pointer whitespace-nowrap transition-all ${index === currentSubpageIndex ? 'bg-blue-600 text-white' : 'hover:bg-slate-100'}`;
-                tab.textContent = sub.title;
-                tab.onclick = () => selectSubpage(index);
-                container.appendChild(tab);
-            });
-
-            if (currentSubpageIndex >= 0) {
-                document.getElementById("contentEditor").value = subpages[currentSubpageIndex].content || "";
+            if (categories[cIndex].subpages.length > 0) {
+                selectSubpage(cIndex, 0);
+            } else {
+                currentSubpageIndex = -1;
+                document.getElementById("currentCategoryTitle").textContent = categories[cIndex].name;
             }
         }
 
-        function selectSubpage(index) {
-            currentSubpageIndex = index;
-            renderSubpageTabs();
+        function selectSubpage(cIndex, sIndex) {
+            currentCategoryIndex = cIndex;
+            currentSubpageIndex = sIndex;
+            const cat = categories[cIndex];
+            const sub = cat.subpages[sIndex];
+
+            document.getElementById("currentCategoryTitle").textContent = cat.name;
+            document.getElementById("subpageTitle").value = sub.title || "未命名分頁";
+            document.getElementById("textEditor").value = sub.text || "";
+
+            currentTable = sub.table || { headers: ["項目", "數量", "備註"], rows: [] };
+            renderTable();
+            renderCategories(); // 重新渲染以顯示當前活躍狀態
         }
 
-        function addNewSubpage() {
-            const title = prompt("新分頁名稱（例如：第1季、活動說明）", `新分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
-            if (!title) return;
-
-            categories[currentCategoryIndex].subpages.push({
-                title: title,
-                content: `這是「${title}」的分頁內容\n\n請在此輸入文字並貼上圖片...`
-            });
-
-            currentSubpageIndex = categories[currentCategoryIndex].subpages.length - 1;
-            renderSubpageTabs();
-            alert(`已新增分頁：「${title}」`);
-        }
-
-        function addNewCategory() {
-            const name = prompt("新分類名稱", "新活動");
+        function addCategory() {
+            const name = prompt("新分類名稱", "新分類");
             if (!name) return;
             categories.push({ id: Date.now(), name: name, subpages: [] });
             renderCategories();
-            selectCategory(categories.length - 1);
         }
 
-        function saveCurrentSubpage() {
+        function addSubpage() {
+            const title = prompt("新分頁名稱", `新分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
+            if (!title) return;
+            categories[currentCategoryIndex].subpages.push({
+                title: title,
+                text: "",
+                table: { headers: ["項目", "數量", "備註"], rows: [["範例", "10", ""]] }
+            });
+            renderCategories();
+            selectSubpage(currentCategoryIndex, categories[currentCategoryIndex].subpages.length - 1);
+        }
+
+        // 表格功能
+        function renderTable() {
+            const thead = document.createElement("thead");
+            let html = "<tr>";
+            currentTable.headers.forEach((h, i) => {
+                html += `<th contenteditable="true" onblur="updateHeader(${i}, this.innerText)" class="bg-slate-100">${h}</th>`;
+            });
+            html += "</tr>";
+            thead.innerHTML = html;
+
+            const tbody = document.createElement("tbody");
+            currentTable.rows.forEach((row, r) => {
+                let rowHtml = "<tr>";
+                row.forEach((cell, c) => {
+                    rowHtml += `<td contenteditable="true" onblur="updateCell(${r},${c}, this.innerText)">${cell || ''}</td>`;
+                });
+                rowHtml += "</tr>";
+                tbody.innerHTML += rowHtml;
+            });
+
+            const table = document.getElementById("dataTable");
+            table.innerHTML = "";
+            table.appendChild(thead);
+            table.appendChild(tbody);
+        }
+
+        function updateHeader(col, text) {
+            currentTable.headers[col] = text || "新欄位";
+        }
+
+        function updateCell(row, col, text) {
+            currentTable.rows[row][col] = text;
+        }
+
+        function addTableRow() {
+            currentTable.rows.push(new Array(currentTable.headers.length).fill(""));
+            renderTable();
+        }
+
+        function addTableColumn() {
+            const name = prompt("新欄位名稱", `欄位${currentTable.headers.length + 1}`);
+            if (!name) return;
+            currentTable.headers.push(name);
+            currentTable.rows.forEach(row => row.push(""));
+            renderTable();
+        }
+
+        function saveCurrent() {
             if (currentSubpageIndex === -1) return;
-            categories[currentCategoryIndex].subpages[currentSubpageIndex].content = document.getElementById("contentEditor").value;
-            alert("✅ 已儲存此分頁內容！");
+            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
+            sub.title = document.getElementById("subpageTitle").value;
+            sub.text = document.getElementById("textEditor").value;
+            sub.table = currentTable;
+            alert("✅ 已儲存！");
+            renderCategories();
         }
 
         function deleteCurrentSubpage() {
-            if (currentSubpageIndex === -1 || !confirm("確定刪除此分頁？")) return;
+            if (currentSubpageIndex === -1 || !confirm("刪除此分頁？")) return;
             categories[currentCategoryIndex].subpages.splice(currentSubpageIndex, 1);
-            currentSubpageIndex = categories[currentCategoryIndex].subpages.length > 0 ? 0 : -1;
-            renderSubpageTabs();
+            currentSubpageIndex = Math.max(0, categories[currentCategoryIndex].subpages.length - 1);
+            renderCategories();
+            if (categories[currentCategoryIndex].subpages.length > 0) selectSubpage(currentCategoryIndex, currentSubpageIndex);
         }
 
         function previewContent() {
-            const content = document.getElementById("contentEditor").value || "沒有內容";
-            const title = currentSubpageIndex >= 0 ? 
-                categories[currentCategoryIndex].subpages[currentSubpageIndex].title : 
-                categories[currentCategoryIndex].name;
+            const title = document.getElementById("subpageTitle").value;
+            const text = document.getElementById("textEditor").value;
+            let tableHTML = "";
+            if (currentTable) {
+                tableHTML = "<table class='w-full border-collapse mt-6'>";
+                tableHTML += "<thead><tr>" + currentTable.headers.map(h => `<th class='border p-3 bg-slate-100'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                currentTable.rows.forEach(row => {
+                    tableHTML += "<tr>" + row.map(cell => `<td class='border p-3'>${cell}</td>`).join("") + "</tr>";
+                });
+                tableHTML += "</tbody></table>";
+            }
 
             document.getElementById("previewTitle").textContent = title;
-            document.getElementById("previewBody").innerHTML = `<div class="prose prose-slate">${content}</div>`;
+            document.getElementById("previewBody").innerHTML = `
+                <div class="prose">${text}</div>
+                ${tableHTML}
+            `;
             document.getElementById("previewModal").classList.remove("hidden");
         }
 
@@ -187,10 +258,13 @@
             document.getElementById("previewModal").classList.add("hidden");
         }
 
-        // 初始化
         window.onload = () => {
             renderCategories();
-            selectCategory(0);
+            // 預設開啟第一個分類
+            if (categories[0].subpages.length === 0) {
+                categories[0].subpages.push({ title: "預設分頁", text: "開始在此輸入內容吧！", table: { headers: ["項目", "數量", "備註"], rows: [] } });
+            }
+            selectSubpage(0, 0);
         };
     </script>
 </body>
