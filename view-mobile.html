@@ -8,32 +8,55 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
-        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
+        .image-preview { max-height: 48px; width: 48px; object-fit: contain; border-radius: 6px; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200 min-h-screen">
     <div class="max-w-2xl mx-auto">
-        <!-- 最上方：分類 -->
-        <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 z-20">
-            <div class="flex items-center gap-3 mb-4">
+        <!-- 頂部導航 -->
+        <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 z-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
                 <img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/imgi_25_bi-bnsneo-type1.png" 
                      alt="圖標" class="w-10 h-10 object-contain rounded-2xl">
                 <h1 class="text-2xl font-bold">活動資料庫</h1>
             </div>
-            <div id="categoryList" class="flex flex-wrap gap-2"></div>
+            
+            <!-- 「分類」按鈕移到右上角 -->
+            <button onclick="toggleCategoryMenu()" 
+                    class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 px-5 py-2.5 rounded-3xl text-sm font-medium">
+                <span class="text-lg">≡</span> 
+                分類
+            </button>
         </div>
 
-        <!-- 中間：分頁列表（可隱藏/展開） -->
-        <div id="subpageSection" class="border-b border-slate-700 bg-slate-900 p-4 hidden">
-            <div class="flex justify-between items-center mb-3">
-                <h3 id="currentCategoryName" class="font-medium text-lg">分類名稱</h3>
-                <button onclick="toggleSubpageList()" class="text-slate-400 text-sm">收合 ▲</button>
+        <!-- 分類選單（彈出式，從右側出現） -->
+        <div id="categoryMenu" class="hidden fixed inset-0 bg-black/80 z-30 flex items-start justify-end pt-20 pr-4">
+            <div class="bg-slate-900 rounded-3xl w-80 p-6 max-h-[80vh] overflow-auto">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-medium text-lg">選擇分類</h3>
+                    <button onclick="toggleCategoryMenu()" class="text-2xl text-slate-400">×</button>
+                </div>
+                <div id="categoryList" class="space-y-2"></div>
             </div>
-            <div id="subpageList" class="space-y-2"></div>
         </div>
 
-        <!-- 下方：內容顯示區 -->
-        <div class="p-5" id="contentArea">
+        <!-- 主要內容區 -->
+        <div class="p-5">
+            <!-- 分類標題與展開/收合按鈕 -->
+            <div class="flex justify-between items-center mb-5">
+                <h2 id="currentCategoryName" class="text-2xl font-bold">通行證</h2>
+                <button onclick="toggleSubpageList()" id="toggleBtn" 
+                        class="text-slate-400 text-sm flex items-center gap-1">
+                    收合 ▲
+                </button>
+            </div>
+
+            <!-- 分頁列表 -->
+            <div id="subpageSection" class="mb-8">
+                <div id="subpageList" class="space-y-3"></div>
+            </div>
+
+            <!-- 內容顯示區 -->
             <div id="pageContent" class="min-h-[60vh]"></div>
         </div>
     </div>
@@ -41,7 +64,8 @@
     <script>
         let categories = [];
         let currentCategoryIndex = 0;
-        let isSubpageVisible = false;
+        let currentSubpageIndex = 0;
+        let isSubpageVisible = true;
 
         async function loadPublicData() {
             try {
@@ -63,22 +87,26 @@
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
             categories.forEach((cat, index) => {
-                const btn = document.createElement("button");
-                btn.className = `px-5 py-3 rounded-3xl text-sm font-medium transition-all ${index === currentCategoryIndex ? 'bg-blue-600 text-white' : 'bg-slate-800 hover:bg-slate-700'}`;
-                btn.textContent = cat.name;
-                btn.onclick = () => selectCategory(index);
-                container.appendChild(btn);
+                const div = document.createElement("div");
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all hover:bg-slate-800 ${index === currentCategoryIndex ? 'bg-blue-600 text-white' : ''}`;
+                div.textContent = cat.name;
+                div.onclick = () => {
+                    selectCategory(index);
+                    toggleCategoryMenu(); // 選擇後自動關閉選單
+                };
+                container.appendChild(div);
             });
+        }
+
+        function toggleCategoryMenu() {
+            const menu = document.getElementById("categoryMenu");
+            menu.classList.toggle("hidden");
         }
 
         function selectCategory(index) {
             currentCategoryIndex = index;
-            renderCategories();
+            currentSubpageIndex = 0;
             document.getElementById("currentCategoryName").textContent = categories[index].name;
-            
-            // 顯示中間分頁列表
-            document.getElementById("subpageSection").classList.remove("hidden");
-            isSubpageVisible = true;
             renderSubpageList();
             showSubpage(0);
         }
@@ -90,7 +118,7 @@
             const subpages = categories[currentCategoryIndex].subpages || [];
             subpages.forEach((sub, index) => {
                 const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === 0 ? 'bg-slate-800' : 'hover:bg-slate-800'}`;
+                div.className = `px-6 py-4 rounded-2xl cursor-pointer transition-all ${index === currentSubpageIndex ? 'bg-slate-800' : 'hover:bg-slate-800'}`;
                 div.textContent = sub.title;
                 div.onclick = () => showSubpage(index);
                 container.appendChild(div);
@@ -100,14 +128,19 @@
         function toggleSubpageList() {
             isSubpageVisible = !isSubpageVisible;
             const section = document.getElementById("subpageSection");
+            const btn = document.getElementById("toggleBtn");
+            
             if (isSubpageVisible) {
                 section.classList.remove("hidden");
+                btn.textContent = "收合 ▲";
             } else {
                 section.classList.add("hidden");
+                btn.textContent = "展開 ▼";
             }
         }
 
         function showSubpage(index) {
+            currentSubpageIndex = index;
             const sub = categories[currentCategoryIndex].subpages[index];
             if (!sub) return;
 
