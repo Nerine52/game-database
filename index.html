@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO活動資料庫(編輯版)</title>
+    <title>我的遊戲資料庫 - 編輯版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
@@ -15,16 +15,13 @@
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
             outline: 2px solid #60a5fa; background-color: #1e2937; 
         }
-        .prose-invert table td, .prose-invert table th {
-            border-color: #475569;
-        }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">活動資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">📚 我的遊戲資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
@@ -58,7 +55,7 @@
                     <div id="contentBlocks" class="mt-10 space-y-12"></div>
 
                     <div class="mt-12 flex gap-4">
-                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊 (支援 Markdown)</button>
+                        <button onclick="addTextBlock()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增文字方塊 (Markdown)</button>
                         <button onclick="addNewTable()" class="flex-1 py-4 bg-slate-800 hover:bg-slate-700 rounded-3xl text-sm font-medium">+ 新增表格</button>
                     </div>
                 </div>
@@ -73,34 +70,23 @@
         </div>
     </div>
 
-    <!-- Markdown 語法教學彈窗 -->
+    <!-- Markdown 教學彈窗 -->
     <div id="markdownHelp" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
         <div class="bg-slate-900 rounded-3xl w-full max-w-2xl mx-4 max-h-[90vh] overflow-auto">
-            <div class="p-6 border-b border-slate-700 sticky top-0 bg-slate-900 flex justify-between items-center">
-                <h3 class="text-xl font-bold">Markdown 語法快速參考 (101)</h3>
+            <div class="p-6 border-b border-slate-700 sticky top-0 bg-slate-900 flex justify-between">
+                <h3 class="text-xl font-bold">Markdown 語法快速參考</h3>
                 <button onclick="closeMarkdownHelp()" class="text-3xl text-slate-400">×</button>
             </div>
             <div class="p-8 prose prose-invert max-w-none text-slate-300 text-sm">
                 <table class="w-full border-collapse">
-                    <thead>
-                        <tr class="border-b border-slate-700">
-                            <th class="text-left p-3">語法</th>
-                            <th class="text-left p-3">效果</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>**粗體文字**</td><td><strong>粗體文字</strong></td></tr>
-                        <tr><td>*斜體文字*</td><td><em>斜體文字</em></td></tr>
-                        <tr><td># 一級標題</td><td><h1>一級標題</h1></td></tr>
-                        <tr><td>## 二級標題</td><td><h2>二級標題</h2></td></tr>
-                        <tr><td>- 列表項目</td><td>• 列表項目</td></tr>
-                        <tr><td>1. 有序列表</td><td>1. 有序列表</td></tr>
-                        <tr><td>[連結文字](https://example.com)</td><td><a href="#">連結文字</a></td></tr>
-                        <tr><td>![圖片描述](圖片網址)</td><td>插入圖片</td></tr>
-                        <tr><td>> 引用文字</td><td>引用區塊</td></tr>
-                    </tbody>
+                    <tr><td>**粗體**</td><td><strong>粗體</strong></td></tr>
+                    <tr><td>*斜體*</td><td><em>斜體</em></td></tr>
+                    <tr><td># 大標題</td><td>大標題</td></tr>
+                    <tr><td>## 中標題</td><td>中標題</td></tr>
+                    <tr><td>- 列表</td><td>• 列表</td></tr>
+                    <tr><td>[文字](連結)</td><td>超連結</td></tr>
+                    <tr><td>![描述](圖片網址)</td><td>插入圖片</td></tr>
                 </table>
-                <p class="mt-6 text-xs text-slate-400">提示：在文字方塊中輸入以上語法，點擊「預覽 Markdown」即可看到轉換後的效果。</p>
             </div>
         </div>
     </div>
@@ -205,7 +191,7 @@
                     div.innerHTML += `
                         <div class="text-xs text-slate-400 mb-3 flex justify-between">
                             <span>支援 Markdown 語法</span>
-                            <button onclick="showMarkdownHelp()" class="text-blue-400 hover:text-blue-300">查看 Markdown 101 →</button>
+                            <button onclick="showMarkdownHelp()" class="text-blue-400 hover:text-blue-300">Markdown 101 →</button>
                         </div>
                         <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl text-lg bg-slate-950 text-slate-200 resize-y" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
@@ -224,6 +210,27 @@
                 }
                 container.appendChild(div);
             });
+        }
+
+        function renderSingleTable(index) {
+            const block = currentBlocks[index];
+            const el = document.getElementById(`table-${index}`);
+            if (!el) return;
+
+            let html = "<thead><tr>";
+            block.headers.forEach((h, c) => {
+                html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
+            });
+            html += "</tr></thead><tbody>";
+            block.rows.forEach((row, r) => {
+                html += "<tr>";
+                row.forEach((cell, c) => {
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
+                });
+                html += "</tr>";
+            });
+            html += "</tbody>";
+            el.innerHTML = html;
         }
 
         function updateText(i, val) { currentBlocks[i].content = val; }
@@ -247,11 +254,13 @@
         }
 
         function addTableRow(blockIdx) {
+            if (!currentBlocks[blockIdx]) return;
             currentBlocks[blockIdx].rows.push(Array(currentBlocks[blockIdx].headers.length).fill(""));
             renderAllBlocks();
         }
 
         function addTableColumn(blockIdx) {
+            if (!currentBlocks[blockIdx]) return;
             const name = prompt("新欄位名稱", `欄位 ${currentBlocks[blockIdx].headers.length + 1}`);
             if (!name) return;
             currentBlocks[blockIdx].headers.push(name);
@@ -358,7 +367,7 @@
             a.download = "public-data.json";
             a.click();
             URL.revokeObjectURL(url);
-            alert("✅ 已下載 public-data.json\n\n請上傳到 GitHub，覆蓋原有檔案");
+            alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
         }
 
         window.onload = () => {
