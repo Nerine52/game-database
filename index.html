@@ -3,20 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO活動資料庫(編輯)</title>
+    <title>我的遊戲資料庫 - 編輯版</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
-        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
+        .image-preview { 
+            max-height: 50px; 
+            width: 50px; 
+            object-fit: contain; 
+            border-radius: 6px; 
+            display: block; 
+            margin: 0 auto; 
+        }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
         
-        /* 表格自動調整欄寬 + 內容置中 */
         table { 
             width: 100%; 
             border-collapse: collapse; 
-            table-layout: auto;   /* 關鍵：自動根據內容調整欄寬 */
+            table-layout: auto; 
         }
         th, td { 
             padding: 12px; 
@@ -38,7 +44,7 @@
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">NEO活動資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">📚 我的遊戲資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
@@ -242,7 +248,12 @@
             block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
+                    let cellContent = cell || '';
+                    // 如果是圖片連結，自動加上 image-preview class
+                    if (cellContent.includes('<img')) {
+                        cellContent = cellContent.replace('<img', '<img class="image-preview"');
+                    }
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cellContent}</td>`;
                 });
                 html += "</tr>";
             });
@@ -352,7 +363,7 @@
                 } else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-3 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800 text-center'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border p-3 text-center'>${cell}</td>`).join("") + "</tr>");
                     t += "</tbody></table>";
                     html += t;
