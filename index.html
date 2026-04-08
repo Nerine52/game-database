@@ -3,40 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEO活動資料庫（編輯版）</title>
+    <title>NEO資料庫(編輯)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
         body { font-family: 'Noto Sans TC', system-ui, sans-serif; }
-        .image-preview { 
-            max-height: 50px; 
-            width: 50px; 
-            object-fit: contain; 
-            border-radius: 6px; 
-            display: block; 
-            margin: 0 auto; 
-        }
+        .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .nav-active { background-color: #1e40af; color: white; font-weight: 500; }
-        
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            table-layout: auto; 
-        }
-        th, td { 
-            padding: 12px; 
-            border: 1px solid #334155; 
-            text-align: center; 
-            vertical-align: middle;
-        }
-        th { 
-            background-color: #1e2937; 
-            font-weight: 500;
-        }
+        td, th { padding: 12px; border: 1px solid #334155; text-align: center; vertical-align: middle; }
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
-            outline: 2px solid #60a5fa; 
-            background-color: #1e2937; 
+            outline: 2px solid #60a5fa; background-color: #1e2937; 
         }
     </style>
 </head>
@@ -44,19 +21,25 @@
     <div class="flex h-screen overflow-hidden">
         <!-- 左側分類 -->
         <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">活動資料庫</h1>
+            <h1 class="text-2xl font-bold mb-8">NEO活動資料庫</h1>
             <div id="categoryList" class="flex-1 space-y-2"></div>
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表 -->
+        <!-- 中間分頁列表（可收合） -->
         <div class="w-80 bg-slate-900 border-r border-slate-700 overflow-auto">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-5 flex justify-between items-center">
                 <h3 class="font-medium">分頁列表</h3>
-                <button onclick="addSubpage()" 
-                        class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-3xl text-sm font-medium">
-                    <span class="text-xl">+</span> 新增分頁
-                </button>
+                <div class="flex items-center gap-3">
+                    <button onclick="addSubpage()" 
+                            class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
+                        <span class="text-xl">+</span> 新增
+                    </button>
+                    <button onclick="toggleSubpageList()" id="toggleBtn"
+                            class="text-slate-400 hover:text-slate-300 text-sm font-medium">
+                        收合 ▲
+                    </button>
+                </div>
             </div>
             <div id="subpageList" class="p-4"></div>
         </div>
@@ -138,6 +121,7 @@
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
         let currentBlocks = [];
+        let isSubpageListVisible = true;
 
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
@@ -171,13 +155,34 @@
         function renderSubpageList() {
             const container = document.getElementById("subpageList");
             container.innerHTML = "";
-            categories[currentCategoryIndex].subpages.forEach((sub, i) => {
+
+            const subpages = categories[currentCategoryIndex].subpages || [];
+            subpages.forEach((sub, i) => {
                 const div = document.createElement("div");
                 div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 ${i === currentSubpageIndex ? 'bg-slate-700' : ''}`;
                 div.textContent = sub.title;
                 div.onclick = () => selectSubpage(i);
                 container.appendChild(div);
             });
+
+            // 如果沒有分頁，顯示提示
+            if (subpages.length === 0) {
+                container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」</div>`;
+            }
+        }
+
+        function toggleSubpageList() {
+            isSubpageListVisible = !isSubpageListVisible;
+            const list = document.getElementById("subpageList");
+            const btn = document.getElementById("toggleBtn");
+            
+            if (isSubpageListVisible) {
+                list.style.display = "block";
+                btn.textContent = "收合 ▲";
+            } else {
+                list.style.display = "none";
+                btn.textContent = "展開 ▼";
+            }
         }
 
         function selectSubpage(index) {
@@ -248,12 +253,7 @@
             block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
-                    let cellContent = cell || '';
-                    // 如果是圖片連結，自動加上 image-preview class
-                    if (cellContent.includes('<img')) {
-                        cellContent = cellContent.replace('<img', '<img class="image-preview"');
-                    }
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cellContent}</td>`;
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)">${cell || ''}</td>`;
                 });
                 html += "</tr>";
             });
@@ -363,7 +363,7 @@
                 } else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-3 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800 text-center'>${h}</th>`).join("") + "</tr></thead><tbody>";
+                    t += "<thead><tr>" + block.headers.map(h => `<th class='border p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
                     block.rows.forEach(row => t += "<tr>" + row.map(cell => `<td class='border p-3 text-center'>${cell}</td>`).join("") + "</tr>");
                     t += "</tbody></table>";
                     html += t;
@@ -397,6 +397,23 @@
             URL.revokeObjectURL(url);
             alert("✅ 已下載 public-data.json\n請上傳到 GitHub 覆蓋原有檔案");
         }
+
+        // 新增：分頁列表收合功能
+        function toggleSubpageList() {
+            const list = document.getElementById("subpageList");
+            const btn = document.getElementById("toggleBtn");
+            isSubpageListVisible = !isSubpageListVisible;
+            
+            if (isSubpageListVisible) {
+                list.style.display = "block";
+                btn.textContent = "收合 ▲";
+            } else {
+                list.style.display = "none";
+                btn.textContent = "展開 ▼";
+            }
+        }
+
+        let isSubpageListVisible = true;
 
         window.onload = () => {
             loadData();
