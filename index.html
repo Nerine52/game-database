@@ -303,14 +303,14 @@
                 } else if (block.type === "table") {
                     div.innerHTML += `
                         <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
-                <div class="flex gap-3 mb-4 flex-wrap">
+                       <div class="flex gap-3 mb-4 flex-wrap">
                             <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
                             <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
                             <button onclick="deleteLastRow(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一列</button>
                             <button onclick="deleteLastColumn(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一欄</button>
                             <button onclick="mergeFirstColumn(${i})" class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-3xl text-sm">垂直合併第一欄</button>
-                            <!-- 已調整：明確標示「第0列」 -->
-                            <button onclick="mergeHorizontal(${i})" class="bg-purple-700 hover:bg-purple-600 px-6 py-2 rounded-3xl text-sm">水平合併第0列</button>
+                            <!-- 已改成表頭專用 -->
+                            <button onclick="mergeHorizontal(${i})" class="bg-purple-700 hover:bg-purple-600 px-6 py-2 rounded-3xl text-sm">水平合併表頭</button>
                         </div>
                         <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
@@ -327,37 +327,52 @@
             renderAllBlocks();
         }
 
-        // 正確處理 rowspan 的渲染（核心修正）
-        // 正確處理 rowspan + colspan 的渲染
+        // 正確處理 rowspan + colspan（表頭與資料列皆支援）
         function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
             if (!el) return;
 
+            // === 表頭（headers）支援 colspan ===
             let html = "<thead><tr>";
-            block.headers.forEach((h, c) => {
-                html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
-            });
+            let c = 0;
+            while (c < block.headers.length) {
+                let header = block.headers[c] || '';
+                let colspan = 1;
+                let content = header.replace(/\n/g, '<br>');
+
+                if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+                    const match = header.match(/【COLSPAN:(\d+)】(.*)/);
+                    if (match) {
+                        colspan = parseInt(match[1]);
+                        content = match[2] || '';
+                    }
+                }
+
+                html += `<th colspan="${colspan}" contenteditable="true" 
+                          onblur="updateHeader(${index},${c}, this.innerText)" 
+                          class="bg-slate-800">${content}</th>`;
+
+                c += colspan;
+            }
             html += "</tr></thead><tbody>";
 
+            // === 資料列（rows）保持原本 rowspan 邏輯 ===
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
-                let c = 0;
-                while (c < block.headers.length) {
-                    // 跳過被上方 rowspan 涵蓋的格子
-                    if (isCoveredByRowspan(block, r, c)) {
-                        c++;
+                let col = 0;
+                while (col < block.headers.length) {
+                    if (isCoveredByRowspan(block, r, col)) {
+                        col++;
                         continue;
                     }
 
-                    let cell = block.rows[r][c] || '';
+                    let cell = block.rows[r][col] || '';
                     let content = cell.replace(/\n/g, '<br>');
                     let rowspan = 1;
-                    let colspan = 1;
 
-                    // 解析 ROWSPAN
-                    if (typeof cell === 'string' && cell.includes('【ROWSPAN:')) {
+                    if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                         const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                         if (match) {
                             rowspan = parseInt(match[1]);
@@ -365,20 +380,11 @@
                         }
                     }
 
-                    // 解析 COLSPAN（新功能）
-                    if (typeof cell === 'string' && cell.includes('【COLSPAN:')) {
-                        const match = cell.match(/【COLSPAN:(\d+)】(.*)/);
-                        if (match) {
-                            colspan = parseInt(match[1]);
-                            content = content.replace(/【COLSPAN:\d+】/, '');
-                        }
-                    }
-
-                    html += `<td rowspan="${rowspan}" colspan="${colspan}" contenteditable="true" 
-                              onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                    html += `<td rowspan="${rowspan}" contenteditable="true" 
+                              onblur="updateCell(${index},${r},${col}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
 
-                    c += colspan;   // 跳過已被合併的欄位
+                    col++;
                 }
                 html += "</tr>";
                 r++;
@@ -495,14 +501,14 @@
             renderAllBlocks();
         }
 
-         function mergeHorizontal(blockIdx) {
+        function mergeHorizontal(blockIdx) {
             const block = currentBlocks[blockIdx];
-            if (block.rows.length === 0) {
-                alert("表格還沒有資料！");
+            if (block.headers.length < 2) {
+                alert("至少要有 2 欄才能進行水平合併！");
                 return;
             }
 
-            const num = prompt("要從【第0列】第一欄開始向右合併幾欄？\n（例如輸入 3 就會把第0列第1~3欄合併成一個大標題）", "3");
+            const num = prompt("要從表頭第一欄開始向右合併幾欄？\n（例如輸入 3 就會把「項目 / 數量 / 備註」合併成一個大標題）", "3");
             if (!num) return;
 
             const colspan = parseInt(num);
@@ -511,14 +517,14 @@
                 return;
             }
 
-            let originalContent = block.rows[0][0] || '';
-            block.rows[0][0] = `【COLSPAN:${colspan}】${originalContent}`;
+            let originalContent = block.headers[0] || '';
+            block.headers[0] = `【COLSPAN:${colspan}】${originalContent}`;
 
             for (let c = 1; c < colspan; c++) {
-                block.rows[0][c] = '';
+                block.headers[c] = '';
             }
 
-            alert(`✅ 已將【第0列】從第1欄開始，共 ${colspan} 欄水平合併！（適合做大標題）`);
+            alert(`✅ 已將【表頭】從第1欄開始，共 ${colspan} 欄水平合併！`);
             renderAllBlocks();
         }
 
