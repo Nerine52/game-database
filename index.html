@@ -297,7 +297,8 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-16 text-xs">操作</th>`;
+            // 操作欄調寬
+            html += `<th class="bg-slate-800 w-20 text-xs">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
@@ -306,32 +307,26 @@
                 block.rows[r].forEach((cell, c) => {
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
-                    let isMerged = false;
 
-                    // 檢查是否有合併標記
                     if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                         const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                         if (match) {
                             rowspan = parseInt(match[1]);
                             content = match[2] || '';
-                            isMerged = true;
                         }
                     }
 
-                    if (isMerged) {
-                        html += `<td rowspan="${rowspan}" contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle; background-color: #1e2937;">${content}</td>`;
-                    } else {
-                        html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
-                    }
+                    html += `<td rowspan="${rowspan}" contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                              style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 });
 
+                // 操作欄（已調寬）
                 html += `
-                    <td class="w-16 text-center">
-                        <button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 text-xs block mb-1">刪列</button>
-                        <button onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 text-xs block">↓合併</button>
+                    <td class="w-20 text-center">
+                        <button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 text-sm block mb-2">刪列</button>
+                        <button onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 text-sm block">↓ 合併</button>
                     </td>`;
                 html += "</tr>";
-
                 r += 1;
             }
             html += "</tbody>";
