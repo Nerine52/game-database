@@ -262,10 +262,8 @@
                         <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
                 } else if (block.type === "table") {
-                                        div.innerHTML += `
+                    div.innerHTML += `
                         <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
-                        
-                        <!-- 表格控制按鈕 -->
                         <div class="flex gap-3 mb-4 flex-wrap">
                             <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
                             <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
@@ -273,7 +271,6 @@
                             <button onclick="deleteLastColumn(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一欄</button>
                             <button onclick="mergeFirstColumn(${i})" class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-3xl text-sm">垂直合併第一欄</button>
                         </div>
-                        
                         <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
                     container.appendChild(div);
@@ -299,12 +296,15 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
+            html += `<th class="bg-slate-800 w-20 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
-                block.rows[r].forEach((cell, c) => {
+
+                for (let c = 0; c < block.headers.length; c++) {
+                    let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
 
@@ -319,7 +319,15 @@
                     html += `<td rowspan="${rowspan}" contenteditable="true" 
                               onblur="updateCell(${index},${r},${c}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
-                });
+                }
+
+                html += `
+                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
+                        <div class="flex flex-col gap-0.5 text-xs text-center">
+                            <span onclick="deleteTableRow(${index}, ${r})" class="cursor-pointer text-red-400 hover:text-red-500 py-0.5">🗑️ 刪列</span>
+                            <span onclick="mergeVertical(${index}, ${r})" class="cursor-pointer text-blue-400 hover:text-blue-500 py-0.5">↓ 合併</span>
+                        </div>
+                    </td>`;
                 html += "</tr>";
 
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
