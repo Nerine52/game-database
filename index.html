@@ -328,6 +328,7 @@
         }
 
         // 正確處理 rowspan 的渲染（核心修正）
+        // 正確處理 rowspan + colspan 的渲染
         function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
@@ -342,18 +343,21 @@
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
-
-                for (let c = 0; c < block.headers.length; c++) {
-                    // 如果是第一欄且被上方 rowspan 涵蓋，則跳過此格（正確 rowspan 寫法）
-                    if (c === 0 && isCoveredByRowspan(block, r)) {
+                let c = 0;
+                while (c < block.headers.length) {
+                    // 跳過被上方 rowspan 涵蓋的格子
+                    if (isCoveredByRowspan(block, r, c)) {
+                        c++;
                         continue;
                     }
 
                     let cell = block.rows[r][c] || '';
                     let content = cell.replace(/\n/g, '<br>');
                     let rowspan = 1;
+                    let colspan = 1;
 
-                    if (c === 0 && typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                    // 解析 ROWSPAN
+                    if (typeof cell === 'string' && cell.includes('【ROWSPAN:')) {
                         const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                         if (match) {
                             rowspan = parseInt(match[1]);
@@ -361,9 +365,20 @@
                         }
                     }
 
-                    html += `<td rowspan="${rowspan}" contenteditable="true" 
+                    // 解析 COLSPAN（新功能）
+                    if (typeof cell === 'string' && cell.includes('【COLSPAN:')) {
+                        const match = cell.match(/【COLSPAN:(\d+)】(.*)/);
+                        if (match) {
+                            colspan = parseInt(match[1]);
+                            content = content.replace(/【COLSPAN:\d+】/, '');
+                        }
+                    }
+
+                    html += `<td rowspan="${rowspan}" colspan="${colspan}" contenteditable="true" 
                               onblur="updateCell(${index},${r},${c}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
+
+                    c += colspan;   // 跳過已被合併的欄位
                 }
                 html += "</tr>";
                 r++;
@@ -373,7 +388,8 @@
         }
 
         // 判斷某列是否被上方 rowspan 涵蓋
-        function isCoveredByRowspan(block, rowIdx) {
+        function isCoveredByRowspan(block, rowIdx, colIdx = 0) {
+            if (colIdx !== 0) return false;   // 目前 rowspan 只作用在第一欄
             let r = 0;
             while (r < rowIdx) {
                 const cell = block.rows[r][0];
@@ -391,12 +407,12 @@
 
         function updateCell(blockIdx, row, col, text) {
             const block = currentBlocks[blockIdx];
-            if (col === 0 && typeof block.rows[row][0] === 'string' && block.rows[row][0].startsWith('【ROWSPAN:')) {
-                const match = block.rows[row][0].match(/【ROWSPAN:\d+】/);
-                if (match) {
-                    block.rows[row][0] = match[0] + text;
-                    return;
-                }
+            const cell = block.rows[row][col];
+            if (typeof cell === 'string' && (cell.includes('【ROWSPAN:') || cell.includes('【COLSPAN:'))) {
+                // 保留原有的標記，只替換內容
+                const prefix = cell.match(/(【ROWSPAN:\d+】)?(【COLSPAN:\d+】)?/)[0] || '';
+                block.rows[row][col] = prefix + text;
+                return;
             }
             block.rows[row][col] = text;
         }
@@ -476,6 +492,33 @@
             }
 
             alert(`✅ 已將第一欄從第1列到第${rowspan}列垂直合併！`);
+            renderAllBlocks();
+        }
+
+        function mergeHorizontal(blockIdx) {
+            const block = currentBlocks[blockIdx];
+            if (block.rows.length === 0) {
+                alert("表格還沒有資料列！");
+                return;
+            }
+
+            const num = prompt("要從第一列第一欄開始向右合併幾欄？（例如輸入 3 就會把第1~3欄合併成一個大標題）", "3");
+            if (!num) return;
+
+            const colspan = parseInt(num);
+            if (isNaN(colspan) || colspan < 2 || colspan > block.headers.length) {
+                alert("輸入的欄數無效！（至少 2 欄，最多不能超過表格總欄數）");
+                return;
+            }
+
+            let originalContent = block.rows[0][0] || '';
+            block.rows[0][0] = `【COLSPAN:${colspan}】${originalContent}`;
+
+            for (let c = 1; c < colspan; c++) {
+                block.rows[0][c] = '';
+            }
+
+            alert(`✅ 已將第一列從第1欄開始，共 ${colspan} 欄水平合併！（可用於大標題）`);
             renderAllBlocks();
         }
 
