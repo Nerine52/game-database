@@ -102,12 +102,7 @@
                 </div>
             </div>
             
-     <!-- 浮動展開/收合按鈕（完全隱藏模式專用） -->
-    <button onclick="toggleSidebar()" id="floatingToggleBtn"
-            class="hidden fixed left-4 top-1/2 -translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-3xl shadow-2xl flex items-center justify-center text-3xl z-[9999] transition-all duration-300 border border-slate-600">
-        <span id="floatIcon">→</span>
-    </button>
-            
+<!-- 底部工具列 -->
             <div class="h-16 bg-slate-900 border-t border-slate-700 flex items-center px-8 gap-4 flex-wrap">
                 <button onclick="showMarkdownHelp()" class="bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-3xl text-sm">Markdown 101</button>
                 <button onclick="previewContent()" class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-3xl text-sm">預覽 Markdown</button>
@@ -118,12 +113,17 @@
                 <button onclick="importData()" class="bg-amber-600 hover:bg-amber-700 text-white px-6 py-3 rounded-3xl text-sm font-medium flex items-center gap-2">
                     📥 匯入資料
                 </button>
-
                 <button onclick="saveCurrent()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-3 rounded-3xl text-sm font-medium">💾 儲存此分頁</button>
                 <button onclick="deleteCurrentSubpage()" class="text-red-500 hover:text-red-600 px-5 py-3 text-sm">🗑️ 刪除分頁</button>
             </div>
         </div>
     </div>
+
+    <!-- 浮動展開/收合按鈕（正確位置：必須在 flex 容器外面！） -->
+    <button onclick="toggleSidebar()" id="floatingToggleBtn"
+            class="hidden fixed left-4 top-1/2 -translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-3xl shadow-2xl flex items-center justify-center text-3xl z-[9999] transition-all duration-300 border border-slate-600">
+        <span id="floatIcon">→</span>
+    </button>
 
     <!-- Markdown 教學彈窗 -->
     <div id="markdownHelp" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
