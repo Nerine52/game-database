@@ -304,13 +304,12 @@
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                // 渲染所有欄位（修正重點）
+                // 正確渲染所有欄位（修正重點）
                 for (let c = 0; c < block.headers.length; c++) {
                     let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
 
-                    // 檢查是否有合併標記
                     if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                         const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                         if (match) {
@@ -324,10 +323,10 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 }
 
-                // 操作欄（固定在最右側）
+                // 操作欄 - 減少上下空白（已優化）
                 html += `
-                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-2">
-                        <div class="flex flex-col gap-1.5">
+                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
+                        <div class="flex flex-col gap-1">
                             <button onclick="deleteTableRow(${index}, ${r})" 
                                     class="bg-red-900/70 hover:bg-red-800 text-red-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
                                 🗑️ 刪列
@@ -340,7 +339,7 @@
                     </td>`;
                 html += "</tr>";
 
-                // 跳過已被合併的列（重要修正）
+                // 跳過已被合併的列
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
                     if (match) {
