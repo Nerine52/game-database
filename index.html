@@ -293,14 +293,14 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-20 text-xs text-center font-medium">操作</th>`;
+            html += `<th class="bg-slate-800 w-16 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                // 修正：正確渲染所有欄位
+                // 渲染所有資料欄
                 for (let c = 0; c < block.headers.length; c++) {
                     let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
@@ -319,23 +319,19 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 }
 
-                // 操作欄 - 減少空白
+                // 操作欄 - 簡潔版（減少空白，直接點擊文字）
                 html += `
-                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
-                        <div class="flex flex-col gap-1">
-                            <button onclick="deleteTableRow(${index}, ${r})" 
-                                    class="bg-red-900/70 hover:bg-red-800 text-red-200 hover:text-white text-xs py-1 px-3 rounded-xl transition-all">
-                                🗑️ 刪列
-                            </button>
-                            <button onclick="mergeVertical(${index}, ${r})" 
-                                    class="bg-blue-900/70 hover:bg-blue-800 text-blue-200 hover:text-white text-xs py-1 px-3 rounded-xl transition-all">
-                                ↓ 合併
-                            </button>
+                    <td class="w-16 border-l border-slate-600 bg-slate-900 text-center py-1">
+                        <div class="flex flex-col gap-0.5 text-xs">
+                            <span onclick="deleteTableRow(${index}, ${r})" 
+                                  class="text-red-400 hover:text-red-500 cursor-pointer py-0.5">🗑️ 刪列</span>
+                            <span onclick="mergeVertical(${index}, ${r})" 
+                                  class="text-blue-400 hover:text-blue-500 cursor-pointer py-0.5">↓ 合併</span>
                         </div>
                     </td>`;
                 html += "</tr>";
 
-                // 正確跳過已被合併的列
+                // 跳過已被合併的列
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
                     if (match) {
@@ -349,6 +345,12 @@
         }
 
         // 垂直合併功能（真正使用 rowspan）
+        function deleteTableRow(blockIdx, rowIdx) {
+            if (!confirm("確定要刪除這一列嗎？")) return;
+            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+            renderAllBlocks();
+        }
+
         function mergeVertical(blockIdx, startRow) {
             const block = currentBlocks[blockIdx];
             if (startRow >= block.rows.length - 1) {
@@ -377,12 +379,6 @@
             }
 
             alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
-            renderAllBlocks();
-        }
-
-        function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定要刪除這一列嗎？")) return;
-            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
             renderAllBlocks();
         }
 
