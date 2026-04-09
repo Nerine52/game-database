@@ -328,29 +328,36 @@
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                for (let c = 0; c < block.headers.length; c++) {
-                    let cell = block.rows[r][c];
-                    let content = (cell || '').replace(/\n/g, '<br>');
-                    let rowspan = 1;
+                const cell0 = block.rows[r][0];
+                let rowspan = 1;
+                let content0 = cell0 || '';
 
-                    if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
-                        const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
-                        if (match) {
-                            rowspan = parseInt(match[1]);
-                            content = match[2] || '';
-                        }
+                if (typeof cell0 === 'string' && cell0.startsWith('【ROWSPAN:')) {
+                    const match = cell0.match(/【ROWSPAN:(\d+)】(.*)/);
+                    if (match) {
+                        rowspan = parseInt(match[1]);
+                        content0 = match[2] || '';
                     }
+                }
 
-                    html += `<td rowspan="${rowspan}" contenteditable="true" 
-                              onblur="updateCell(${index},${r},${c}, this.innerText)" 
-                              style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
+                for (let c = 0; c < block.headers.length; c++) {
+                    let content = (c === 0) ? content0 : (block.rows[r][c] || '');
+                    content = content.replace(/\n/g, '<br>');
+
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                              style="white-space: pre-wrap; vertical-align: middle;"`;
+
+                    if (c === 0 && rowspan > 1) {
+                        html += ` rowspan="${rowspan}"`;
+                    }
+                    html += `>${content}</td>`;
                 }
 
                 html += "</tr>";
 
-                if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
-                    const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
-                    if (match) r += parseInt(match[1]) - 1;
+                // 正確跳過已被合併的後續列
+                if (rowspan > 1) {
+                    r += rowspan - 1;
                 }
                 r++;
             }
@@ -577,22 +584,34 @@
                     let r = 0;
                     while (r < block.rows.length) {
                         t += "<tr>";
-                        block.rows[r].forEach((cell, c) => {
-                            let content = (cell || '').replace(/\n/g, '<br>');
-                            let rowspan = 1;
-                            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
-                                const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
-                                if (match) {
-                                    rowspan = parseInt(match[1]);
-                                    content = match[2] || '';
-                                }
+
+                        const cell0 = block.rows[r][0];
+                        let rowspan = 1;
+                        let content0 = cell0 || '';
+
+                        if (typeof cell0 === 'string' && cell0.startsWith('【ROWSPAN:')) {
+                            const match = cell0.match(/【ROWSPAN:(\d+)】(.*)/);
+                            if (match) {
+                                rowspan = parseInt(match[1]);
+                                content0 = match[2] || '';
                             }
-                            t += `<td rowspan="${rowspan}" class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${content}</td>`;
-                        });
+                        }
+
+                        for (let c = 0; c < block.headers.length; c++) {
+                            let content = (c === 0) ? content0 : (block.rows[r][c] || '');
+                            content = content.replace(/\n/g, '<br>');
+
+                            t += `<td class='border border-slate-600 p-3 text-center' style="vertical-align: middle;"`;
+                            if (c === 0 && rowspan > 1) {
+                                t += ` rowspan="${rowspan}"`;
+                            }
+                            t += `>${content}</td>`;
+                        }
+
                         t += "</tr>";
-                        if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
-                            const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
-                            if (match) r += parseInt(match[1]) - 1;
+
+                        if (rowspan > 1) {
+                            r += rowspan - 1;
                         }
                         r++;
                     }
@@ -600,7 +619,7 @@
                     html += t;
                 }
             });
-    
+
             document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
