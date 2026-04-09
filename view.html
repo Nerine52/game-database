@@ -12,14 +12,25 @@
         .image-preview { max-height: 50px; width: 50px; object-fit: contain; border-radius: 6px; }
         .subpage-active { background-color: #1e3a8a; border-left: 4px solid #60a5fa; }
 
-        /* Markdown 顯示樣式 */
+        /* Markdown 顯示樣式 - 已加強列表符號 */
         .prose h1 { font-size: 2.25rem; font-weight: 700; margin: 1.25em 0 0.5em; }
         .prose h2 { font-size: 1.875rem; font-weight: 600; margin: 1.25em 0 0.5em; }
         .prose p { margin: 1em 0; line-height: 1.8; }
-        .prose ul, .prose ol { margin: 1em 0; padding-left: 1.5em; }
-        .prose li { margin: 0.3em 0; }
+        
+        /* 重要修正：讓 - 列表項目明確顯示點 */
+        .prose ul { 
+            list-style-type: disc; 
+            padding-left: 1.8em; 
+            margin: 1em 0; 
+        }
+        .prose ol { 
+            list-style-type: decimal; 
+            padding-left: 1.8em; 
+            margin: 1em 0; 
+        }
+        .prose li { margin: 0.4em 0; }
 
-        /* 表格文字置中 + 合併樣式 */
+        /* 表格樣式 */
         table { width: 100%; border-collapse: collapse; }
         th, td { 
             padding: 16px 12px; 
@@ -159,7 +170,6 @@
             (sub.blocks || []).forEach(block => {
                 if (block.type === "text" && block.content) {
                     const div = document.createElement("div");
-                    // 支援 fontSize
                     const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
                                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
                                    : "font-size:16px;line-height:1.7;";
