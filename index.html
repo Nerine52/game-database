@@ -262,12 +262,18 @@
                         <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
                 } else if (block.type === "table") {
-                    div.innerHTML += `
+                                        div.innerHTML += `
                         <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
-                        <div class="flex gap-3 mb-4">
+                        
+                        <!-- 表格控制按鈕 -->
+                        <div class="flex gap-3 mb-4 flex-wrap">
                             <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
                             <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                            <button onclick="deleteLastRow(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一列</button>
+                            <button onclick="deleteLastColumn(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一欄</button>
+                            <button onclick="mergeFirstColumn(${i})" class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-3xl text-sm">垂直合併第一欄</button>
                         </div>
+                        
                         <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
                     container.appendChild(div);
@@ -293,16 +299,12 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-20 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
-
-                // 修正：正確渲染所有欄位
-                for (let c = 0; c < block.headers.length; c++) {
-                    let cell = block.rows[r][c];
+                block.rows[r].forEach((cell, c) => {
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
 
@@ -317,20 +319,9 @@
                     html += `<td rowspan="${rowspan}" contenteditable="true" 
                               onblur="updateCell(${index},${r},${c}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
-                }
-
-                // 操作欄（大幅減少上下空白，直接點擊文字）
-                html += `
-                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-0.5">
-                        <div class="flex flex-col gap-0.5 text-xs">
-                            <span onclick="deleteTableRow(${index}, ${r})" class="cursor-pointer text-red-400 hover:text-red-500 py-0.5">🗑️ 刪列</span>
-                            <span onclick="mergeVertical(${index}, ${r})" class="cursor-pointer text-blue-400 hover:text-blue-500 py-0.5">↓ 合併</span>
-                            <span onclick="deleteTableColumn(${index})" class="cursor-pointer text-amber-400 hover:text-amber-500 py-0.5">刪欄</span>
-                        </div>
-                    </td>`;
+                });
                 html += "</tr>";
 
-                // 跳過已被合併的列
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
                     if (match) r += parseInt(match[1]) - 1;
@@ -388,6 +379,53 @@
             }
             block.headers.pop();
             block.rows.forEach(row => row.pop());
+            renderAllBlocks();
+        }
+
+        function deleteLastRow(blockIdx) {
+            if (!confirm("確定刪除最後一列嗎？")) return;
+            const block = currentBlocks[blockIdx];
+            if (block.rows.length === 0) return;
+            block.rows.pop();
+            renderAllBlocks();
+        }
+
+        function deleteLastColumn(blockIdx) {
+            if (!confirm("確定刪除最後一欄嗎？")) return;
+            const block = currentBlocks[blockIdx];
+            if (block.headers.length <= 1) {
+                alert("至少要保留一欄！");
+                return;
+            }
+            block.headers.pop();
+            block.rows.forEach(row => row.pop());
+            renderAllBlocks();
+        }
+
+        function mergeFirstColumn(blockIdx) {
+            const block = currentBlocks[blockIdx];
+            if (block.rows.length < 2) {
+                alert("至少要有兩列才能合併！");
+                return;
+            }
+
+            const num = prompt("要從第一列開始向下合併幾列？（例如輸入 5 就會合併第1~5列的第一欄）", "5");
+            if (!num) return;
+
+            const rowspan = parseInt(num);
+            if (isNaN(rowspan) || rowspan < 2 || rowspan > block.rows.length) {
+                alert("輸入的列數無效！");
+                return;
+            }
+
+            let originalContent = block.rows[0][0] || '';
+            block.rows[0][0] = `【ROWSPAN:${rowspan}】${originalContent}`;
+
+            for (let i = 1; i < rowspan; i++) {
+                block.rows[i][0] = '';
+            }
+
+            alert(`✅ 已將第一欄從第1列到第${rowspan}列垂直合併！`);
             renderAllBlocks();
         }
 
