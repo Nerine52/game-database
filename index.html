@@ -377,28 +377,13 @@
                 block.rows[startRow + i][0] = '';
             }
 
-            alert(`✅ 已成功將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
+        alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
             renderAllBlocks();
         }
 
         function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定要刪除這一列嗎？此操作無法復原。")) return;
-            
-            // 如果這一列是合併起始列，需要處理後面的合併
-            const cell = currentBlocks[blockIdx].rows[rowIdx][0];
-            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
-                const match = cell.match(/【ROWSPAN:(\d+)】/);
-                if (match) {
-                    const span = parseInt(match[1]);
-                    // 刪除多列
-                    currentBlocks[blockIdx].rows.splice(rowIdx, span);
-                } else {
-                    currentBlocks[blockIdx].rows.splice(rowIdx, 1);
-                }
-            } else {
-                currentBlocks[blockIdx].rows.splice(rowIdx, 1);
-            }
-
+            if (!confirm("確定要刪除這一列嗎？")) return;
+            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
             renderAllBlocks();
         }
 
@@ -528,7 +513,6 @@
                         block.rows[r].forEach((cell, c) => {
                             let content = (cell || '').replace(/\n/g, '<br>');
                             let rowspan = 1;
-
                             if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                                 const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                                 if (match) {
@@ -536,11 +520,14 @@
                                     content = match[2] || '';
                                 }
                             }
-
                             t += `<td rowspan="${rowspan}" class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${content}</td>`;
                         });
                         t += "</tr>";
-                        r += 1;
+                        if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
+                            const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
+                            if (match) r += parseInt(match[1]) - 1;
+                        }
+                        r++;
                     }
                     t += "</tbody></table>";
                     html += t;
