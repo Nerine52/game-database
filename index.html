@@ -319,12 +319,13 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 }
 
-                // 操作欄（減少空白，直接文字點擊）
+                // 操作欄（大幅減少上下空白，直接點擊文字）
                 html += `
-                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
-                        <div class="flex flex-col gap-0.5 text-xs text-center">
+                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-0.5">
+                        <div class="flex flex-col gap-0.5 text-xs">
                             <span onclick="deleteTableRow(${index}, ${r})" class="cursor-pointer text-red-400 hover:text-red-500 py-0.5">🗑️ 刪列</span>
                             <span onclick="mergeVertical(${index}, ${r})" class="cursor-pointer text-blue-400 hover:text-blue-500 py-0.5">↓ 合併</span>
+                            <span onclick="deleteTableColumn(${index})" class="cursor-pointer text-amber-400 hover:text-amber-500 py-0.5">刪欄</span>
                         </div>
                     </td>`;
                 html += "</tr>";
@@ -344,6 +345,18 @@
         function deleteTableRow(blockIdx, rowIdx) {
             if (!confirm("確定要刪除這一列嗎？")) return;
             currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+            renderAllBlocks();
+        }
+        
+        function deleteTableColumn(blockIdx) {
+            if (!confirm("確定要刪除最後一欄嗎？")) return;
+            const block = currentBlocks[blockIdx];
+            if (block.headers.length <= 1) {
+                alert("至少要保留一欄！");
+                return;
+            }
+            block.headers.pop();
+            block.rows.forEach(row => row.pop());
             renderAllBlocks();
         }
 
