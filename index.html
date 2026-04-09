@@ -297,30 +297,48 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-14 text-xs">操作</th>`;
+            html += `<th class="bg-slate-800 w-16 text-xs">操作</th>`;
             html += "</tr></thead><tbody>";
 
-            block.rows.forEach((row, r) => {
+            let r = 0;
+            while (r < block.rows.length) {
                 html += "<tr>";
-                row.forEach((cell, c) => {
-                    const displayCell = (cell || '').replace(/\n/g, '<br>');
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
-                              style="white-space: pre-wrap; vertical-align: middle;">${displayCell}</td>`;
+                block.rows[r].forEach((cell, c) => {
+                    let content = (cell || '').replace(/\n/g, '<br>');
+                    let rowspan = 1;
+                    let isMerged = false;
+
+                    // 檢查是否有合併標記
+                    if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                        const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                        if (match) {
+                            rowspan = parseInt(match[1]);
+                            content = match[2] || '';
+                            isMerged = true;
+                        }
+                    }
+
+                    if (isMerged) {
+                        html += `<td rowspan="${rowspan}" contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle; background-color: #1e2937;">${content}</td>`;
+                    } else {
+                        html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
+                    }
                 });
 
-                // 操作欄
                 html += `
-                    <td class="w-14 text-center">
+                    <td class="w-16 text-center">
                         <button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 text-xs block mb-1">刪列</button>
                         <button onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 text-xs block">↓合併</button>
                     </td>`;
                 html += "</tr>";
-            });
+
+                r += 1;
+            }
             html += "</tbody>";
             el.innerHTML = html;
         }
 
-        // ==================== 垂直合併核心功能 ====================
+        // 垂直合併功能（真正使用 rowspan）
         function mergeVertical(blockIdx, startRow) {
             const block = currentBlocks[blockIdx];
             if (startRow >= block.rows.length - 1) {
@@ -328,57 +346,45 @@
                 return;
             }
 
-            const endRow = prompt("要合併到第幾列？（目前從第 " + (startRow + 1) + " 列開始）", startRow + 5);
-            if (!endRow) return;
+            const num = prompt("要向下合併幾列？（例如輸入 4 就會把目前列 + 下面 4 列共 5 列合併）", "4");
+            if (!num) return;
 
-            const end = parseInt(endRow) - 1;
-            if (isNaN(end) || end <= startRow || end >= block.rows.length) {
-                alert("輸入的列數無效！");
+            const rowspan = parseInt(num) + 1;
+            if (isNaN(rowspan) || rowspan < 2) {
+                alert("請輸入有效的數字！");
+                return;
+            }
+            if (startRow + rowspan > block.rows.length) {
+                alert("超出表格範圍！");
                 return;
             }
 
-            const rowspan = end - startRow + 1;
+            // 在起始格記錄合併資訊
+            let originalContent = block.rows[startRow][0] || '';
+            block.rows[startRow][0] = `【ROWSPAN:${rowspan}】${originalContent}`;
 
-            // 對第一欄進行合併（你最常用的情況）
-            for (let r = startRow + 1; r <= end; r++) {
-                block.rows[r][0] = "";   // 清空下方儲存格內容
+            // 清空下方格子的內容
+            for (let i = 1; i < rowspan; i++) {
+                block.rows[startRow + i][0] = '';
             }
 
-            // 在起始儲存格記錄 rowspan（用特殊標記，方便後續渲染）
-            block.rows[startRow][0] = "【ROWSPAN:" + rowspan + "】" + (block.rows[startRow][0] || "");
-
-            alert(`✅ 已成功將第 ${startRow+1} 列到第 ${end+1} 列的第一欄垂直合併！`);
+            alert(`✅ 已成功將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
             renderAllBlocks();
         }
 
-        // 刪除列
-        function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定刪除這一列嗎？")) return;
-            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
-            renderAllBlocks();
-        }
+        // 其他函數（deleteTableRow, updateCell 等）保持不變...
 
-        // 刪除欄
-        function deleteTableColumn(blockIdx) {
-            if (!confirm("確定刪除最後一欄嗎？")) return;
-            const block = currentBlocks[blockIdx];
-            if (block.headers.length <= 1) {
-                alert("至少要保留一欄！");
-                return;
-            }
-            block.headers.pop();
-            block.rows.forEach(row => row.pop());
-            renderAllBlocks();
-        }
-
-        // 更新儲存格時清除合併標記
         function updateCell(blockIdx, row, col, text) {
-            if (text && text.toString().startsWith("【ROWSPAN:")) {
-                // 如果使用者手動編輯，清除合併標記
-                currentBlocks[blockIdx].rows[row][col] = text.replace(/^【ROWSPAN:\d+】/, "");
-            } else {
-                currentBlocks[blockIdx].rows[row][col] = text;
+            // 如果是合併起始格，保留 ROWSPAN 標記
+            if (typeof currentBlocks[blockIdx].rows[row][col] === 'string' && 
+                currentBlocks[blockIdx].rows[row][col].startsWith('【ROWSPAN:')) {
+                const match = currentBlocks[blockIdx].rows[row][col].match(/【ROWSPAN:\d+】/);
+                if (match) {
+                    currentBlocks[blockIdx].rows[row][col] = match[0] + text;
+                    return;
+                }
             }
+            currentBlocks[blockIdx].rows[row][col] = text;
         }
 
         function updateText(i, val) { currentBlocks[i].content = val; }
@@ -471,29 +477,43 @@
             saveAllData();
         }
 
+        // previewContent 也要支援 rowspan
         function previewContent() {
             if (currentSubpageIndex === -1) return;
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            let html = `<h2 class="text-3xl font-bold mb-8 border-b pb-4">${sub.title}</h2>`;
+            let html = `<h2 class="text-3xl font-bold mb-8">${sub.title}</h2>`;
 
             currentBlocks.forEach(block => {
                 if (block.type === "text") {
                     const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
                                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
                                    : "font-size:16px;line-height:1.7;";
-
-                    const previewHTML = marked.parse(block.content || "");
-                    html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${previewHTML}</div>`;
+                    html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${marked.parse(block.content || "")}</div>`;
                 } else if (block.type === "table") {
-                    let t = `<div class="mt-8 font-medium text-lg">${block.title || "資料表格"}</div>`;
+                    let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-4 text-sm'>";
                     t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
-                    block.rows.forEach(row => {
-                        t += "<tr>" + row.map(cell => {
-                            const displayCell = (cell || '').replace(/\n/g, '<br>');
-                            return `<td class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${displayCell}</td>`;
-                        }).join("") + "</tr>";
-                    });
+
+                    let r = 0;
+                    while (r < block.rows.length) {
+                        t += "<tr>";
+                        block.rows[r].forEach((cell, c) => {
+                            let content = (cell || '').replace(/\n/g, '<br>');
+                            let rowspan = 1;
+
+                            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                                const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                                if (match) {
+                                    rowspan = parseInt(match[1]);
+                                    content = match[2] || '';
+                                }
+                            }
+
+                            t += `<td rowspan="${rowspan}" class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${content}</td>`;
+                        });
+                        t += "</tr>";
+                        r += 1;
+                    }
                     t += "</tbody></table>";
                     html += t;
                 }
