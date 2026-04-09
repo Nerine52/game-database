@@ -539,7 +539,9 @@
             }
 
             alert(`✅ 已將【表頭】從第1欄開始，共 ${colspan} 欄水平合併！`);
+
             renderAllBlocks();
+            saveCurrent(true);   // ← 關鍵修正：自動儲存（安靜模式）
         }
 
         function moveBlock(index, dir) {
@@ -608,26 +610,47 @@
                 else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-4 text-sm'>";
-                    t += "<thead><tr>" + block.headers.map(h => `<th class='border border-slate-600 p-3 bg-slate-800'>${h}</th>`).join("") + "</tr></thead><tbody>";
 
+                    // === 表頭（支援 colspan）===
+                    t += "<thead><tr>";
+                    let c = 0;
+                    while (c < block.headers.length) {
+                        let header = block.headers[c] || '';
+                        let colspan = 1;
+                        let content = header.replace(/\n/g, '<br>');
+
+                        if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+                            const match = header.match(/【COLSPAN:(\d+)】(.*)/);
+                            if (match) {
+                                colspan = parseInt(match[1]);
+                                content = match[2] || '';
+                            }
+                        }
+
+                        t += `<th colspan="${colspan}" class='border border-slate-600 p-3 bg-slate-800'>${content}</th>`;
+                        c += colspan;
+                    }
+                    t += "</tr></thead><tbody>";
+
+                    // === 資料列（支援 rowspan）===
                     let r = 0;
                     while (r < block.rows.length) {
                         t += "<tr>";
-                        for (let c = 0; c < block.headers.length; c++) {
-                            if (c === 0 && isCoveredByRowspan(block, r)) continue;
+                        for (let col = 0; col < block.headers.length; col++) {
+                            if (isCoveredByRowspan(block, r, col)) {
+                                col++;
+                                continue;
+                            }
 
-                            let cell = block.rows[r][c] || '';
+                            let cell = block.rows[r][col] || '';
                             let content = cell.replace(/\n/g, '<br>');
-
-                            // === 關鍵修正：讓表格內 Markdown 語法生效 ===
-                            content = marked.parseInline(content);
-
                             let rowspan = 1;
+
                             if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                                 const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                                 if (match) {
                                     rowspan = parseInt(match[1]);
-                                    content = marked.parseInline(match[2] || '');
+                                    content = match[2] || '';
                                 }
                             }
 
