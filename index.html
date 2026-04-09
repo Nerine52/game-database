@@ -297,18 +297,19 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            // 優化後的操作欄
             html += `<th class="bg-slate-800 w-24 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
-                
+
+                // 渲染資料欄
                 block.rows[r].forEach((cell, c) => {
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
 
+                    // 檢查是否有合併標記
                     if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                         const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                         if (match) {
@@ -317,32 +318,36 @@
                         }
                     }
 
-                    html += `<td rowspan="${rowspan}" contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                    html += `<td rowspan="${rowspan}" contenteditable="true" 
+                              onblur="updateCell(${index},${r},${c}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 });
 
-                // 優化後的操作欄按鈕樣式
+                // 操作欄（固定寬度 + 優化樣式）
                 html += `
                     <td class="w-24 border-l border-slate-600 bg-slate-900 text-center">
                         <div class="flex flex-col gap-2">
                             <button onclick="deleteTableRow(${index}, ${r})" 
-                                    class="bg-red-900/50 hover:bg-red-800 text-red-300 hover:text-red-200 text-xs py-1.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1">
+                                    class="bg-red-900/60 hover:bg-red-800 text-red-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
                                 🗑️ 刪列
                             </button>
                             <button onclick="mergeVertical(${index}, ${r})" 
-                                    class="bg-blue-900/50 hover:bg-blue-800 text-blue-300 hover:text-blue-200 text-xs py-1.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1">
+                                    class="bg-blue-900/60 hover:bg-blue-800 text-blue-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
                                 ↓ 合併
                             </button>
                         </div>
                     </td>`;
+
                 html += "</tr>";
 
-                // 跳過已被合併的列
+                // 跳過已被合併的列（重要修正）
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
-                    if (match) r += parseInt(match[1]) - 1;
+                    if (match) {
+                        r += parseInt(match[1]) - 1;
+                    }
                 }
-                r += 1;
+                r++;
             }
             html += "</tbody>";
             el.innerHTML = html;
@@ -382,7 +387,26 @@
             renderAllBlocks();
         }
 
-        // 其他函數（deleteTableRow, updateCell 等）保持不變...
+        function deleteTableRow(blockIdx, rowIdx) {
+            if (!confirm("確定要刪除這一列嗎？此操作無法復原。")) return;
+            
+            // 如果這一列是合併起始列，需要處理後面的合併
+            const cell = currentBlocks[blockIdx].rows[rowIdx][0];
+            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                const match = cell.match(/【ROWSPAN:(\d+)】/);
+                if (match) {
+                    const span = parseInt(match[1]);
+                    // 刪除多列
+                    currentBlocks[blockIdx].rows.splice(rowIdx, span);
+                } else {
+                    currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+                }
+            } else {
+                currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+            }
+
+            renderAllBlocks();
+        }
 
         function updateCell(blockIdx, row, col, text) {
             // 如果是合併起始格，保留 ROWSPAN 標記
