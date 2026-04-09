@@ -288,7 +288,7 @@
             renderAllBlocks();
         }
 
-                function renderSingleTable(index) {
+        function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
             if (!el) return;
@@ -297,15 +297,14 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            // 操作欄固定在最右側
-            html += `<th class="bg-slate-800 w-20 text-xs text-center">操作</th>`;
+            // 優化後的操作欄
+            html += `<th class="bg-slate-800 w-24 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
                 
-                // 渲染每一欄
                 block.rows[r].forEach((cell, c) => {
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
@@ -322,20 +321,26 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 });
 
-                // 操作欄（固定顯示在最右側，不受 rowspan 影響）
+                // 優化後的操作欄按鈕樣式
                 html += `
-                    <td class="w-20 text-center border-l border-slate-600">
-                        <button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 text-xs block mb-2">刪列</button>
-                        <button onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 text-xs block">↓ 合併</button>
+                    <td class="w-24 border-l border-slate-600 bg-slate-900 text-center">
+                        <div class="flex flex-col gap-2">
+                            <button onclick="deleteTableRow(${index}, ${r})" 
+                                    class="bg-red-900/50 hover:bg-red-800 text-red-300 hover:text-red-200 text-xs py-1.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1">
+                                🗑️ 刪列
+                            </button>
+                            <button onclick="mergeVertical(${index}, ${r})" 
+                                    class="bg-blue-900/50 hover:bg-blue-800 text-blue-300 hover:text-blue-200 text-xs py-1.5 px-3 rounded-xl transition-colors flex items-center justify-center gap-1">
+                                ↓ 合併
+                            </button>
+                        </div>
                     </td>`;
                 html += "</tr>";
 
                 // 跳過已被合併的列
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
-                    if (match) {
-                        r += parseInt(match[1]) - 1;
-                    }
+                    if (match) r += parseInt(match[1]) - 1;
                 }
                 r += 1;
             }
