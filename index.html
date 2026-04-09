@@ -368,16 +368,14 @@
                 return;
             }
 
-            // 在起始格記錄合併資訊
             let originalContent = block.rows[startRow][0] || '';
             block.rows[startRow][0] = `【ROWSPAN:${rowspan}】${originalContent}`;
 
-            // 清空下方格子的內容
             for (let i = 1; i < rowspan; i++) {
                 block.rows[startRow + i][0] = '';
             }
 
-        alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
+            alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
             renderAllBlocks();
         }
 
