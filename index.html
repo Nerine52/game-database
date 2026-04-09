@@ -695,11 +695,18 @@
                     try {
                         categories = JSON.parse(event.target.result);
                         saveAllData();
+                        
+                        // === 關鍵加強：匯入後強制完全重新載入 ===
                         renderCategoryList();
+                        currentCategoryIndex = 0;
+                        currentSubpageIndex = -1;
+                        
+                        // 強制選擇第一個分類，並重新渲染所有內容
                         selectCategory(0);
-                        alert("✅ 資料匯入成功！");
+                        
+                        alert("✅ 資料匯入成功！\n已強制重新載入所有分頁與表格");
                     } catch(err) {
-                        alert("❌ 檔案格式錯誤，請確認是 public-data.json");
+                        alert("❌ 檔案格式錯誤，請確認是正確的 public-data.json");
                     }
                 };
                 reader.readAsText(file);
