@@ -632,7 +632,7 @@
                     }
                     t += "</tr></thead><tbody>";
 
-                    // === 資料列（支援 rowspan）===
+                    // === 資料列（支援 rowspan + Markdown）===
                     let r = 0;
                     while (r < block.rows.length) {
                         t += "<tr>";
@@ -644,13 +644,16 @@
 
                             let cell = block.rows[r][col] || '';
                             let content = cell.replace(/\n/g, '<br>');
-                            let rowspan = 1;
 
+                            // === 關鍵修正：讓表格內 Markdown 語法生效 ===
+                            content = marked.parseInline(content);
+
+                            let rowspan = 1;
                             if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                                 const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                                 if (match) {
                                     rowspan = parseInt(match[1]);
-                                    content = match[2] || '';
+                                    content = marked.parseInline(match[2] || '');
                                 }
                             }
 
