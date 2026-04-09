@@ -230,17 +230,22 @@
         }
 
         function selectSubpage(index) {
-            if (currentSubpageIndex >= 0 && currentSubpageIndex !== index) saveCurrent();   // ← 自動儲存
+            if (currentSubpageIndex >= 0 && currentSubpageIndex !== index) {
+                saveCurrent();   // 切換前先自動儲存
+            }
+            
             currentSubpageIndex = index;
             const sub = categories[currentCategoryIndex].subpages[index];
+            
             document.getElementById("currentTitle").textContent = sub.title;
             document.getElementById("subpageTitle").value = sub.title || "";
 
-            currentBlocks = JSON.parse(JSON.stringify(sub.blocks || [   // 深拷貝避免參考問題
+            currentBlocks = JSON.parse(JSON.stringify(sub.blocks || [
                 { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
                 { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
             ]));
 
+            renderSubpageList();     // ← 關鍵修正：重新渲染分頁列表高亮
             renderAllBlocks();
         }
 
