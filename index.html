@@ -21,21 +21,14 @@
             padding: 12px; 
             border: 1px solid #334155; 
             text-align: center; 
-            vertical-align: middle;        /* 垂直置中 */
+            vertical-align: middle;
             white-space: pre-wrap;
         }
         th { background-color: #1e2937; font-weight: 500; }
 
-        /* 文字方塊字體大小 */
         .text-small { font-size: 14px; line-height: 1.6; }
         .text-medium { font-size: 16px; line-height: 1.7; }
         .text-large { font-size: 20px; line-height: 1.6; }
-
-        /* Markdown 預覽加強 */
-        .prose h1 { font-size: 2.25rem; font-weight: 700; margin: 1.25em 0 0.5em; }
-        .prose h2 { font-size: 1.875rem; font-weight: 600; margin: 1.25em 0 0.5em; }
-        .prose ul { list-style-type: disc; padding-left: 1.5em; margin: 1em 0; }
-        .prose li { margin: 0.25em 0; }
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
@@ -47,7 +40,7 @@
             <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
         </div>
 
-        <!-- 中間分頁列表（可收合） -->
+        <!-- 中間分頁列表 -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-4 flex items-center justify-between">
                 <h3 id="middleTitle" class="font-medium">分頁列表</h3>
@@ -160,6 +153,15 @@
             localStorage.setItem("gameDatabase", JSON.stringify(categories));
         }
 
+        // 自動儲存（切換前呼叫）
+        function saveCurrent() {
+            if (currentSubpageIndex === -1) return;
+            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
+            sub.title = document.getElementById("subpageTitle").value;
+            sub.blocks = currentBlocks;
+            saveAllData();
+        }
+
         function renderCategoryList() {
             const container = document.getElementById("categoryList");
             container.innerHTML = "";
@@ -173,6 +175,7 @@
         }
 
         function selectCategory(index) {
+            if (currentSubpageIndex >= 0) saveCurrent();   // ← 自動儲存
             currentCategoryIndex = index;
             currentSubpageIndex = categories[index].subpages.length > 0 ? 0 : -1;
             renderCategoryList();
@@ -198,6 +201,21 @@
             }
         }
 
+        function selectSubpage(index) {
+            if (currentSubpageIndex >= 0 && currentSubpageIndex !== index) saveCurrent();   // ← 自動儲存
+            currentSubpageIndex = index;
+            const sub = categories[currentCategoryIndex].subpages[index];
+            document.getElementById("currentTitle").textContent = sub.title;
+            document.getElementById("subpageTitle").value = sub.title || "";
+
+            currentBlocks = JSON.parse(JSON.stringify(sub.blocks || [   // 深拷貝避免參考問題
+                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
+                { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
+            ]));
+
+            renderAllBlocks();
+        }
+
         function toggleMiddlePanel() {
             isMiddlePanelVisible = !isMiddlePanelVisible;
             const panel = document.getElementById("middlePanel");
@@ -218,20 +236,6 @@
             }
         }
 
-        function selectSubpage(index) {
-            currentSubpageIndex = index;
-            const sub = categories[currentCategoryIndex].subpages[index];
-            document.getElementById("currentTitle").textContent = sub.title;
-            document.getElementById("subpageTitle").value = sub.title || "";
-
-            currentBlocks = sub.blocks || [
-                { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
-                { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
-            ];
-
-            renderAllBlocks();
-        }
-
         function renderAllBlocks() {
             const container = document.getElementById("contentBlocks");
             container.innerHTML = "";
@@ -240,80 +244,53 @@
                 const div = document.createElement("div");
                 div.className = "border border-slate-700 rounded-3xl p-6 bg-slate-900 relative";
 
-                // === 區塊操作按鈕（↑ ↓ ×）===
-                const actionBar = document.createElement("div");
-                actionBar.className = "absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1";
-                actionBar.innerHTML = `
-                    <button class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
-                    <button class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
-                    <button class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
+                div.innerHTML += `
+                    <div class="absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1">
+                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
+                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
+                        <button onclick="deleteBlock(${i})" class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
+                    </div>
                 `;
-                actionBar.children[0].onclick = () => moveBlock(i, -1);
-                actionBar.children[1].onclick = () => moveBlock(i, 1);
-                actionBar.children[2].onclick = () => deleteBlock(i);
-                div.appendChild(actionBar);
 
                 if (block.type === "text") {
                     const fontClass = block.fontSize === "small" ? "text-small" : block.fontSize === "large" ? "text-large" : "text-medium";
                     div.innerHTML += `
                         <div class="flex justify-between items-center mb-3">
                             <div class="text-xs text-slate-400">支援 Markdown 語法</div>
-                            <div class="flex gap-1"></div>
+                            <div class="flex gap-1">
+                                <button onclick="changeFontSize(${i}, 'small')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='small' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">小</button>
+                                <button onclick="changeFontSize(${i}, 'medium')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='medium' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">中</button>
+                                <button onclick="changeFontSize(${i}, 'large')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='large' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">大</button>
+                            </div>
                         </div>
-                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}">${block.content || ""}</textarea>
+                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
                     `;
-
-                    const fontDiv = div.querySelector(".flex.gap-1");
-                    const sizes = [
-                        {text: "小", size: "small"},
-                        {text: "中", size: "medium"},
-                        {text: "大", size: "large"}
-                    ];
-                    sizes.forEach(s => {
-                        const btn = document.createElement("button");
-                        btn.textContent = s.text;
-                        btn.className = `px-3 py-1 text-xs rounded-lg ${block.fontSize === s.size ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}`;
-                        btn.onclick = () => changeFontSize(i, s.size);
-                        fontDiv.appendChild(btn);
-                    });
-
-                    const textarea = div.querySelector("textarea");
-                    textarea.onblur = () => updateText(i, textarea.value);
-                } 
-                else if (block.type === "table") {
+                } else if (block.type === "table") {
                     div.innerHTML += `
                         <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
-                        <div class="flex gap-3 mb-4 flex-wrap"></div>
+                        <div class="flex gap-3 mb-4 flex-wrap">
+                            <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
+                            <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
+                            <button onclick="deleteLastRow(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一列</button>
+                            <button onclick="deleteLastColumn(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一欄</button>
+                            <button onclick="mergeFirstColumn(${i})" class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-3xl text-sm">垂直合併第一欄</button>
+                        </div>
                         <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
-
-                    const controlDiv = div.querySelector(".flex.gap-3");
-                    const controls = [
-                        { text: "+ 新增列",      func: () => addTableRow(i),      color: "slate" },
-                        { text: "+ 新增欄",      func: () => addTableColumn(i),   color: "slate" },
-                        { text: "刪除最後一列", func: () => deleteLastRow(i),    color: "red" },
-                        { text: "刪除最後一欄", func: () => deleteLastColumn(i), color: "red" },
-                        { text: "垂直合併第一欄", func: () => mergeFirstColumn(i), color: "blue" }
-                    ];
-
-                    controls.forEach(ctrl => {
-                        const btn = document.createElement("button");
-                        btn.textContent = ctrl.text;
-                        btn.className = `px-6 py-2 rounded-3xl text-sm ${ctrl.color === "red" ? "bg-red-700 hover:bg-red-600" : ctrl.color === "blue" ? "bg-blue-700 hover:bg-blue-600" : "bg-slate-800 hover:bg-slate-700"}`;
-                        btn.onclick = ctrl.func;
-                        controlDiv.appendChild(btn);
-                    });
-                }
-
-                container.appendChild(div);
-
-                if (block.type === "table") {
+                    container.appendChild(div);
                     renderSingleTable(i);
+                    return;
                 }
+                container.appendChild(div);
             });
         }
-        
-// ==================== 最終修正的 renderSingleTable ====================
+
+        function changeFontSize(blockIndex, size) {
+            currentBlocks[blockIndex].fontSize = size;
+            renderAllBlocks();
+        }
+
+        // 正確處理 rowspan 的渲染（核心修正）
         function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
@@ -329,90 +306,93 @@
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                const cell0 = block.rows[r][0];
-                let rowspan = 1;
-                let content0 = cell0 || '';
-
-                if (typeof cell0 === 'string' && cell0.startsWith('【ROWSPAN:')) {
-                    const match = cell0.match(/【ROWSPAN:(\d+)】(.*)/);
-                    if (match) {
-                        rowspan = parseInt(match[1]);
-                        content0 = match[2] || '';
-                    }
-                }
-
                 for (let c = 0; c < block.headers.length; c++) {
-                    let content = (c === 0) ? content0 : (block.rows[r][c] || '');
-                    content = content.replace(/\n/g, '<br>');
-
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
-                              style="white-space: pre-wrap; vertical-align: middle;"`;
-
-                    if (c === 0 && rowspan > 1) {
-                        html += ` rowspan="${rowspan}"`;
+                    // 如果是第一欄且被上方 rowspan 涵蓋，則跳過此格（正確 rowspan 寫法）
+                    if (c === 0 && isCoveredByRowspan(block, r)) {
+                        continue;
                     }
-                    html += `>${content}</td>`;
-                }
 
+                    let cell = block.rows[r][c] || '';
+                    let content = cell.replace(/\n/g, '<br>');
+                    let rowspan = 1;
+
+                    if (c === 0 && typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                        const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                        if (match) {
+                            rowspan = parseInt(match[1]);
+                            content = match[2] || '';
+                        }
+                    }
+
+                    html += `<td rowspan="${rowspan}" contenteditable="true" 
+                              onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                              style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
+                }
                 html += "</tr>";
-
-                // 正確跳過已被合併的後續列
-                if (rowspan > 1) {
-                    r += rowspan - 1;
-                }
                 r++;
             }
             html += "</tbody>";
             el.innerHTML = html;
         }
-        
-        // 垂直合併功能（真正使用 rowspan）
-        function mergeVertical(blockIdx, startRow) {
+
+        // 判斷某列是否被上方 rowspan 涵蓋
+        function isCoveredByRowspan(block, rowIdx) {
+            let r = 0;
+            while (r < rowIdx) {
+                const cell = block.rows[r][0];
+                if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                    const match = cell.match(/【ROWSPAN:(\d+)】/);
+                    if (match) {
+                        const span = parseInt(match[1]);
+                        if (r + span > rowIdx) return true;
+                    }
+                }
+                r++;
+            }
+            return false;
+        }
+
+        function updateCell(blockIdx, row, col, text) {
             const block = currentBlocks[blockIdx];
-            if (startRow >= block.rows.length - 1) {
-                alert("已經是最後一列，無法繼續合併！");
-                return;
+            if (col === 0 && typeof block.rows[row][0] === 'string' && block.rows[row][0].startsWith('【ROWSPAN:')) {
+                const match = block.rows[row][0].match(/【ROWSPAN:\d+】/);
+                if (match) {
+                    block.rows[row][0] = match[0] + text;
+                    return;
+                }
             }
+            block.rows[row][col] = text;
+        }
 
-            const num = prompt("要向下合併幾列？（例如輸入 4 就會把目前列 + 下面 4 列共 5 列合併）", "4");
-            if (!num) return;
+        function updateText(i, val) { currentBlocks[i].content = val; }
+        function updateTableTitle(i, val) { currentBlocks[i].title = val; }
+        function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
 
-            const rowspan = parseInt(num) + 1;
-            if (isNaN(rowspan) || rowspan < 2) {
-                alert("請輸入有效的數字！");
-                return;
-            }
-            if (startRow + rowspan > block.rows.length) {
-                alert("超出表格範圍！");
-                return;
-            }
-
-            let originalContent = block.rows[startRow][0] || '';
-            block.rows[startRow][0] = `【ROWSPAN:${rowspan}】${originalContent}`;
-
-            for (let i = 1; i < rowspan; i++) {
-                block.rows[startRow + i][0] = '';
-            }
-
-            alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
+        function addTextBlock() {
+            currentBlocks.push({ type: "text", content: "", fontSize: "medium" });
             renderAllBlocks();
         }
 
-        function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定要刪除這一列嗎？")) return;
-            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+        function addNewTable() {
+            currentBlocks.push({
+                type: "table",
+                title: "新表格",
+                headers: ["項目", "數量", "備註"],
+                rows: []
+            });
             renderAllBlocks();
         }
-        
-        function deleteTableColumn(blockIdx) {
-            if (!confirm("確定要刪除最後一欄嗎？")) return;
-            const block = currentBlocks[blockIdx];
-            if (block.headers.length <= 1) {
-                alert("至少要保留一欄！");
-                return;
-            }
-            block.headers.pop();
-            block.rows.forEach(row => row.pop());
+
+        function addTableRow(blockIdx) {
+            currentBlocks[blockIdx].rows.push(Array(currentBlocks[blockIdx].headers.length).fill(""));
+            renderAllBlocks();
+        }
+
+        function addTableColumn(blockIdx) {
+            const name = prompt("新欄位名稱", `欄位 ${currentBlocks[blockIdx].headers.length + 1}`);
+            if (!name) return;
+            currentBlocks[blockIdx].headers.push(name);
+            currentBlocks[blockIdx].rows.forEach(r => r.push(""));
             renderAllBlocks();
         }
 
@@ -442,7 +422,6 @@
                 alert("至少要有兩列才能合併！");
                 return;
             }
-
             const num = prompt("要從第一列開始向下合併幾列？（例如輸入 5 就會合併第1~5列的第一欄）", "5");
             if (!num) return;
 
@@ -460,53 +439,6 @@
             }
 
             alert(`✅ 已將第一欄從第1列到第${rowspan}列垂直合併！`);
-            renderAllBlocks();
-        }
-
-        function updateCell(blockIdx, row, col, text) {
-            // 如果是合併起始格，保留 ROWSPAN 標記
-            if (typeof currentBlocks[blockIdx].rows[row][col] === 'string' && 
-                currentBlocks[blockIdx].rows[row][col].startsWith('【ROWSPAN:')) {
-                const match = currentBlocks[blockIdx].rows[row][col].match(/【ROWSPAN:\d+】/);
-                if (match) {
-                    currentBlocks[blockIdx].rows[row][col] = match[0] + text;
-                    return;
-                }
-            }
-            currentBlocks[blockIdx].rows[row][col] = text;
-        }
-
-        function updateText(i, val) { currentBlocks[i].content = val; }
-        function updateTableTitle(i, val) { currentBlocks[i].title = val; }
-        function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
-
-        function addTextBlock() {
-            currentBlocks.push({ type: "text", content: "", fontSize: "medium" });
-            renderAllBlocks();
-        }
-
-        function addNewTable() {
-            currentBlocks.push({
-                type: "table",
-                title: "新表格",
-                headers: ["項目", "數量", "備註"],
-                rows: []
-            });
-            renderAllBlocks();
-        }
-
-        function addTableRow(blockIdx) {
-            if (!currentBlocks[blockIdx]) return;
-            currentBlocks[blockIdx].rows.push(Array(currentBlocks[blockIdx].headers.length).fill(""));
-            renderAllBlocks();
-        }
-
-        function addTableColumn(blockIdx) {
-            if (!currentBlocks[blockIdx]) return;
-            const name = prompt("新欄位名稱", `欄位 ${currentBlocks[blockIdx].headers.length + 1}`);
-            if (!name) return;
-            currentBlocks[blockIdx].headers.push(name);
-            currentBlocks[blockIdx].rows.forEach(r => r.push(""));
             renderAllBlocks();
         }
 
@@ -547,27 +479,21 @@
             selectCategory(categories.length - 1);
         }
 
-        function saveCurrent() {
-            if (currentSubpageIndex === -1) return;
-            const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
-            sub.title = document.getElementById("subpageTitle").value;
-            sub.blocks = currentBlocks;
-            saveAllData();
-            alert("✅ 已儲存！");
-        }
-
         function deleteCurrentSubpage() {
             if (currentSubpageIndex === -1 || !confirm("確定刪除此分頁？")) return;
+            
             categories[currentCategoryIndex].subpages.splice(currentSubpageIndex, 1);
             currentSubpageIndex = -1;
-            document.getElementById("contentArea").classList.add("hidden");
+            document.getElementById("currentTitle").textContent = "請選擇分頁";
+            document.getElementById("subpageTitle").value = "";
+            document.getElementById("contentBlocks").innerHTML = "";
             renderSubpageList();
             saveAllData();
         }
 
-        // previewContent 也要支援 rowspan
         function previewContent() {
             if (currentSubpageIndex === -1) return;
+            saveCurrent();   // 預覽前先儲存
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
             let html = `<h2 class="text-3xl font-bold mb-8">${sub.title}</h2>`;
 
@@ -585,42 +511,30 @@
                     let r = 0;
                     while (r < block.rows.length) {
                         t += "<tr>";
-
-                        const cell0 = block.rows[r][0];
-                        let rowspan = 1;
-                        let content0 = cell0 || '';
-
-                        if (typeof cell0 === 'string' && cell0.startsWith('【ROWSPAN:')) {
-                            const match = cell0.match(/【ROWSPAN:(\d+)】(.*)/);
-                            if (match) {
-                                rowspan = parseInt(match[1]);
-                                content0 = match[2] || '';
-                            }
-                        }
-
                         for (let c = 0; c < block.headers.length; c++) {
-                            let content = (c === 0) ? content0 : (block.rows[r][c] || '');
-                            content = content.replace(/\n/g, '<br>');
+                            if (c === 0 && isCoveredByRowspan(block, r)) continue;
 
-                            t += `<td class='border border-slate-600 p-3 text-center' style="vertical-align: middle;"`;
-                            if (c === 0 && rowspan > 1) {
-                                t += ` rowspan="${rowspan}"`;
+                            let cell = block.rows[r][c] || '';
+                            let content = cell.replace(/\n/g, '<br>');
+                            let rowspan = 1;
+                            if (c === 0 && typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                                const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                                if (match) {
+                                    rowspan = parseInt(match[1]);
+                                    content = match[2] || '';
+                                }
                             }
-                            t += `>${content}</td>`;
+                            t += `<td rowspan="${rowspan}" class='border border-slate-600 p-3 text-center' style="vertical-align: middle;">${content}</td>`;
                         }
-
                         t += "</tr>";
-
-                        if (rowspan > 1) {
-                            r += rowspan - 1;
-                        }
                         r++;
                     }
                     t += "</tbody></table>";
                     html += t;
                 }
             });
-
+    
+            document.getElementById("previewTitle").textContent = sub.title;
             document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
@@ -638,6 +552,7 @@
         }
 
         function exportData() {
+            saveCurrent();
             const dataStr = JSON.stringify(categories, null, 2);
             const blob = new Blob([dataStr], {type: "application/json"});
             const url = URL.createObjectURL(blob);
@@ -681,7 +596,7 @@
             loadData();
             renderCategoryList();
             if (categories[0].subpages.length > 0) {
-                selectSubpage(0);
+                selectCategory(0);
             } else {
                 selectCategory(0);
             }
