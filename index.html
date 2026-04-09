@@ -43,6 +43,13 @@
     .prose a { color: #60a5fa; text-decoration: underline; }
     .prose code { background-color: #334155; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
     .prose pre { background-color: #1e2937; padding: 1em; border-radius: 8px; overflow-x: auto; margin: 1em 0; }
+
+    /* 浮動按鈕樣式 */
+    #floatingToggleBtn:hover {
+        transform: scale(1.1) translateY(-50%);
+        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    }
+        
 </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
@@ -236,22 +243,24 @@
             const middlePanel = document.getElementById("middlePanel");
             const title = document.getElementById("middleTitle");
             const addBtn = document.getElementById("addSubpageBtn");
-            const btn = document.getElementById("toggleBtn");
+            const floatBtn = document.getElementById("floatingToggleBtn");
+            const icon = document.getElementById("floatIcon");
 
             if (isSidebarVisible) {
-                // 展開：分類 + 分頁列表同時展開
+                // 展開
                 leftPanel.style.width = "288px";
                 middlePanel.style.width = "320px";
                 title.style.display = "block";
                 addBtn.style.display = "flex";
-                btn.innerHTML = `收合 <span class="text-lg">→</span>`;
+                floatBtn.classList.add("hidden");
             } else {
-                // 收合：分類 + 分頁列表同時收起來
+                // 完全收合，只留浮動按鈕
                 leftPanel.style.width = "0";
-                middlePanel.style.width = "72px";
+                middlePanel.style.width = "0";
                 title.style.display = "none";
                 addBtn.style.display = "none";
-                btn.innerHTML = `展開 <span class="text-lg">←</span>`;
+                floatBtn.classList.remove("hidden");
+                icon.textContent = "←";
             }
         }
 
