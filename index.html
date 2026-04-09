@@ -163,8 +163,8 @@
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
         let currentBlocks = [];
-        let isSidebarVisible = true;   // ← 改成同時控制分類 + 分頁列表
-
+        let isSidebarVisible = true;   // 同時控制左側 + 中間面板
+        
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
             if (saved) categories = JSON.parse(saved);
