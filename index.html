@@ -156,7 +156,7 @@
         let currentCategoryIndex = 0;
         let currentSubpageIndex = -1;
         let currentBlocks = [];
-        let isMiddlePanelVisible = true;
+        let isSidebarVisible = true;   // ← 改成同時控制分類 + 分頁列表
 
         function loadData() {
             const saved = localStorage.getItem("gameDatabase");
