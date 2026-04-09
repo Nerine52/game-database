@@ -181,13 +181,31 @@
             localStorage.setItem("gameDatabase", JSON.stringify(categories));
         }
 
-        // 自動儲存（切換前呼叫）
         function saveCurrent() {
-            if (currentSubpageIndex === -1) return;
+            console.log("=== 儲存按鈕被點擊 ===");
+            console.log("currentCategoryIndex =", currentCategoryIndex);
+            console.log("currentSubpageIndex =", currentSubpageIndex);
+
+            if (currentSubpageIndex === -1) {
+                alert("❌ 目前沒有選擇任何分頁，無法儲存！");
+                console.log("錯誤：currentSubpageIndex 為 -1");
+                return;
+            }
+
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
+            if (!sub) {
+                alert("❌ 找不到目前分頁資料！");
+                return;
+            }
+
+            // 儲存標題與內容
             sub.title = document.getElementById("subpageTitle").value;
             sub.blocks = currentBlocks;
-            saveAllData();
+
+            saveAllData();           // 存入 localStorage
+
+            console.log("✅ 資料已成功儲存！");
+            alert("✅ 已儲存！");
         }
 
         function renderCategoryList() {
