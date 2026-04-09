@@ -254,18 +254,18 @@
             const icon = document.getElementById("floatIcon");
 
             if (isSidebarVisible) {
-                // 展開
+                // 展開：恢復顯示
+                leftPanel.style.display = "flex";
+                middlePanel.style.display = "flex";
                 leftPanel.style.width = "288px";
                 middlePanel.style.width = "320px";
                 title.style.display = "block";
                 addBtn.style.display = "flex";
                 floatBtn.classList.add("hidden");
             } else {
-                // 完全收合，只留浮動按鈕
-                leftPanel.style.width = "0";
-                middlePanel.style.width = "0";
-                title.style.display = "none";
-                addBtn.style.display = "none";
+                // 完全隱藏：只留浮動按鈕
+                leftPanel.style.display = "none";
+                middlePanel.style.display = "none";
                 floatBtn.classList.remove("hidden");
                 icon.textContent = "←";
             }
