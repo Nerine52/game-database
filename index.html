@@ -26,9 +26,13 @@
             position: relative;
         }
         th { background-color: #1e2937; font-weight: 500; }
-        /* 合併儲存格樣式 */
+        
+        /* 已合併儲存格樣式 */
         td.merged {
-            background-color: #1e2937;
+            background-color: #334155;
+            font-style: italic;
+            color: #1e40af;
+        }
             
         td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
             outline: 2px solid #60a5fa; 
@@ -301,17 +305,23 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-10 text-xs">操作</th>`;
+            html += `<th class="bg-slate-800 w-12 text-xs">操作</th>`;
             html += "</tr></thead><tbody>";
 
             block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
-                    const displayCell = (cell || '').replace(/\n/g, '<br>');
-                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle;">${displayCell}</td>`;
+                    const isMerged = cell && cell.toString().startsWith("【合併】");
+                    const displayCell = isMerged ? "已合併" : (cell || '').replace(/\n/g, '<br>');
+                    const cellClass = isMerged ? "merged" : "";
+
+                    html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" 
+                              class="${cellClass}" style="white-space: pre-wrap; vertical-align: middle;">${displayCell}</td>`;
                 });
+
+                // 操作欄
                 html += `
-                    <td class="w-10">
+                    <td class="w-12 text-center">
                         <button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 text-xs block mb-1">刪列</button>
                         <button onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 text-xs block">↓合併</button>
                     </td>`;
@@ -321,34 +331,38 @@
             el.innerHTML = html;
         }
 
-        // 新增：垂直合併（向下合併）
+        // 新增：垂直合併功能（與下一列同一欄位合併）
         function mergeVertical(blockIdx, rowIdx) {
             const block = currentBlocks[blockIdx];
             if (rowIdx >= block.rows.length - 1) {
-                alert("已經是最後一列，無法向下合併！");
+                alert("已經是最後一列，無法繼續向下合併！");
                 return;
             }
 
-            if (!confirm("確定要將目前儲存格與下一列垂直合併嗎？\n（下一列同欄位的內容將被清除）")) return;
+            if (!confirm(`確定要把第 ${rowIdx + 1} 列與第 ${rowIdx + 2} 列的同一欄位垂直合併嗎？\n\n下一列的內容將被清除。`)) return;
 
-            // 簡單實現：把下一列同一欄位的內容清空，並在目前儲存格加上視覺標記
-            block.rows[rowIdx + 1][0] = "(已合併)"; // 這裡只示範第一欄，你可以擴展
+            // 對每一欄都進行合併標記（實際上只影響視覺與顯示）
+            for (let c = 0; c < block.headers.length; c++) {
+                if (block.rows[rowIdx][c] && !block.rows[rowIdx][c].toString().startsWith("【合併】")) {
+                    block.rows[rowIdx][c] = "【合併】" + (block.rows[rowIdx][c] || "");
+                }
+                block.rows[rowIdx + 1][c] = "";   // 清空下一列內容
+            }
 
-            // 實際上要完整支援 rowspan 需要更複雜的資料結構，這裡先用簡單方式標記
-            alert("垂直合併功能已執行（目前為簡化版）\n\n完整 rowspan 支援較複雜，如果需要更進階功能請告訴我，我會再優化。");
-
+            alert("✅ 已垂直合併！\n\n目前合併後的儲存格會顯示「已合併」");
             renderAllBlocks();
         }
 
-        // 刪除列、刪除欄保持不變
+        // 刪除列功能
         function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定刪除這一列嗎？")) return;
+            if (!confirm("確定要刪除這一列嗎？")) return;
             currentBlocks[blockIdx].rows.splice(rowIdx, 1);
             renderAllBlocks();
         }
 
+        // 刪除欄功能（保持不變）
         function deleteTableColumn(blockIdx) {
-            if (!confirm("確定刪除最後一欄嗎？")) return;
+            if (!confirm("確定要刪除最後一欄嗎？")) return;
             const block = currentBlocks[blockIdx];
             if (block.headers.length <= 1) {
                 alert("至少要保留一欄！");
