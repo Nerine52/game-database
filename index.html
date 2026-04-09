@@ -54,12 +54,6 @@
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
-
-<!-- 浮動展開/收合按鈕（完全隱藏模式專用） -->
-<button onclick="toggleSidebar()" id="floatingToggleBtn"
-        class="hidden fixed left-4 top-1/2 -translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-3xl shadow-2xl flex items-center justify-center text-3xl z-[9999] transition-all duration-300 border border-slate-600">
-    <span id="floatIcon">→</span>
-</button>
         
 <!-- 左側分類 -->
     <div id="leftPanel" class="bg-slate-900 text-white p-6 flex flex-col transition-all duration-300 overflow-hidden" style="width: 288px;">
@@ -94,6 +88,12 @@
                     ☁️ 匯出給公開版
                 </button>
             </div>
+
+     <!-- 浮動展開/收合按鈕（完全隱藏模式專用） -->
+    <button onclick="toggleSidebar()" id="floatingToggleBtn"
+            class="hidden fixed left-4 top-1/2 -translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-3xl shadow-2xl flex items-center justify-center text-3xl z-[9999] transition-all duration-300 border border-slate-600">
+        <span id="floatIcon">→</span>
+    </button>
 
             <div class="flex-1 p-8 overflow-auto bg-slate-950" id="contentArea">
                 <div class="max-w-5xl mx-auto bg-slate-900 rounded-3xl shadow-xl p-8">
