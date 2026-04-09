@@ -342,24 +342,6 @@
         }
         
         // 垂直合併功能（真正使用 rowspan）
-        function deleteTableRow(blockIdx, rowIdx) {
-            if (!confirm("確定要刪除這一列嗎？")) return;
-            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
-            renderAllBlocks();
-        }
-        
-        function deleteTableColumn(blockIdx) {
-            if (!confirm("確定要刪除最後一欄嗎？")) return;
-            const block = currentBlocks[blockIdx];
-            if (block.headers.length <= 1) {
-                alert("至少要保留一欄！");
-                return;
-            }
-            block.headers.pop();
-            block.rows.forEach(row => row.pop());
-            renderAllBlocks();
-        }
-
         function mergeVertical(blockIdx, startRow) {
             const block = currentBlocks[blockIdx];
             if (startRow >= block.rows.length - 1) {
@@ -388,6 +370,24 @@
             }
 
             alert(`✅ 已將第 ${startRow+1} 列開始，共 ${rowspan} 列的第一欄垂直合併！`);
+            renderAllBlocks();
+        }
+
+        function deleteTableRow(blockIdx, rowIdx) {
+            if (!confirm("確定要刪除這一列嗎？")) return;
+            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+            renderAllBlocks();
+        }
+        
+        function deleteTableColumn(blockIdx) {
+            if (!confirm("確定要刪除最後一欄嗎？")) return;
+            const block = currentBlocks[blockIdx];
+            if (block.headers.length <= 1) {
+                alert("至少要保留一欄！");
+                return;
+            }
+            block.headers.pop();
+            block.rows.forEach(row => row.pop());
             renderAllBlocks();
         }
 
