@@ -240,13 +240,19 @@
                 const div = document.createElement("div");
                 div.className = "border border-slate-700 rounded-3xl p-6 bg-slate-900 relative";
 
-                div.innerHTML += `
-                    <div class="absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1">
-                        <button onclick="moveBlock(${i}, -1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
-                        <button onclick="moveBlock(${i}, 1)" class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
-                        <button onclick="deleteBlock(${i})" class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
-                    </div>
+                // 區塊操作按鈕（↑ ↓ ×）
+                const actionBar = document.createElement("div");
+                actionBar.className = "absolute -top-3 -right-3 flex gap-1 bg-slate-800 shadow rounded-xl p-1";
+                actionBar.innerHTML = `
+                    <button class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↑</button>
+                    <button class="w-8 h-8 hover:bg-slate-700 rounded-lg text-slate-300">↓</button>
+                    <button class="w-8 h-8 text-red-400 hover:bg-red-900/30 rounded-lg">×</button>
                 `;
+                // 綁定事件
+                actionBar.children[0].onclick = () => moveBlock(i, -1);
+                actionBar.children[1].onclick = () => moveBlock(i, 1);
+                actionBar.children[2].onclick = () => deleteBlock(i);
+                div.appendChild(actionBar);
 
                 if (block.type === "text") {
                     const fontClass = block.fontSize === "small" ? "text-small" : block.fontSize === "large" ? "text-large" : "text-medium";
@@ -254,41 +260,58 @@
                         <div class="flex justify-between items-center mb-3">
                             <div class="text-xs text-slate-400">支援 Markdown 語法</div>
                             <div class="flex gap-1">
-                                <button onclick="changeFontSize(${i}, 'small')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='small' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">小</button>
-                                <button onclick="changeFontSize(${i}, 'medium')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='medium' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">中</button>
-                                <button onclick="changeFontSize(${i}, 'large')" class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='large' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">大</button>
+                                <button class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='small' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">小</button>
+                                <button class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='medium' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">中</button>
+                                <button class="px-3 py-1 text-xs rounded-lg ${block.fontSize==='large' ? 'bg-blue-600 text-white' : 'bg-slate-700 hover:bg-slate-600'}">大</button>
                             </div>
                         </div>
-                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}" onblur="updateText(${i}, this.value)">${block.content || ""}</textarea>
+                        <textarea id="text-${i}" class="w-full h-64 p-6 border border-slate-700 rounded-3xl bg-slate-950 text-slate-200 resize-y ${fontClass}">${block.content || ""}</textarea>
                     `;
-                } else if (block.type === "table") {
+                    // 字體大小按鈕事件
+                    const btns = div.querySelectorAll(".flex.gap-1 button");
+                    btns[0].onclick = () => changeFontSize(i, 'small');
+                    btns[1].onclick = () => changeFontSize(i, 'medium');
+                    btns[2].onclick = () => changeFontSize(i, 'large');
+                    // textarea 事件
+                    const textarea = div.querySelector("textarea");
+                    textarea.onblur = () => updateText(i, textarea.value);
+                } 
+                else if (block.type === "table") {
                     div.innerHTML += `
                         <input value="${block.title || '資料表格'}" class="text-xl font-medium border-b border-slate-700 focus:outline-none w-80 mb-4 bg-transparent" onblur="updateTableTitle(${i}, this.value)">
                         
-                        <!-- 表格控制按鈕（已放在上方） -->
-                        <div class="flex gap-3 mb-4 flex-wrap">
-                            <button onclick="addTableRow(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增列</button>
-                            <button onclick="addTableColumn(${i})" class="bg-slate-800 hover:bg-slate-700 px-6 py-2 rounded-3xl text-sm">+ 新增欄</button>
-                            <button onclick="deleteLastRow(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一列</button>
-                            <button onclick="deleteLastColumn(${i})" class="bg-red-700 hover:bg-red-600 px-6 py-2 rounded-3xl text-sm">刪除最後一欄</button>
-                            <button onclick="mergeFirstColumn(${i})" class="bg-blue-700 hover:bg-blue-600 px-6 py-2 rounded-3xl text-sm">垂直合併第一欄</button>
-                        </div>
+                        <!-- 表格控制按鈕 -->
+                        <div class="flex gap-3 mb-4 flex-wrap"></div>
                         
                         <table class="w-full border border-slate-700" id="table-${i}"></table>
                     `;
-                    container.appendChild(div);
-                    renderSingleTable(i);
-                    return;
+
+                    const controlDiv = div.querySelector(".flex.gap-3");
+                    const btnHTML = [
+                        { text: "+ 新增列", func: () => addTableRow(i), color: "slate" },
+                        { text: "+ 新增欄", func: () => addTableColumn(i), color: "slate" },
+                        { text: "刪除最後一列", func: () => deleteLastRow(i), color: "red" },
+                        { text: "刪除最後一欄", func: () => deleteLastColumn(i), color: "red" },
+                        { text: "垂直合併第一欄", func: () => mergeFirstColumn(i), color: "blue" }
+                    ];
+
+                    btnHTML.forEach(b => {
+                        const btn = document.createElement("button");
+                        btn.textContent = b.text;
+                        btn.className = `px-6 py-2 rounded-3xl text-sm ${b.color === "red" ? "bg-red-700 hover:bg-red-600" : b.color === "blue" ? "bg-blue-700 hover:bg-blue-600" : "bg-slate-800 hover:bg-slate-700"}`;
+                        btn.onclick = b.func;
+                        controlDiv.appendChild(btn);
+                    });
                 }
+
                 container.appendChild(div);
+
+                if (block.type === "table") {
+                    renderSingleTable(i);
+                }
             });
         }
-
-        function changeFontSize(blockIndex, size) {
-            currentBlocks[blockIndex].fontSize = size;
-            renderAllBlocks();
-        }
-
+        
 // ==================== 最終修正的 renderSingleTable ====================
         function renderSingleTable(index) {
             const block = currentBlocks[index];
