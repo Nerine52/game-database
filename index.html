@@ -297,15 +297,16 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
-            html += `<th class="bg-slate-800 w-24 text-xs text-center font-medium">操作</th>`;
+            html += `<th class="bg-slate-800 w-20 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
             let r = 0;
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                // 渲染資料欄
-                block.rows[r].forEach((cell, c) => {
+                // 渲染所有欄位（修正重點）
+                for (let c = 0; c < block.headers.length; c++) {
+                    let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
                     let rowspan = 1;
 
@@ -321,23 +322,22 @@
                     html += `<td rowspan="${rowspan}" contenteditable="true" 
                               onblur="updateCell(${index},${r},${c}, this.innerText)" 
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
-                });
+                }
 
-                // 操作欄（固定寬度 + 優化樣式）
+                // 操作欄（固定在最右側）
                 html += `
-                    <td class="w-24 border-l border-slate-600 bg-slate-900 text-center">
-                        <div class="flex flex-col gap-2">
+                    <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-2">
+                        <div class="flex flex-col gap-1.5">
                             <button onclick="deleteTableRow(${index}, ${r})" 
-                                    class="bg-red-900/60 hover:bg-red-800 text-red-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
+                                    class="bg-red-900/70 hover:bg-red-800 text-red-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
                                 🗑️ 刪列
                             </button>
                             <button onclick="mergeVertical(${index}, ${r})" 
-                                    class="bg-blue-900/60 hover:bg-blue-800 text-blue-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
+                                    class="bg-blue-900/70 hover:bg-blue-800 text-blue-200 hover:text-white text-xs py-1.5 px-3 rounded-xl transition-all">
                                 ↓ 合併
                             </button>
                         </div>
                     </td>`;
-
                 html += "</tr>";
 
                 // 跳過已被合併的列（重要修正）
