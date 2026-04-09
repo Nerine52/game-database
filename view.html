@@ -72,8 +72,31 @@
                 if (!response.ok) throw new Error("No data");
                 categories = await response.json();
 
+                // === 新增：強制把「注意事項」分類排在最前面 ===
+                const noticeCategory = {
+                    id: Date.now(),
+                    name: "注意事項",
+                    subpages: [
+                        {
+                            title: "注意事項",
+                            blocks: [
+                                { 
+                                    type: "text", 
+                                    content: "**重要注意事項**\n\n- 請務必遵守遊戲規則\n- 活動期間請保持良好互動\n- 如有問題請聯絡管理員\n- 禁止任何外掛、刷取、惡意行為", 
+                                    fontSize: "medium" 
+                                }
+                            ]
+                        }
+                    ]
+                };
+
+                // 如果第一個分類已經是「注意事項」，就不要重複加入
+                if (categories.length === 0 || categories[0].name !== "注意事項") {
+                    categories.unshift(noticeCategory);
+                }
+
                 renderCategories();
-                if (categories.length > 0) selectCategory(0);
+                selectCategory(0);   // 強制顯示第一個分類（注意事項）的第一個分頁
             } catch (e) {
                 document.getElementById("pageContent").innerHTML = `
                     <div class="text-center py-40 text-slate-400">
