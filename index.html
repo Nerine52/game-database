@@ -283,7 +283,7 @@
             renderAllBlocks();
         }
 
-                function renderSingleTable(index) {
+        function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
             if (!el) return;
@@ -299,7 +299,7 @@
             while (r < block.rows.length) {
                 html += "<tr>";
 
-                // 修正：正確渲染每一欄（不論是否有 rowspan）
+                // 簡單直接渲染所有欄位（避免 rowspan 造成顯示問題）
                 for (let c = 0; c < block.headers.length; c++) {
                     let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
@@ -318,7 +318,7 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 }
 
-                // 操作欄 - 大幅減少上下空白
+                // 操作欄 - 減少空白
                 html += `
                     <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
                         <div class="flex flex-col gap-1">
@@ -334,7 +334,7 @@
                     </td>`;
                 html += "</tr>";
 
-                // 正確跳過已被合併的列
+                // 跳過已被合併的列
                 if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
                     const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
                     if (match) {
