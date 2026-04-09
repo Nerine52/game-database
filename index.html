@@ -283,7 +283,7 @@
             renderAllBlocks();
         }
 
-// ==================== 修正後的 renderSingleTable ====================
+// ==================== 最終修正的 renderSingleTable ====================
         function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
@@ -296,10 +296,11 @@
             html += `<th class="bg-slate-800 w-20 text-xs text-center font-medium">操作</th>`;
             html += "</tr></thead><tbody>";
 
-            for (let r = 0; r < block.rows.length; r++) {
+            let r = 0;
+            while (r < block.rows.length) {
                 html += "<tr>";
 
-                // 渲染所有欄位（修正版）
+                // 修正：正確渲染所有欄位
                 for (let c = 0; c < block.headers.length; c++) {
                     let cell = block.rows[r][c];
                     let content = (cell || '').replace(/\n/g, '<br>');
@@ -318,15 +319,22 @@
                               style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
                 }
 
-                // 操作欄（簡潔版，減少空白）
+                // 操作欄（減少空白，直接文字點擊）
                 html += `
                     <td class="w-20 border-l border-slate-600 bg-slate-900 text-center py-1">
-                        <div class="flex flex-col gap-1 text-xs">
-                            <span onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500 cursor-pointer">🗑️ 刪列</span>
-                            <span onclick="mergeVertical(${index}, ${r})" class="text-blue-400 hover:text-blue-500 cursor-pointer">↓ 合併</span>
+                        <div class="flex flex-col gap-0.5 text-xs text-center">
+                            <span onclick="deleteTableRow(${index}, ${r})" class="cursor-pointer text-red-400 hover:text-red-500 py-0.5">🗑️ 刪列</span>
+                            <span onclick="mergeVertical(${index}, ${r})" class="cursor-pointer text-blue-400 hover:text-blue-500 py-0.5">↓ 合併</span>
                         </div>
                     </td>`;
                 html += "</tr>";
+
+                // 跳過已被合併的列
+                if (block.rows[r][0] && typeof block.rows[r][0] === 'string' && block.rows[r][0].startsWith('【ROWSPAN:')) {
+                    const match = block.rows[r][0].match(/【ROWSPAN:(\d+)】/);
+                    if (match) r += parseInt(match[1]) - 1;
+                }
+                r++;
             }
             html += "</tbody>";
             el.innerHTML = html;
@@ -515,7 +523,7 @@
                     html += t;
                 }
             });
-
+    
             document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
