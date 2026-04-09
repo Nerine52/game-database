@@ -47,12 +47,12 @@
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
-        <!-- 左側分類 -->
-        <div class="w-72 bg-slate-900 text-white p-6 flex flex-col">
-            <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
-            <div id="categoryList" class="flex-1 space-y-2"></div>
-            <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
-        </div>
+    <!-- 左側分類 -->
+    <div id="leftPanel" class="bg-slate-900 text-white p-6 flex flex-col transition-all duration-300 overflow-hidden" style="width: 288px;">
+        <h1 class="text-2xl font-bold mb-8">NEO資料庫</h1>
+        <div id="categoryList" class="flex-1 space-y-2"></div>
+        <button onclick="addCategory()" class="mt-6 w-full bg-blue-600 hover:bg-blue-700 py-3 rounded-2xl text-sm font-medium">+ 新增分類</button>
+    </div>
 
         <!-- 中間分頁列表 -->
         <div id="middlePanel" class="bg-slate-900 border-r border-slate-700 overflow-hidden transition-all duration-300 flex flex-col" style="width: 320px;">
@@ -63,7 +63,7 @@
                             class="flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-3xl text-sm font-medium">
                         <span class="text-xl">+</span> 新增
                     </button>
-                    <button onclick="toggleMiddlePanel()" id="toggleBtn"
+                    <button onclick="toggleSidebar()" id="toggleBtn"
                             class="text-slate-400 hover:text-slate-300 text-sm font-medium flex items-center gap-1 px-3 py-2 rounded-2xl hover:bg-slate-800">
                         收合 <span class="text-lg">→</span>
                     </button>
@@ -230,20 +230,25 @@
             renderAllBlocks();
         }
 
-        function toggleMiddlePanel() {
-            isMiddlePanelVisible = !isMiddlePanelVisible;
-            const panel = document.getElementById("middlePanel");
+        function toggleSidebar() {
+            isSidebarVisible = !isSidebarVisible;
+            const leftPanel = document.getElementById("leftPanel");
+            const middlePanel = document.getElementById("middlePanel");
             const title = document.getElementById("middleTitle");
             const addBtn = document.getElementById("addSubpageBtn");
             const btn = document.getElementById("toggleBtn");
 
-            if (isMiddlePanelVisible) {
-                panel.style.width = "320px";
+            if (isSidebarVisible) {
+                // 展開：分類 + 分頁列表同時展開
+                leftPanel.style.width = "288px";
+                middlePanel.style.width = "320px";
                 title.style.display = "block";
                 addBtn.style.display = "flex";
                 btn.innerHTML = `收合 <span class="text-lg">→</span>`;
             } else {
-                panel.style.width = "72px";
+                // 收合：分類 + 分頁列表同時收起來
+                leftPanel.style.width = "0";
+                middlePanel.style.width = "72px";
                 title.style.display = "none";
                 addBtn.style.display = "none";
                 btn.innerHTML = `展開 <span class="text-lg">←</span>`;
