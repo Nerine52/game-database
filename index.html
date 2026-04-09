@@ -23,10 +23,12 @@
             text-align: center; 
             vertical-align: middle;        /* 垂直置中 */
             white-space: pre-wrap;
+            position: relative;
         }
-        th { 
+        th { background-color: #1e2937; font-weight: 500; }
+        td[contenteditable="true"]:focus, th[contenteditable="true"]:focus { 
+            outline: 2px solid #60a5fa; 
             background-color: #1e2937; 
-            font-weight: 500;
         }
 
         /* 文字方塊字體大小 */
@@ -286,7 +288,7 @@
             renderAllBlocks();
         }
 
-        function renderSingleTable(index) {
+function renderSingleTable(index) {
             const block = currentBlocks[index];
             const el = document.getElementById(`table-${index}`);
             if (!el) return;
@@ -295,17 +297,40 @@
             block.headers.forEach((h, c) => {
                 html += `<th contenteditable="true" onblur="updateHeader(${index},${c}, this.innerText)" class="bg-slate-800">${h}</th>`;
             });
+            html += `<th class="bg-slate-800 w-10"><button onclick="deleteTableColumn(${index})" class="text-red-400 hover:text-red-500">刪欄</button></th>`;
             html += "</tr></thead><tbody>";
+
             block.rows.forEach((row, r) => {
                 html += "<tr>";
                 row.forEach((cell, c) => {
                     const displayCell = (cell || '').replace(/\n/g, '<br>');
                     html += `<td contenteditable="true" onblur="updateCell(${index},${r},${c}, this.innerText)" style="white-space: pre-wrap; vertical-align: middle;">${displayCell}</td>`;
                 });
+                html += `<td class="w-10"><button onclick="deleteTableRow(${index}, ${r})" class="text-red-400 hover:text-red-500">刪列</button></td>`;
                 html += "</tr>";
             });
             html += "</tbody>";
             el.innerHTML = html;
+        }
+
+        // 新增：刪除列
+        function deleteTableRow(blockIdx, rowIdx) {
+            if (!confirm("確定要刪除這一列嗎？")) return;
+            currentBlocks[blockIdx].rows.splice(rowIdx, 1);
+            renderAllBlocks();
+        }
+
+        // 新增：刪除欄
+        function deleteTableColumn(blockIdx) {
+            if (!confirm("確定要刪除最後一欄嗎？")) return;
+            const block = currentBlocks[blockIdx];
+            if (block.headers.length <= 1) {
+                alert("至少要保留一欄！");
+                return;
+            }
+            block.headers.pop();
+            block.rows.forEach(row => row.pop());
+            renderAllBlocks();
         }
 
         function updateText(i, val) { currentBlocks[i].content = val; }
