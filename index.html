@@ -584,7 +584,7 @@
 
         function previewContent() {
             if (currentSubpageIndex === -1) return;
-            saveCurrent();   // 預覽前先儲存
+            saveCurrent();   // 重要：預覽前強制儲存最新修改
 
             const sub = categories[currentCategoryIndex].subpages[currentSubpageIndex];
             let html = `<h2 class="text-3xl font-bold mb-8">${sub.title}</h2>`;
@@ -610,7 +610,7 @@
                             let cell = block.rows[r][c] || '';
                             let content = cell.replace(/\n/g, '<br>');
 
-                            // === 新增：讓表格格子內的 Markdown 語法生效 ===
+                            // === 關鍵修正：讓表格內 Markdown 語法生效 ===
                             content = marked.parseInline(content);
 
                             let rowspan = 1;
@@ -636,7 +636,7 @@
             document.getElementById("previewBody").innerHTML = html;
             document.getElementById("previewModal").classList.remove("hidden");
         }
-
+        
         function closePreview() {
             document.getElementById("previewModal").classList.add("hidden");
         }
