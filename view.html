@@ -207,13 +207,12 @@
                     }
                     html += "</tr></thead><tbody>";
 
-                    // === 資料列（支援 rowspan）===
+                    // === 資料列（支援 rowspan + Markdown）===
                     let r = 0;
                     while (r < block.rows.length) {
                         html += "<tr>";
                         let col = 0;
                         while (col < block.headers.length) {
-                            // 跳過被上方 rowspan 涵蓋的格子
                             if (isCoveredByRowspan(block, r, col)) {
                                 col++;
                                 continue;
@@ -221,13 +220,16 @@
 
                             let cell = block.rows[r][col] || '';
                             let content = cell.replace(/\n/g, '<br>');
-                            let rowspan = 1;
 
+                            // === 關鍵修正：讓表格內 Markdown 生效 ===
+                            content = marked.parseInline(content);
+
+                            let rowspan = 1;
                             if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
                                 const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
                                 if (match) {
                                     rowspan = parseInt(match[1]);
-                                    content = match[2] || '';
+                                    content = marked.parseInline(match[2] || '');
                                 }
                             }
 
@@ -241,6 +243,24 @@
                     container.innerHTML += html;
                 }
             });
+        }
+
+        // 判斷是否被上方 rowspan 涵蓋（必須保留）
+        function isCoveredByRowspan(block, rowIdx, colIdx = 0) {
+            if (colIdx !== 0) return false;
+            let r = 0;
+            while (r < rowIdx) {
+                const cell = block.rows[r][0];
+                if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                    const match = cell.match(/【ROWSPAN:(\d+)】/);
+                    if (match) {
+                        const span = parseInt(match[1]);
+                        if (r + span > rowIdx) return true;
+                    }
+                }
+                r++;
+            }
+            return false;
         }
 
         // 判斷是否被 rowspan 涵蓋（與編輯版相同）
