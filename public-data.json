@@ -226,7 +226,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "NEO DAY 成長支援 Season 2「從零到百」\n- 3月4日至4月1日 (2400神石)\n",
+            "content": "NEO DAY 成長支援 Season 2「從零到百」\n- 3月4日至4月1日 (2400神石)",
             "fontSize": "medium"
           },
           {
@@ -326,40 +326,47 @@
             "title": "詳細內容",
             "headers": [
               "物品",
+              "物品名稱",
               "備註"
             ],
             "rows": [
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Costume_Coin_06.png\" class=\"image-preview\">",
                 "約定的外觀鑄幣",
                 "可在購買下期通行證時獲得特別的外觀獎勵\n**意思是要連下一期也買才拿得到衣服**",
-                "可在購買下期通行證時獲得特別的外觀獎勵\n意思是要連下一期也買才拿得到衣服111"
+                ""
               ],
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_Grocery_Event_2019_coin29.png\" class=\"image-preview\">",
                 "NEO DAY 鑄幣",
-                "30級後的 NEO DAY 靈魂補給箱，每箱都可以額外獲得1個鑄幣\n**單個角色最多可獲得40個鑄幣**",
-                "30級後的 NEO DAY 靈魂補給箱，每箱都可以額外獲得1個鑄幣\n一個角色最多可獲得40個鑄幣"
+                "30級後的「NEO DAY 靈魂補給箱」，每箱都可以額外獲得1個鑄幣\n一個角色最多可獲得40個鑄幣",
+                ""
               ],
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Bmevent_Weapon3.png\" class=\"image-preview\">",
                 "雪寒/白光裝備強化石",
-                "使用1個可強化雪寒裝備1次，使用10個可強化白光裝備1次\n不會消耗金幣與材料，但依照既定機率進行強化\n"
+                "使用1個可強化雪寒裝備1次，使用10個可強化白光裝備1次\n不會消耗金幣與材料，但依照既定機率進行強化"
               ],
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "半人半獸緣分箱",
-                "可獲得圖畫「真正的主人黑蛇女王」、「蛇」、\n「墨鐵腕」、「衝角團青兒、紅兒」"
+                "可獲得圖畫「真正的主人黑蛇王后」、「刀鱗蛇殺衛蛇」、\n「不滅的海賊船長墨鐵腕」、「衝角團南海艦隊青兒、紅兒」"
               ],
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "強力的拳頭緣分箱",
-                "可獲得圖畫「鐵血修煉場極拳」、「迷宮的主人風神」、\n「月光草原帝王木」、「墨鐵腕」"
+                "可獲得圖畫「鐵血修煉場極拳」、「被侵蝕的迷宮風神」、\n「月光草原帝王木」、「不滅的海賊船長墨鐵腕」"
               ],
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "仙幻島的高手們緣分箱",
-                "可獲得圖畫「鐵血修煉場極拳」、「幻獸練武場非風」、\n「」、「」"
+                "可獲得圖畫「鐵血修煉場極拳」、「幻獸練武場非風」、\n「鐵血修煉場鐵煉章」、「幻獸練武場裴比具」"
               ]
             ]
           },
           {
             "type": "text",
-            "content": "",
+            "content": "- 約定的外觀鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -417,23 +424,81 @@
             "type": "table",
             "title": "飛龍工商兌換清單",
             "headers": [
-              "項目",
-              "數量",
-              "備註"
+              "所需鑄幣數量",
+              "可兌換物品",
+              "購買限制"
             ],
-            "rows": []
+            "rows": [
+              [
+                "20",
+                "傳說武功秘笈碎片",
+                "帳號限定 1次"
+              ],
+              [
+                "20",
+                "仙幻圖畫箱 (傳說)\n",
+                "帳號限定 1次"
+              ],
+              [
+                "20",
+                "白光碎片 (3個入)\n",
+                "帳號限定 1次"
+              ],
+              [
+                "10",
+                "名人的圖畫 (傳說)",
+                "帳號限定 2次"
+              ],
+              [
+                "10",
+                "冥想圖畫箱 (英雄) (10個入)",
+                "帳號限定 1次"
+              ],
+              [
+                "5",
+                "冥想圖畫箱 (英雄~傳說)",
+                "角色限定 2次"
+              ],
+              [
+                "1",
+                "靈魂支援箱",
+                "無限制"
+              ]
+            ]
           },
           {
             "type": "table",
             "title": "詳細內容",
             "headers": [
               "物品",
+              "物品名稱",
               "備註"
             ],
             "rows": [
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Costume_Coin_01.png\" class=\"image-preview\">",
                 "感謝的外觀鑄幣",
-                "在飛龍工商與「約定的外觀鑄幣」一同使用，可獲得所有時裝\n- 可使用「感謝的外觀鑄幣 +200金」兌換\n- 若只持有其中一種外觀鑄幣 (約定/感謝)，亦可兌換「貓咪幻影武器」"
+                "在飛龍工商與「約定的外觀鑄幣」一同使用，可獲得所有時裝及幻影武器\n- 可使用「感謝的外觀鑄幣 +200金」兌換\n- 若只持有其中一種外觀鑄幣 (約定/感謝)，亦可兌換「貓咪幻影武器」"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/JPTW_23Mar_Coin_01.png\" class=\"image-preview\">",
+                "夢園的鑄幣",
+                "30級後的「夢園的靈魂支援箱」，每箱都可以額外獲得1個鑄幣\n一個角色最多可獲得40個鑄幣"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/jpn_grocery_coin24.png\" class=\"image-preview\">",
+                "白光碎片",
+                "強化白光裝備時，可作為強化祭品使用\n分解時可獲得10個雪寒碎片\n強化時會根據強化階段要求材料與費用，並依照既定機率進行強化"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/jpn_grocery_coin25.png\" class=\"image-preview\">",
+                "雪寒碎片",
+                "強化雪寒裝備時，可作為強化祭品使用\n強化時會根據強化階段要求材料與費用，並依照既定機率進行強化"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/gb_grocery_pre_commanderbm_box_03.png\" class=\"image-preview\">",
+                "靈魂支援箱",
+                "開啟時可確定獲得名人包子1個，並可根據指定機率從緊急修理工具1~5個、\n隱約的印章箱、最上級圖畫箱、耀眼的印章箱、強化材料選擇箱中獲得1種"
               ]
             ]
           }
@@ -444,7 +509,34 @@
   {
     "id": 2,
     "name": "金幣箱",
-    "subpages": []
+    "subpages": [
+      {
+        "title": "分頁 1",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "資料表格",
+            "headers": [
+              "項目",
+              "數量",
+              "備註"
+            ],
+            "rows": [
+              [
+                "",
+                "",
+                ""
+              ]
+            ]
+          }
+        ]
+      }
+    ]
   },
   {
     "id": 3,
