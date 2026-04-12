@@ -303,7 +303,7 @@
             return false;
         }
         
- let isViewSidebarVisible = true;
+        let isViewSidebarVisible = true;
 
         function toggleViewSidebar() {
             isViewSidebarVisible = !isViewSidebarVisible;
@@ -316,7 +316,7 @@
                 // 展開
                 leftPanel.style.display = "flex";
                 middlePanel.style.display = "block";
-                leftPanel.style.width = "256px";   // 你之前設定的寬度
+                leftPanel.style.width = "256px";
                 middlePanel.style.width = "288px";
                 floatBtn.classList.add("hidden");
             } else {
@@ -329,7 +329,16 @@
         }
         
         window.onload = () => {
-            loadPublicData();
+            loadPublicData().then(() => {
+                // 頁面載入完成後，預設展開（顯示兩個面板，隱藏浮動按鈕）
+                const leftPanel = document.getElementById("leftPanel");
+                const middlePanel = document.getElementById("middlePanel");
+                const floatBtn = document.getElementById("floatingToggleBtn");
+
+                leftPanel.style.display = "flex";
+                middlePanel.style.display = "block";
+                floatBtn.classList.add("hidden");
+            });
         };
     </script>
 </body>
