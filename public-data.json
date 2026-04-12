@@ -24,8 +24,8 @@
         "blocks": [
           {
             "type": "text",
-            "content": "## 2月25日至3月4日 (1500神石)\n- 靈魂通行證等級提升只能達到 10 級",
-            "fontSize": "small"
+            "content": "NEO DAY：2VE 特殊通行證\n- 2月25日至3月4日 (1500神石)\n- 靈魂通行證等級提升只能達到 10 級",
+            "fontSize": "medium"
           },
           {
             "type": "table",
@@ -366,7 +366,7 @@
           },
           {
             "type": "text",
-            "content": "- 約定的外觀鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -501,6 +501,11 @@
                 "開啟時可確定獲得名人包子1個，並可根據指定機率從緊急修理工具1~5個、\n隱約的印章箱、最上級圖畫箱、耀眼的印章箱、強化材料選擇箱中獲得1種"
               ]
             ]
+          },
+          {
+            "type": "text",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "fontSize": "medium"
           }
         ]
       }
@@ -511,26 +516,239 @@
     "name": "華仲師兄",
     "subpages": [
       {
-        "title": "分頁 1",
+        "title": "華仲支援選擇箱 (2.25~3.11)",
         "blocks": [
           {
             "type": "text",
-            "content": "",
+            "content": "華仲師兄的祕笈 (2月25日至3月11日)\n- 9900神石 帳號限購2",
             "fontSize": "medium"
           },
           {
             "type": "table",
-            "title": "資料表格",
+            "title": "商品內容",
             "headers": [
-              "項目",
-              "數量",
+              "箱子",
+              "道具",
+              "數量"
+            ],
+            "rows": [
+              [
+                "【ROWSPAN:6】華仲師兄的秘笈",
+                "華仲的傳說變更券 (活動)",
+                "1"
+              ],
+              [
+                "",
+                "華仲的圖畫選擇箱",
+                "2"
+              ],
+              [
+                "",
+                "華仲的支援選擇箱",
+                "2"
+              ],
+              [
+                "",
+                "華仲的強化選擇箱",
+                "2"
+              ],
+              [
+                "",
+                "褪色的合成用真言珠：書",
+                "20"
+              ],
+              [
+                "",
+                "繽紛的印章箱",
+                "1"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "物品",
+              "物品名稱",
               "備註"
             ],
             "rows": [
               [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_ticket_treasureboard_04.png\" class=\"image-preview\">",
+                "華仲的傳說變更券 (活動)",
+                "在飛龍工商分頁中，從持有的傳說武功秘笈(或綁定)、\n高級圖畫清單中選擇1種後，\n支付1張變更券及1金兌換成想要的獎勵\n"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/ztx_grocery_box_08.png\" class=\"image-preview\">",
+                "華仲的圖畫選擇箱",
+                "可選擇1種獲得\n•廢礦圖畫箱(英雄) 10個\n•名人的圖畫 (傳說) 2個\n•特別圖畫箱 (英雄) 1個\n•特別圖畫箱(傳說) 1個 (需支付200金手續費)"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/jpn_grocery_box120.png\" class=\"image-preview\">",
+                "華仲的支援選擇箱",
+                "可選擇1種獲得\n•風雷八卦盒15個\n•褪色的合成用真言珠：海 10個\n•風雷八卦選擇箱 15個 (需支付50金手續費)\n•真言珠：占 2個 (需支付200金手續費)\n"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_starstone_32.png\" class=\"image-preview\">",
+                "褪色的合成用真言珠：海",
+                "可作為合成材料使用，\n與其他真言珠組合後裝備，也無法套用真言效果\n"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/gb_grocery_eventfield_box_3.png\" class=\"image-preview\">",
+                "華仲的強化選擇箱",
+                "可選擇1種獲得\n•雪寒武器強化石5個\n•雪寒飾品強化石5個\n•白光武器強化石1個 (需支付100金手續費)\n•白光飾品強化石2個 (需支付100金手續費)\n強化石作為祭品使用時，不會額外消耗金幣及材料\n"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "手續費"
+            ],
+            "rows": [
+              [
+                "仙幻綁定武功秘笈箱 (傳說)",
+                "傳說 綁定武功秘笈 1種 + 華仲的傳說變更券 (活動)",
+                "1金"
+              ],
+              [
+                "仙幻武功秘笈箱 (傳說)",
+                "傳說 武功秘笈 1種 + 華仲的傳說變更券 (活動)",
+                "1金"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種 + 華仲的傳說變更券 (活動)",
+                "1金"
+              ]
+            ]
+          }
+        ]
+      },
+      {
+        "title": "冥想氣息華仲箱 (3.25~4.8)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "華仲師兄的祕笈 (3月25日至4月8日)\n- 1980神石 每月限購5 (最大可買10個)",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "商品內容",
+            "headers": [
+              "箱子",
+              "道具",
+              "數量"
+            ],
+            "rows": [
+              [
+                "【ROWSPAN:5】華仲師兄的祕笈",
+                "冥想的氣息",
+                "1"
+              ],
+              [
                 "",
+                "名人的圖畫 (傳說)",
+                "1"
+              ],
+              [
                 "",
-                ""
+                "褪色的合成用真言珠：書",
+                "5"
+              ],
+              [
+                "",
+                "華仲的八卦牌成長選擇箱",
+                "1"
+              ],
+              [
+                "",
+                "熾熱的複合印章箱",
+                "1"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "物品",
+              "物品名稱",
+              "備註"
+            ],
+            "rows": [
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/jpn_grocery_coin172.png\" class=\"image-preview\">",
+                "冥想的氣息",
+                " 可在飛龍工商兌換所需物品"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_soul_box_1.png\" class=\"image-preview\">",
+                "華仲的八卦牌成長選擇箱",
+                "開啟時可從風雷八卦牌選擇箱2個、風雷八卦牌盒4個、\n強化材料選擇箱4個中，選擇其中1種獲得\n"
+              ],
+              [
+                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/gb_grocery_randombox1-3.png\" class=\"image-preview\">",
+                "傳說武功秘笈碎片大獎箱",
+                "開啟時可依照指定機率，\n從傳說武功秘笈碎片 1個、2個、3個、4個中獲得其中1種"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "購買限制",
+              "手續費"
+            ],
+            "rows": [
+              [
+                "仙幻綁定武功秘笈箱 (傳說)",
+                "冥想的氣息 10個",
+                "無限制",
+                "/"
+              ],
+              [
+                "神木八卦牌盒 (2個入)",
+                "冥想的氣息 10個",
+                "無限制",
+                "/"
+              ],
+              [
+                "傳說武功秘笈碎片大獎箱",
+                "冥想的氣息 2個",
+                "帳號限定 3次",
+                "/"
+              ],
+              [
+                "名人的圖畫 (傳說) (2個入)",
+                "冥想的氣息 2個",
+                "無限制",
+                "/"
+              ],
+              [
+                "仙幻綁定武功秘笈箱 (傳說)",
+                "傳說 綁定武功秘笈 1種 + 冥想的氣息 4個",
+                "/",
+                "1金"
+              ],
+              [
+                "仙幻武功秘笈箱 (傳說)",
+                "傳說 武功秘笈 1種 + 冥想的氣息 4個",
+                "/",
+                "1金"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種  + 冥想的氣息 4個",
+                "/",
+                "1金"
               ]
             ]
           }
