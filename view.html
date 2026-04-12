@@ -44,12 +44,22 @@
         td {
             display: table-cell;      /* 確保 vertical-align 生效 */
         }
+        
+        /* View版浮動展開/收合按鈕 */
+        #floatingToggleBtn {
+            transition: all 0.3s ease;
+        }
+        #floatingToggleBtn:hover {
+            transform: scale(1.1) translateY(-50%);
+            box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+        }
+        
     </style>
 </head>
 <body class="bg-slate-950 text-slate-200">
     <div class="flex h-screen overflow-hidden">
         <!-- 左側：分類 -->
-        <div class="w-64 bg-slate-900 border-r border-slate-700 p-6 flex flex-col">
+            <div id="leftPanel" class="w-64 bg-slate-900 border-r border-slate-700 p-6 flex flex-col transition-all duration-300 overflow-hidden">
             <div class="flex items-center gap-3 mb-10">
                 <img src="https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/imgi_25_bi-bnsneo-type1.png" 
                      alt="圖標" class="w-11 h-11 object-contain rounded-2xl">
@@ -59,7 +69,7 @@
         </div>
 
         <!-- 中間：分頁列表 -->
-        <div class="w-72 bg-slate-900 border-r border-slate-700 overflow-auto">
+        <div id="middlePanel" class="w-72 bg-slate-900 border-r border-slate-700 overflow-auto transition-all duration-300">
             <div class="sticky top-0 bg-slate-900 border-b border-slate-700 p-6">
                 <h3 id="categoryTitle" class="font-medium text-xl text-white">分類名稱</h3>
             </div>
@@ -77,6 +87,13 @@
             </div>
         </div>
     </div>
+        </div>
+
+    <!-- View版浮動展開/收合按鈕 -->
+    <button onclick="toggleViewSidebar()" id="floatingToggleBtn"
+            class="hidden fixed left-4 top-1/2 -translate-y-1/2 bg-slate-800 hover:bg-slate-700 text-white w-14 h-14 rounded-3xl shadow-2xl flex items-center justify-center text-3xl z-[9999] border border-slate-600">
+        <span id="floatIcon">→</span>
+    </button>
 
     <script>
         let categories = [];
@@ -285,6 +302,30 @@
                 r++;
             }
             return false;
+        }
+                let isViewSidebarVisible = true;
+
+        function toggleViewSidebar() {
+            isViewSidebarVisible = !isViewSidebarVisible;
+            const leftPanel = document.getElementById("leftPanel");
+            const middlePanel = document.getElementById("middlePanel");
+            const floatBtn = document.getElementById("floatingToggleBtn");
+            const icon = document.getElementById("floatIcon");
+
+            if (isViewSidebarVisible) {
+                // 展開
+                leftPanel.style.display = "flex";
+                middlePanel.style.display = "block";
+                leftPanel.style.width = "256px";   // 你之前設定的寬度
+                middlePanel.style.width = "288px";
+                floatBtn.classList.add("hidden");
+            } else {
+                // 完全隱藏
+                leftPanel.style.display = "none";
+                middlePanel.style.display = "none";
+                floatBtn.classList.remove("hidden");
+                icon.textContent = "←";
+            }
         }
         
         window.onload = () => {
