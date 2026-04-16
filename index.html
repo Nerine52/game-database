@@ -609,7 +609,7 @@
                     const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
                                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
                                    : "font-size:16px;line-height:1.7;";
-                    html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${marked.parse(block.content || "")}</div>`;
+                    html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${marked.parse(block.content || "", { breaks: true })}</div>`;
                 } 
              else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
