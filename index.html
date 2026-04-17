@@ -228,34 +228,31 @@ function renderSubpageList() {
 
     subpages.forEach((sub, index) => {
         const div = document.createElement("div");
+        // 移除 draggable 屬性，改用穩定的按鈕排序
         div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
         
-        // 點擊整體切換分頁
-        div.onclick = (e) => {
-            // 如果點擊的是按鈕，則不觸發切換分頁
-            if (e.target.tagName === 'BUTTON') return;
-            selectSubpage(index);
-        };
-
         div.innerHTML = `
             <span class="flex-1">${sub.title || "未命名分頁"}</span>
             <div class="flex gap-1">
-                <button onclick="moveSubpage(${index}, -1)" 
-                        class="p-2 hover:bg-slate-600 rounded-lg text-slate-400 hover:text-white transition-colors ${index === 0 ? 'opacity-0 pointer-events-none' : ''}">
+                <button onclick="moveSubpage(event, ${index}, -1)" 
+                        class="w-8 h-8 flex items-center justify-center hover:bg-slate-600 rounded-lg text-slate-400 hover:text-white transition-colors ${index === 0 ? 'opacity-0 pointer-events-none' : ''}">
                     ▲
                 </button>
-                <button onclick="moveSubpage(${index}, 1)" 
-                        class="p-2 hover:bg-slate-600 rounded-lg text-slate-400 hover:text-white transition-colors ${index === subpages.length - 1 ? 'opacity-0 pointer-events-none' : ''}">
+                <button onclick="moveSubpage(event, ${index}, 1)" 
+                        class="w-8 h-8 flex items-center justify-center hover:bg-slate-600 rounded-lg text-slate-400 hover:text-white transition-colors ${index === subpages.length - 1 ? 'opacity-0 pointer-events-none' : ''}">
                     ▼
                 </button>
             </div>
         `;
 
+        // 點擊整列切換分頁
+        div.onclick = () => selectSubpage(index);
+
         container.appendChild(div);
     });
 
     if (subpages.length === 0) {
-        container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁</div>`;
+        container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」</div>`;
     }
 }
 
@@ -279,27 +276,30 @@ function renderSubpageList() {
             renderAllBlocks();
         }
 
-        function moveSubpage(index, direction) {
+function moveSubpage(event, index, direction) {
+    // 阻止事件冒泡，防止觸發外層 div 的 selectSubpage
+    event.stopPropagation();
+
     const subpages = categories[currentCategoryIndex].subpages;
     const newIndex = index + direction;
 
-    // 邊界檢查
     if (newIndex < 0 || newIndex >= subpages.length) return;
 
-    // 核心邏輯：陣列元素交換
+    // 交換陣列元素
     const temp = subpages[index];
     subpages[index] = subpages[newIndex];
     subpages[newIndex] = temp;
 
-    // 如果移動的是目前選中的分頁，更新索引
+    // 關鍵修正：更新目前的選中索引
     if (currentSubpageIndex === index) {
         currentSubpageIndex = newIndex;
     } else if (currentSubpageIndex === newIndex) {
         currentSubpageIndex = index;
     }
 
-    saveAllData();      // 儲存至 localStorage
-    renderSubpageList(); // 重新渲染列表 UI
+    // 先儲存，再重新渲染 UI
+    saveAllData(); 
+    renderSubpageList();
 }
         
         function toggleSidebar() {
