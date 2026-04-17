@@ -277,29 +277,34 @@ function renderSubpageList() {
         }
 
 function moveSubpage(event, index, direction) {
-    // 阻止事件冒泡，防止觸發外層 div 的 selectSubpage
-    event.stopPropagation();
+    event.stopPropagation(); // 阻止觸發 selectSubpage
 
     const subpages = categories[currentCategoryIndex].subpages;
     const newIndex = index + direction;
 
     if (newIndex < 0 || newIndex >= subpages.length) return;
 
-    // 交換陣列元素
+    // 1. 交換陣列中的資料物件
     const temp = subpages[index];
     subpages[index] = subpages[newIndex];
     subpages[newIndex] = temp;
 
-    // 關鍵修正：更新目前的選中索引
+    // 2. 關鍵修正：如果移動的是「目前正開啟」的分頁，更新索引位置
     if (currentSubpageIndex === index) {
         currentSubpageIndex = newIndex;
     } else if (currentSubpageIndex === newIndex) {
+        // 如果是把別的分頁移到目前選中的位置，也要對調索引
         currentSubpageIndex = index;
     }
 
-    // 先儲存，再重新渲染 UI
+    // 3. 先儲存，再渲染 UI
     saveAllData(); 
     renderSubpageList();
+    
+    // 4. 強制重新載入右側內容，確保資料不對位
+    if (currentSubpageIndex !== -1) {
+        selectSubpage(currentSubpageIndex);
+    }
 }
         
         function toggleSidebar() {
