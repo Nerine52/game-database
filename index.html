@@ -398,9 +398,9 @@
                         }
                     }
 
-                    html += `<td rowspan="${rowspan}" contenteditable="true" 
-                              onblur="updateCell(${index},${r},${col}, this.innerText)" 
-                              style="white-space: pre-wrap; vertical-align: middle;">${marked.parseInline(content)}</td>`;
+            html += `<td rowspan="${rowspan}" contenteditable="true" 
+                      onblur="updateCell(${index},${r},${col}, this.innerText)" 
+                      style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
 
                     col++;
                 }
