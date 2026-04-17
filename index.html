@@ -220,23 +220,71 @@
             if (currentSubpageIndex >= 0) selectSubpage(currentSubpageIndex);
         }
 
-        function renderSubpageList() {
-            const container = document.getElementById("subpageList");
-            container.innerHTML = "";
+function renderSubpageList() {
+    const container = document.getElementById("subpageList");
+    container.innerHTML = "";
 
-            const subpages = categories[currentCategoryIndex].subpages || [];
-            subpages.forEach((sub, i) => {
-                const div = document.createElement("div");
-                div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 ${i === currentSubpageIndex ? 'bg-slate-700' : ''}`;
-                div.textContent = sub.title;
-                div.onclick = () => selectSubpage(i);
-                container.appendChild(div);
-            });
+    const subpages = categories[currentCategoryIndex].subpages || [];
 
-            if (subpages.length === 0) {
-                container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」</div>`;
-            }
-        }
+    subpages.forEach((sub, index) => {
+        const div = document.createElement("div");
+        // 加入 select-none 防止文字選取干擾拖曳邏輯
+        div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 select-none ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
+        div.draggable = true;                    
+        div.dataset.index = index;               
+
+        div.innerHTML = `
+            <span class="text-slate-400 text-xl">☰</span>
+            <span class="flex-1">${sub.title || "未命名分頁"}</span>
+        `;
+
+        div.addEventListener("click", (e) => {
+            if (e.target.tagName !== "BUTTON") selectSubpage(index);
+        });
+
+        // === 拖曳排序邏輯 ===
+        div.addEventListener("dragstart", (e) => {
+            // 使用自訂 Key 'neo-page-idx' 避免與瀏覽器預設行為衝突
+            e.dataTransfer.setData("neo-page-idx", index.toString());
+            div.classList.add("opacity-50");
+        });
+
+        div.addEventListener("dragend", () => div.classList.remove("opacity-50"));
+
+        div.addEventListener("dragover", (e) => {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
+        });
+
+        div.addEventListener("drop", (e) => {
+            e.preventDefault();
+            const fromData = e.dataTransfer.getData("neo-page-idx");
+            
+            // 嚴格檢查：確保 from 與 to 都是有效數字且不相等
+            if (fromData === "" || fromData === null) return;
+            
+            const fromIndex = parseInt(fromData);
+            const toIndex = parseInt(div.dataset.index);
+
+            if (isNaN(fromIndex) || isNaN(toIndex) || fromIndex === toIndex) return;
+
+            // 執行排序：先取出、再插入
+            const subpagesArr = categories[currentCategoryIndex].subpages;
+            const [movedItem] = subpagesArr.splice(fromIndex, 1);
+            subpagesArr.splice(toIndex, 0, movedItem);
+
+            saveAllData();           
+            renderSubpageList();     
+            selectSubpage(toIndex); // 移動後維持選中狀態
+        });
+
+        container.appendChild(div);
+    });
+
+    if (subpages.length === 0) {
+        container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」</div>`;
+    }
+}
 
         function selectSubpage(index) {
             if (currentSubpageIndex >= 0 && currentSubpageIndex !== index) {
@@ -346,71 +394,66 @@
         }
 
         // 正確處理 rowspan + colspan（表頭與資料列皆支援）
-        function renderSingleTable(index) {
-            const block = currentBlocks[index];
-            const el = document.getElementById(`table-${index}`);
-            if (!el) return;
+function renderSingleTable(index) {
+    const block = currentBlocks[index];
+    const el = document.getElementById(`table-${index}`);
+    if (!el) return;
 
-            // === 表頭（headers）支援 colspan ===
-            let html = "<thead><tr>";
-            let c = 0;
-            while (c < block.headers.length) {
-                let header = block.headers[c] || '';
-                let colspan = 1;
-                let content = header.replace(/\n/g, '<br>');
+    let html = "<thead><tr>";
+    let c = 0;
+    while (c < block.headers.length) {
+        let header = block.headers[c] || '';
+        let colspan = 1;
+        let content = header;
 
-                if (typeof header === 'string' && header.includes('【COLSPAN:')) {
-                    const match = header.match(/【COLSPAN:(\d+)】(.*)/);
-                    if (match) {
-                        colspan = parseInt(match[1]);
-                        content = match[2] || '';
-                    }
-                }
-
-                html += `<th colspan="${colspan}" contenteditable="true" 
-                          onblur="updateHeader(${index},${c}, this.innerText)" 
-                          class="bg-slate-800">${content}</th>`;
-
-                c += colspan;
+        if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+            const match = header.match(/【COLSPAN:(\d+)】(.*)/);
+            if (match) {
+                colspan = parseInt(match[1]);
+                content = match[2] || '';
             }
-            html += "</tr></thead><tbody>";
+        }
+        // 表頭編輯：顯示純文字 content
+        html += `<th colspan="${colspan}" contenteditable="true" 
+                  onblur="updateHeader(${index},${c}, this.innerText)" 
+                  class="bg-slate-800">${content}</th>`;
+        c += colspan;
+    }
+    html += "</tr></thead><tbody>";
 
-            // === 資料列（rows）保持原本 rowspan 邏輯 ===
-            let r = 0;
-            while (r < block.rows.length) {
-                html += "<tr>";
-                let col = 0;
-                while (col < block.headers.length) {
-                    if (isCoveredByRowspan(block, r, col)) {
-                        col++;
-                        continue;
-                    }
+    let r = 0;
+    while (r < block.rows.length) {
+        html += "<tr>";
+        let col = 0;
+        while (col < block.headers.length) {
+            if (isCoveredByRowspan(block, r, col)) {
+                col++; continue;
+            }
 
-                    let cell = block.rows[r][col] || '';
-                    let content = cell.replace(/\n/g, '<br>');
-                    let rowspan = 1;
+            let cell = block.rows[r][col] || '';
+            let content = cell;
+            let rowspan = 1;
 
-                    if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
-                        const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
-                        if (match) {
-                            rowspan = parseInt(match[1]);
-                            content = match[2] || '';
-                        }
-                    }
+            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                if (match) {
+                    rowspan = parseInt(match[1]);
+                    content = match[2] || '';
+                }
+            }
 
+            // 重要：編輯模式下直接顯示原始 content，不要 parseInline
             html += `<td rowspan="${rowspan}" contenteditable="true" 
                       onblur="updateCell(${index},${r},${col}, this.innerText)" 
                       style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
-
-                    col++;
-                }
-                html += "</tr>";
-                r++;
-            }
-            html += "</tbody>";
-            el.innerHTML = html;
+            col++;
         }
-
+        html += "</tr>";
+        r++;
+    }
+    html += "</tbody>";
+    el.innerHTML = html;
+}
         // 判斷某列是否被上方 rowspan 涵蓋
         function isCoveredByRowspan(block, rowIdx, colIdx = 0) {
             if (colIdx !== 0) return false;   // 目前 rowspan 只作用在第一欄
@@ -453,7 +496,6 @@
                 block.headers[col] = prefix + (text || "新欄位");
                 return;
             }
-    
             block.headers[col] = text || "新欄位";
         }
 
