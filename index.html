@@ -228,55 +228,72 @@ function renderSubpageList() {
 
     subpages.forEach((sub, index) => {
         const div = document.createElement("div");
-        // 加入 select-none 防止文字選取干擾拖曳邏輯
-        div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 select-none ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
-        div.draggable = true;                    
-        div.dataset.index = index;               
+        // class 加入 select-none 強制防止文字干擾，並加入 group 方便識別
+        div.className = `subpage-item px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 select-none ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
+        div.draggable = true;
+        div.dataset.index = index; // 這裡存的是當前的 DOM 順序
 
         div.innerHTML = `
-            <span class="text-slate-400 text-xl">☰</span>
-            <span class="flex-1">${sub.title || "未命名分頁"}</span>
+            <span class="text-slate-400 text-xl pointer-events-none">☰</span>
+            <span class="flex-1 pointer-events-none">${sub.title || "未命名分頁"}</span>
         `;
 
-        div.addEventListener("click", (e) => {
-            if (e.target.tagName !== "BUTTON") selectSubpage(index);
-        });
+        // 點擊選擇 (改用父元素監聽，避免子元素干擾)
+        div.onclick = (e) => {
+            selectSubpage(index);
+        };
 
-        // === 拖曳排序邏輯 ===
-        div.addEventListener("dragstart", (e) => {
-            // 使用自訂 Key 'neo-page-idx' 避免與瀏覽器預設行為衝突
-            e.dataTransfer.setData("neo-page-idx", index.toString());
-            div.classList.add("opacity-50");
-        });
+        // === 拖曳排序邏輯 (穩定版) ===
+        div.ondragstart = (e) => {
+            // 存入當前被拖曳的索引
+            e.dataTransfer.setData("text/plain", index);
+            div.classList.add("opacity-20"); // 變透明表示正在移動
+            e.dataTransfer.effectAllowed = "move";
+        };
 
-        div.addEventListener("dragend", () => div.classList.remove("opacity-50"));
+        div.ondragend = () => {
+            div.classList.remove("opacity-20");
+        };
 
-        div.addEventListener("dragover", (e) => {
-            e.preventDefault();
+        div.ondragover = (e) => {
+            e.preventDefault(); // 必須呼叫才能觸發 drop
             e.dataTransfer.dropEffect = "move";
-        });
+        };
 
-        div.addEventListener("drop", (e) => {
+        div.ondrop = (e) => {
             e.preventDefault();
-            const fromData = e.dataTransfer.getData("neo-page-idx");
             
-            // 嚴格檢查：確保 from 與 to 都是有效數字且不相等
-            if (fromData === "" || fromData === null) return;
-            
-            const fromIndex = parseInt(fromData);
-            const toIndex = parseInt(div.dataset.index);
+            // 關鍵：使用 closest 確保不管丟到哪裡，都能抓回 div 的 index
+            const targetItem = e.target.closest(".subpage-item");
+            if (!targetItem) return;
 
+            const fromIndex = parseInt(e.dataTransfer.getData("text/plain"));
+            const toIndex = parseInt(targetItem.dataset.index);
+
+            // 防呆：索引無效、超出範圍、或位置沒變時直接跳過
             if (isNaN(fromIndex) || isNaN(toIndex) || fromIndex === toIndex) return;
+            
+            const currentSubpages = categories[currentCategoryIndex].subpages;
+            if (fromIndex < 0 || fromIndex >= currentSubpages.length) return;
 
-            // 執行排序：先取出、再插入
-            const subpagesArr = categories[currentCategoryIndex].subpages;
-            const [movedItem] = subpagesArr.splice(fromIndex, 1);
-            subpagesArr.splice(toIndex, 0, movedItem);
+            // --- 執行排序 (不觸碰資料內容，只換位置) ---
+            // 1. 備份要移動的那一項資料
+            const movedItem = currentSubpages[fromIndex];
+            
+            // 2. 先從陣列中完全移除該筆 (此時陣列長度 -1)
+            currentSubpages.splice(fromIndex, 1);
+            
+            // 3. 插入到新位置
+            currentSubpages.splice(toIndex, 0, movedItem);
+
+            // --- 更新狀態並存檔 ---
+            // 更新目前選中的索引，讓 UI 反饋維持在被移動的那一項
+            currentSubpageIndex = toIndex;
 
             saveAllData();           
             renderSubpageList();     
-            selectSubpage(toIndex); // 移動後維持選中狀態
-        });
+            renderAllBlocks(); // 確保右側內容區域也同步載入正確的資料
+        };
 
         container.appendChild(div);
     });
