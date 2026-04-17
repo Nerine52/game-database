@@ -220,6 +220,7 @@
             if (currentSubpageIndex >= 0) selectSubpage(currentSubpageIndex);
         }
 
+// 1. 修正後的分頁列表渲染函數
 function renderSubpageList() {
     const container = document.getElementById("subpageList");
     container.innerHTML = "";
@@ -228,14 +229,14 @@ function renderSubpageList() {
 
     subpages.forEach((sub, index) => {
         const div = document.createElement("div");
-        div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
+        // 加入 select-none 防止文字選取干擾
+        div.className = `px-6 py-4 rounded-2xl cursor-pointer hover:bg-slate-800 flex items-center gap-3 select-none ${index === currentSubpageIndex ? 'bg-slate-700' : ''}`;
         div.draggable = true;                    
         div.dataset.index = index;               
 
-        // 【修改 1】加入 select-none ( Tailwind class )，防止文字被反白選取而觸發文字拖曳
         div.innerHTML = `
-            <span class="text-slate-400 text-xl select-none">☰</span>
-            <span class="flex-1 select-none">${sub.title}</span>
+            <span class="text-slate-400 text-xl">☰</span>
+            <span class="flex-1">${sub.title || "未命名分頁"}</span>
         `;
 
         div.addEventListener("click", (e) => {
@@ -244,10 +245,10 @@ function renderSubpageList() {
             }
         });
 
-        // === 拖曳排序事件 ===
+        // === 拖曳排序事件 (強化版) ===
         div.addEventListener("dragstart", (e) => {
-            // 【修改 2】將 text/plain 改為自訂的 key，避免與瀏覽器原生行為衝突
-            e.dataTransfer.setData("application/x-subpage-index", index);
+            // 使用自訂類型，避免 text/plain 被瀏覽器自動填入選取文字
+            e.dataTransfer.setData("application/x-neo-index", index.toString());
             div.classList.add("opacity-50");
         });
 
@@ -257,29 +258,30 @@ function renderSubpageList() {
 
         div.addEventListener("dragover", (e) => {
             e.preventDefault();
+            e.dataTransfer.dropEffect = "move";
         });
 
         div.addEventListener("drop", (e) => {
             e.preventDefault();
+            const rawData = e.dataTransfer.getData("application/x-neo-index");
             
-            // 【修改 3】讀取剛才自訂的 key
-            const rawData = e.dataTransfer.getData("application/x-subpage-index");
-            
-            // 【修改 4】加入防呆機制：如果沒拿到資料或是不為數字，直接中斷
-            if (!rawData) return;
+            // 嚴格檢查：如果抓不到資料或是資料不是數字，直接中斷不做任何動作
+            if (rawData === "" || rawData === null) return;
             
             const fromIndex = parseInt(rawData);
             const toIndex = parseInt(div.dataset.index);
 
+            // 確保 index 有效且不相等
             if (isNaN(fromIndex) || isNaN(toIndex) || fromIndex === toIndex) return;
 
-            // 執行排序
-            const [movedItem] = categories[currentCategoryIndex].subpages.splice(fromIndex, 1);
-            categories[currentCategoryIndex].subpages.splice(toIndex, 0, movedItem);
+            // 執行排序：先取出、後插入
+            const subpagesArr = categories[currentCategoryIndex].subpages;
+            const [movedItem] = subpagesArr.splice(fromIndex, 1);
+            subpagesArr.splice(toIndex, 0, movedItem);
 
             saveAllData();           
             renderSubpageList();     
-            selectSubpage(toIndex);  
+            selectSubpage(toIndex); // 移動後維持選中該分頁
         });
 
         container.appendChild(div);
@@ -288,6 +290,86 @@ function renderSubpageList() {
     if (subpages.length === 0) {
         container.innerHTML = `<div class="p-12 text-center text-slate-400">此分類還沒有分頁<br>請點擊上方「+ 新增分頁」</div>`;
     }
+}
+
+// 2. 修正後的表格渲染 (防止編輯時遺失 Markdown)
+function renderSingleTable(index) {
+    const block = currentBlocks[index];
+    const el = document.getElementById(`table-${index}`);
+    if (!el) return;
+
+    // 表頭
+    let html = "<thead><tr>";
+    let c = 0;
+    while (c < block.headers.length) {
+        let header = block.headers[c] || '';
+        let colspan = 1;
+        let content = header;
+
+        if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+            const match = header.match(/【COLSPAN:(\d+)】(.*)/);
+            if (match) {
+                colspan = parseInt(match[1]);
+                content = match[2] || '';
+            }
+        }
+        // 注意：編輯模式下直接顯示 content，不要 parseInline
+        html += `<th colspan="${colspan}" contenteditable="true" 
+                  onblur="updateHeader(${index},${c}, this.innerText)" 
+                  class="bg-slate-800">${content}</th>`;
+        c += colspan;
+    }
+    html += "</tr></thead><tbody>";
+
+    // 資料列
+    let r = 0;
+    while (r < block.rows.length) {
+        html += "<tr>";
+        let col = 0;
+        while (col < block.headers.length) {
+            if (isCoveredByRowspan(block, r, col)) {
+                col++;
+                continue;
+            }
+
+            let cell = block.rows[r][col] || '';
+            let content = cell;
+            let rowspan = 1;
+
+            if (typeof cell === 'string' && cell.startsWith('【ROWSPAN:')) {
+                const match = cell.match(/【ROWSPAN:(\d+)】(.*)/);
+                if (match) {
+                    rowspan = parseInt(match[1]);
+                    content = match[2] || '';
+                }
+            }
+
+            // 重要修正：編輯模式下顯示原始 Markdown (content)，不要用 marked 解析
+            html += `<td rowspan="${rowspan}" contenteditable="true" 
+                      onblur="updateCell(${index},${r},${col}, this.innerText)" 
+                      style="white-space: pre-wrap; vertical-align: middle;">${content}</td>`;
+            col++;
+        }
+        html += "</tr>";
+        r++;
+    }
+    html += "</tbody>";
+    el.innerHTML = html;
+}
+
+// 3. 修正後的表頭更新 (保留合併標籤)
+function updateHeader(blockIdx, col, text) {
+    const block = currentBlocks[blockIdx];
+    const header = block.headers[col];
+    
+    // 如果原本有 COLSPAN 標記，要保留前綴再合併新文字
+    if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+        const prefixMatch = header.match(/【COLSPAN:\d+】/);
+        const prefix = prefixMatch ? prefixMatch[0] : '';
+        block.headers[col] = prefix + (text || "");
+        return;
+    }
+    block.headers[col] = text || "新欄位";
 }
 
         function selectSubpage(index) {
