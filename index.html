@@ -565,16 +565,21 @@
             const title = prompt("新分頁名稱", `分頁 ${categories[currentCategoryIndex].subpages.length + 1}`);
             if (!title) return;
 
-            categories[currentCategoryIndex].subpages.push({
+            const newSubpage = {
                 title: title,
                 blocks: [
                     { type: "text", content: "請在此輸入文字說明...\n\n支援 **Markdown** 語法", fontSize: "medium" },
                     { type: "table", title: "資料表格", headers: ["項目", "數量", "備註"], rows: [] }
                 ]
-            });
+            };
+
+            // 關鍵修改：新增到最上方（置頂）
+            categories[currentCategoryIndex].subpages.unshift(newSubpage);
 
             renderSubpageList();
-            selectSubpage(categories[currentCategoryIndex].subpages.length - 1);
+            
+            // 自動選擇剛新增的分頁（現在位於第 0 位）
+            selectSubpage(0);
         }
 
         function addCategory() {
