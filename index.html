@@ -486,9 +486,17 @@
         }
 
         function deleteLastRow(blockIdx) {
-            if (!confirm("確定刪除最後一列嗎？")) return;
             const block = currentBlocks[blockIdx];
             if (block.rows.length === 0) return;
+    
+            // 簡單的防呆提示
+            const hasRowspan = block.rows.some(row => typeof row[0] === 'string' && row[0].includes('【ROWSPAN:'));
+            if (hasRowspan) {
+                if (!confirm("此表格含有垂直合併的儲存格，刪除列可能會導致排版異常。確定要刪除嗎？")) return;
+            } else {
+                if (!confirm("確定刪除最後一列嗎？")) return;
+            }
+    
             block.rows.pop();
             renderAllBlocks();
         }
