@@ -443,7 +443,19 @@
 
         function updateText(i, val) { currentBlocks[i].content = val; }
         function updateTableTitle(i, val) { currentBlocks[i].title = val; }
-        function updateHeader(blockIdx, col, text) { currentBlocks[blockIdx].headers[col] = text || "新欄位"; }
+        function updateHeader(blockIdx, col, text) {
+            const block = currentBlocks[blockIdx];
+            const header = block.headers[col];
+    
+            // 檢查是否帶有 COLSPAN 標記，若有則保留前綴
+            if (typeof header === 'string' && header.includes('【COLSPAN:')) {
+                const prefix = header.match(/【COLSPAN:\d+】/)[0] || '';
+                block.headers[col] = prefix + (text || "新欄位");
+                return;
+            }
+    
+            block.headers[col] = text || "新欄位";
+        }
 
         function addTextBlock() {
             currentBlocks.push({ type: "text", content: "", fontSize: "medium" });
