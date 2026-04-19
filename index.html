@@ -673,23 +673,22 @@ function renderSingleTable(index) {
             let html = `<h2 class="text-3xl font-bold mb-8">${sub.title}</h2>`;
 
             currentBlocks.forEach(block => {
-// === 替換原本的 if (block.type === "text") 區塊 ===
 if (block.type === "text") {
     let content = block.content || "";
 
-    // 重要修正：把 <img> 標籤強制變成獨立區塊（前後各加一個空行）
-    // 這樣圖片就不會和前後的列表、標題黏在一起
-    content = content.replace(
-        /(<img[^>]+>)/gi, 
-        '\n\n$1\n\n'
-    );
+    // === 關鍵修正：同時處理 Markdown 圖片 和 直接貼的 <img> HTML ===
+    // 1. Markdown 圖片後面自動加換行
+    content = content.replace(/^(!\[.*?\]\(.*?\))\s*$/gm, '$1\n\n');
+    
+    // 2. <img> 標籤後面自動加兩個換行（強制新段落）
+    content = content.replace(/(<img\b[^>]*>)\s*$/gm, '$1\n\n');
 
     const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
                    : "font-size:16px;line-height:1.7;";
 
     html += `<div class="prose prose-invert max-w-none mb-10" style="${sizeStyle}">${marked.parse(content, { breaks: true })}</div>`;
-}
+} 
              else if (block.type === "table") {
                     let t = `<div class="mt-8 font-medium">${block.title || "資料表格"}</div>`;
                     t += "<table class='w-full border-collapse mt-4 text-sm'>";
