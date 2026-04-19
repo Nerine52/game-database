@@ -114,7 +114,12 @@
     <script>
         let categories = [];
 
-        async function loadPublicData() {
+marked.setOptions({
+    breaks: true,  // 支援單一換行符號轉成 <br>
+    gfm: true      // 確保 GitHub Flavored Markdown 兼容性
+});
+
+async function loadPublicData() {
             try {
                 const response = await fetch('https://raw.githubusercontent.com/Nerine52/game-database/main/public-data.json');
                 if (!response.ok) throw new Error("No data");
