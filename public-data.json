@@ -871,6 +871,52 @@
                 "證明碎片 4個",
                 "•風雷八卦牌盒 1個 [100%]",
                 "50銀"
+              ],
+              [
+                "證明碎片 40個",
+                "•綁定祕典武功秘笈箱 1個 [1%]\n•傳說武功秘笈碎片 (2個入) 1個 [9%]\n•證明碎片 10個 [90%]\n*第10次轉換必定獲得「傳說武功秘笈碎片 1個」，最多可領取10次*\n",
+                "50銀"
+              ],
+              [
+                "證明碎片 15個",
+                "•高級仙幻圖畫箱 (傳說) 1個 [5%]\n•仙幻圖畫箱 (傳說) 1個 [10%]\n•證明碎片 3個 [85%]\n*第10次轉換必定獲得「名人的圖畫 (傳說) 1個」，最多可領取5次*\n",
+                "50銀"
+              ],
+              [
+                "證明碎片 10個",
+                "•繽紛的靈魂結晶 1個 [20%]\n•證明碎片 1個 [80%]\n*第10次轉換必定獲得「繽紛的靈魂結晶 1個」，只可領1次*",
+                "50銀"
+              ],
+              [
+                "證明碎片 10個",
+                "•武功秘笈圖畫變更券 (活動) 1個 [35%]\n•證明碎片 1個 [65%]\n*第10次轉換必定獲得「武功秘笈圖畫變更券 (活動) 1個」，只可領1次*\n",
+                "50銀"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": " 飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "手續費"
+            ],
+            "rows": [
+              [
+                "仙幻綁定武功秘笈箱 (傳說)",
+                "傳說 綁定武功秘笈 1種 + 武功秘笈圖畫變更券 (活動)",
+                "50銀"
+              ],
+              [
+                "仙幻武功秘笈箱 (傳說)",
+                "傳說 武功秘笈 1種 + 武功秘笈圖畫變更券 (活動)",
+                "50銀"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種 + 武功秘笈圖畫變更券 (活動)",
+                "50銀"
               ]
             ]
           }
@@ -2017,7 +2063,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 星光炫彩、星光炫彩圈、星光炫彩耳環、星光炫彩氣球\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 飄飄球幻影武器箱\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕衣、花斕風格、花斕服飾(花斕衣專用飾品)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_15_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵、三花喵帽子、三花喵背包\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_16_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_17_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑貚天、黑貚天頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_18_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 星光炫彩、星光炫彩圈、星光炫彩耳環、星光炫彩氣球\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 飄飄球幻影武器箱\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕衣、花斕風格、花斕服飾(花斕衣專用飾品)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_15_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵、三花喵帽子、三花喵背包\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_16_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_17_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑貚天、黑貚天頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_18_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復仇\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_0422dressing room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 鬆獅犬\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_12_0422dressing room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">\n- 赤夜、赤夜頭飾、赤夜飾品\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_0422dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 台客\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_0422dressing room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 赤夜幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_0422dressing room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2091,6 +2137,31 @@
               [
                 "奇妙國度幻影待機動畫",
                 "魅力爆發線團  10個",
+                "1"
+              ],
+              [
+                "復仇",
+                "魅力爆發線團  20個",
+                "1"
+              ],
+              [
+                "鬆獅犬",
+                "魅力爆發線團  12個",
+                "1"
+              ],
+              [
+                "赤夜套裝",
+                "魅力爆發線團  12個",
+                "1"
+              ],
+              [
+                "台客",
+                "魅力爆發線團  6個",
+                "1"
+              ],
+              [
+                "赤夜幻影武器箱",
+                "魅力爆發線團  5個",
                 "1"
               ]
             ]
@@ -2635,7 +2706,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "研究室又一團亂了？！ <紅絲的研究室> (4.15-4.29)\n活動期間完成每日任務「失控的法器」可獲得12個「鴻憤鑄幣」，\n擊殺「鴻憤法器」時可獲得3個「鴻憤鑄幣」 \n※ 完成書信任務「紅絲的緊急書信」後，方可進行每日任務「失控的法器」\n- 入場方式：透過仙幻島-明夜院地區進入活動副本「紅絲的研究室」\n- 進入紅絲的研究室後，與「鴻憤法器」戰鬥至指定血量\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•「鴻憤法器」達到指定血量時，會以保護罩保護自身並發射黑色球體\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•破壞生成的紅絲的槍械箱，或是從武器支架獲得紅絲的機關槍後，\n使用「砰砰砰」攻擊保護罩狀態的「鴻憤法器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2604Jakdan.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•使用保護罩時，除了恢復體力外，還可抵抗「鴻憤法器」的攻擊\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•獲得波動砲彈藥後，即可使用更強大的攻擊 – 波動砲\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_14_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•保護罩被破壞後，可獲得能提升攻擊力及額外傷害效果的「南天的氣息」增益效果\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_16_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n\n\n",
+            "content": "研究室又一團亂了？！ <紅絲的研究室> (4.15-4.29)\n活動期間完成每日任務「失控的法器」可獲得12個「鴻憤鑄幣」，\n擊殺「鴻憤法器」時可獲得3個「鴻憤鑄幣」 \n※ 完成書信任務「紅絲的緊急書信」後，方可進行每日任務「失控的法器」\n- 入場方式：透過仙幻島-明夜院地區進入活動副本「紅絲的研究室」\n- 進入紅絲的研究室後，與「鴻憤法器」戰鬥至指定血量\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 「鴻憤法器」達到指定血量時，會以保護罩保護自身並發射黑色球體\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 破壞生成的紅絲的槍械箱，或是從武器支架獲得紅絲的機關槍後，\n使用「砰砰砰」攻擊保護罩狀態的「鴻憤法器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2604Jakdan.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 使用保護罩時，除了恢復體力外，還可抵抗「鴻憤法器」的攻擊\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 獲得波動砲彈藥後，即可使用更強大的攻擊 – 波動砲\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_14_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 保護罩被破壞後，可獲得能提升攻擊力及額外傷害效果的「南天的氣息」增益效果\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_16_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n\n\n",
             "fontSize": "medium"
           },
           {
@@ -2929,7 +3000,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "痞子盜的可疑外出 (4.1-4.8)\n活動期間，在仙幻島地區擊殺野外首領幻石怪/墨玄/雷擊天時，將確定出現「可疑的痞子盜」\n- 參與擊殺「可疑的痞子盜」後可獲得痞子盜留下的可疑箱子「絕對不要打開！」或痞子盜的經驗值符 (1萬) 1個\n※ 裝備效果重置珠可替代重置雪寒/白光武器、飾品裝備效果時所需的材料（雪寒裝備需1個、白光裝備需2個）\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_3_260401Ido.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[可疑的痞子盜]\n\n•逆轉之戀 (服裝)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_260401Ido.png\" width=\"382\" style=\"display:block; margin:0 auto;\">",
+            "content": "痞子盜的可疑外出 (4.1-4.8)\n活動期間，在仙幻島地區擊殺野外首領幻石怪/墨玄/雷擊天時，將確定出現「可疑的痞子盜」\n- 參與擊殺「可疑的痞子盜」後可獲得痞子盜留下的可疑箱子「絕對不要打開！」或痞子盜的經驗值符 (1萬) 1個\n※ 裝備效果重置珠可替代重置雪寒/白光武器、飾品裝備效果時所需的材料（雪寒裝備需1個、白光裝備需2個）\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_3_260401Ido.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[可疑的痞子盜]\n\n- 逆轉之戀 (服裝)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_260401Ido.png\" width=\"382\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3646,7 +3717,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "會在哪裡呢？南天國的尋寶活動 (3.4-3.25)\n活動期間內完成以下副本時，將依指定機率獲得 2個「尋寶鑰匙袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box147.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[尋寶鑰匙袋]\n\n┄┄┄┄┄┄┄\n- 在尋寶進行時間 (10:00～14:00 / 19:00～23:00) 點擊尋寶UI，或透過選單(ESC)視窗進行尋寶\n\n•消耗「尋寶鑰匙」參與尋寶時，將獲得1個1～100之間的隨機數字\n※ 數字不會重複，每次尋寶最多可參與10次\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_8_2603 treasure hunt.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•當尋寶參與次數達到100次，或進行時間結束時，將進行抽獎，並根據對應的名次發放獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2603 treasure hunt.jpg\" width=\"265\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•若中得幸運獎，將可再次獲得可重新挑戰尋寶的「尋寶鑰匙」\n※ 幸運獎與對應名次獎勵將分開發放\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•可依據參與次數追加獲得參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2603 treasure hunt.jpg\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n•透過信箱(F6)領取尋寶獎勵，包含參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">",
+            "content": "會在哪裡呢？南天國的尋寶活動 (3.4-3.25)\n活動期間內完成以下副本時，將依指定機率獲得 2個「尋寶鑰匙袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box147.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[尋寶鑰匙袋]\n\n┄┄┄┄┄┄┄\n- 在尋寶進行時間 (10:00～14:00 / 19:00～23:00) 點擊尋寶UI，或透過選單(ESC)視窗進行尋寶\n\n- 消耗「尋寶鑰匙」參與尋寶時，將獲得1個1～100之間的隨機數字\n※ 數字不會重複，每次尋寶最多可參與10次\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_8_2603 treasure hunt.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 當尋寶參與次數達到100次，或進行時間結束時，將進行抽獎，並根據對應的名次發放獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2603 treasure hunt.jpg\" width=\"265\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 若中得幸運獎，將可再次獲得可重新挑戰尋寶的「尋寶鑰匙」\n※ 幸運獎與對應名次獎勵將分開發放\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 可依據參與次數追加獲得參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2603 treasure hunt.jpg\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 透過信箱(F6)領取尋寶獎勵，包含參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">",
             "fontSize": "medium"
           },
           {
