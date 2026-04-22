@@ -680,8 +680,8 @@ if (block.type === "text") {
     // 1. Markdown 圖片後面自動加換行
     content = content.replace(/^(!\[.*?\]\(.*?\))\s*$/gm, '$1\n\n');
     
-    // 2. <img> 標籤後面自動加兩個換行（強制新段落）
-    content = content.replace(/(<img\b[^>]*>)\s*$/gm, '$1\n\n');
+// 2. <img> 標籤後面自動加兩個換行（強制新段落，無條件截斷以保護後方 Markdown）
+content = content.replace(/(<img\b[^>]*>)/gi, '$1\n\n');
 
     const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
                    : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
