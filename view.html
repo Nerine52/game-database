@@ -215,17 +215,22 @@ async function loadPublicData() {
             const container = document.getElementById("pageContent");
             container.innerHTML = "";
 
-            (sub.blocks || []).forEach(block => {
-                if (block.type === "text" && block.content) {
-                    const div = document.createElement("div");
-                    const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
-                                   : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
-                                   : "font-size:16px;line-height:1.7;";
-                    div.className = `prose prose-invert max-w-none mb-12`;
-                    div.style.cssText = sizeStyle;
-                    div.innerHTML = marked.parse(block.content || "");
-                    container.appendChild(div);
-                } 
+(sub.blocks || []).forEach(block => {
+            if (block.type === "text" && block.content) {
+                const div = document.createElement("div");
+                const sizeStyle = block.fontSize === "small" ? "font-size:14px;line-height:1.6;" 
+                               : block.fontSize === "large" ? "font-size:20px;line-height:1.6;" 
+                               : "font-size:16px;line-height:1.7;";
+                div.className = `prose prose-invert max-w-none mb-12`;
+                div.style.cssText = sizeStyle;
+                
+                // === 關鍵修正：確保 <img> 後面有換行，保護後方的 Markdown 解析 ===
+                let content = block.content || "";
+                content = content.replace(/(<img\b[^>]*>)/gi, '$1\n\n');
+                
+                div.innerHTML = marked.parse(content);
+                container.appendChild(div);
+            }
                 else if (block.type === "table") {
                     let html = `<div class="mb-12"><div class="font-medium text-xl mb-5">${block.title || "資料表格"}</div>`;
                     html += "<table class='w-full border-collapse text-sm'>";
