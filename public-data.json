@@ -2039,7 +2039,7 @@
             ],
             "rows": [
               [
-                "英雄武術秘笈碎片 100個\n",
+                "英雄武功秘笈碎片 100個\n",
                 "•仙幻綁定武功秘笈箱 (傳說) 1個\n•傳說武功秘笈碎片 1個\n•英雄武功秘笈碎片 10個\n*第5次轉換必定獲得「仙幻綁定武功秘笈箱 (傳說) 1個」，只可領取1次*",
                 "50銀"
               ],
@@ -2268,7 +2268,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 烈光服裝、烈光頭飾、烈光羽翼、烈光耳環\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 純白、羅曼蒂克\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 極致感官、極致感官頭飾、極致感官飾品\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 上班族、型男\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_gold line.png\" width=\"396\" style=\"display:block; margin:0 auto;\">\n- 光龍幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 烈光服裝、烈光頭飾、烈光羽翼、烈光耳環\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 純白、羅曼蒂克\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 極致感官、極致感官頭飾、極致感官飾品\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 上班族、型男\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_gold line.png\" width=\"396\" style=\"display:block; margin:0 auto;\">\n- 狂龍幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2334,7 +2334,7 @@
                 "1"
               ],
               [
-                "光龍幻影武器箱",
+                "狂龍幻影武器箱",
                 "金線團 5個",
                 "1"
               ]
@@ -2347,7 +2347,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 回憶\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 福運道服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 回憶\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2362,13 +2362,13 @@
             "rows": [
               [
                 "春天氣息服裝箱",
-                "福運道服服裝箱、白鬼魂服裝箱、\n回憶服裝箱",
+                "復雲會徒服服裝箱、白鬼魂服裝箱、\n回憶服裝箱",
                 "500",
                 "無限制"
               ],
               [
                 "特殊的春天氣息服裝箱",
-                "福運道服服裝箱 3個、白鬼魂服裝箱 3個、\n回憶服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
+                "復雲會徒服服裝箱 3個、白鬼魂服裝箱 3個、\n回憶服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
                 "1500",
                 "無限制"
               ]
@@ -2395,12 +2395,12 @@
               ],
               [
                 "誘惑服裝套裝箱",
-                "福運道服服裝箱 15個",
+                "復雲會徒服服裝箱 15個",
                 "1"
               ],
               [
                 "網球服服裝套裝箱",
-                "福運道服服裝箱 15個",
+                "復雲會徒服服裝箱 15個",
                 "1"
               ],
               [
@@ -2582,7 +2582,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 彼岸花、彼岸花頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 福運道服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 千日之約\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 彼岸花、彼岸花頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 千日之約\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2597,13 +2597,13 @@
             "rows": [
               [
                 "冬日玫瑰服裝箱",
-                "福運道服服裝箱、千日之約服裝箱、\n彼岸花服裝套裝箱",
+                "復雲會徒服服裝箱、千日之約服裝箱、\n彼岸花服裝套裝箱",
                 "500",
                 "無限制"
               ],
               [
                 "特殊的冬日玫瑰服裝箱",
-                "福運道服服裝箱 3個、千日之約服裝箱 3個、\n彼岸花服裝套裝箱\n冬日鑄幣 1個 (固定獲得)",
+                "復雲會徒服服裝箱 3個、千日之約服裝箱 3個、\n彼岸花服裝套裝箱\n冬日鑄幣 1個 (固定獲得)",
                 "1500",
                 "無限制"
               ]
