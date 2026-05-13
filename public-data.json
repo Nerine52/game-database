@@ -257,27 +257,27 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Costume_Coin_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/Grocery_Costume_Coin_01.png\" class=\"image-preview\">",
                 "感謝的外觀鑄幣",
                 "在飛龍工商與「約定的外觀鑄幣」一同使用，可獲得所有時裝及幻影武器\n- 可使用「感謝的外觀鑄幣 +200金」兌換\n- 若只持有其中一種外觀鑄幣 (約定/感謝)，亦可兌換「貓咪幻影武器」"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/JPTW_23Mar_Coin_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/JPTW_23Mar_Coin_01.png\" class=\"image-preview\">",
                 "夢園的鑄幣",
                 "30級後的「夢園的靈魂支援箱」，每箱都可以額外獲得1個鑄幣\n**一個角色最多可獲得40個鑄幣**"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/jpn_grocery_coin24.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/jpn_grocery_coin24.png\" class=\"image-preview\">",
                 "白光碎片",
                 "強化白光裝備時，可作為強化祭品使用\n分解時可獲得10個雪寒碎片\n強化時會根據強化階段要求材料與費用，並依照既定機率進行強化"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/jpn_grocery_coin25.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/jpn_grocery_coin25.png\" class=\"image-preview\">",
                 "雪寒碎片",
                 "強化雪寒裝備時，可作為強化祭品使用\n強化時會根據強化階段要求材料與費用，並依照既定機率進行強化"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/gb_grocery_pre_commanderbm_box_03.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/gb_grocery_pre_commanderbm_box_03.png\" class=\"image-preview\">",
                 "靈魂支援箱",
                 "開啟時可確定獲得名人包子1個，並可根據指定機率從緊急修理工具1~5個、\n隱約的印章箱、最上級圖畫箱、耀眼的印章箱、強化材料選擇箱中獲得1種"
               ]
@@ -285,7 +285,7 @@
           },
           {
             "type": "text",
-            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -400,34 +400,34 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Costume_Coin_06.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/Grocery_Costume_Coin_06.png\" class=\"image-preview\">",
                 "約定的外觀鑄幣",
                 "可在購買下期通行證時獲得特別的外觀獎勵\n**意思是要連下一期也買才拿得到衣服**",
                 ""
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_Grocery_Event_2019_coin29.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/GB_Grocery_Event_2019_coin29.png\" class=\"image-preview\">",
                 "NEO DAY 鑄幣",
                 "30級後的「NEO DAY 靈魂補給箱」，每箱都可以額外獲得1個鑄幣\n**一個角色最多可獲得40個鑄幣**",
                 ""
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/Grocery_Bmevent_Weapon3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/Grocery_Bmevent_Weapon3.png\" class=\"image-preview\">",
                 "雪寒/白光裝備強化石",
                 "使用1個可強化雪寒裝備1次，使用10個可強化白光裝備1次\n不會消耗金幣與材料，但依照既定機率進行強化"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "半人半獸緣分箱",
                 "可獲得圖畫「真正的主人黑蛇王后」、「刀鱗蛇殺衛蛇」、\n「不滅的海賊船長墨鐵腕」、「衝角團南海艦隊青兒、紅兒」"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "強力的拳頭緣分箱",
                 "可獲得圖畫「鐵血修煉場極拳」、「被侵蝕的迷宮風神」、\n「月光草原帝王木」、「不滅的海賊船長墨鐵腕」"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/GB_GroceryBox_Jueqi_01.png\" class=\"image-preview\">",
                 "仙幻島的高手們緣分箱",
                 "可獲得圖畫「鐵血修煉場極拳」、「幻獸練武場非風」、\n「鐵血修煉場鐵煉章」、「幻獸練武場裴比具」"
               ]
@@ -435,7 +435,7 @@
           },
           {
             "type": "text",
-            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/螢幕擷取畫面 2026-04-11 153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -459,31 +459,31 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_3_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_3_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\">",
                 "2VE 靈魂通行證箱",
                 "10",
                 "開啟時可獲得洪門庇護恢復藥 1個、 \n渾天武功秘笈碎片箱 (最上級～傳說) 3個、 \n廢礦圖畫箱 (英雄～傳說) 1個、 強化材料選擇箱 3個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_4_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_4_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\">",
                 "2VE 靈魂通行證鑄幣",
                 "2",
                 "可在飛龍工商交換道具"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_5_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_5_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\">",
                 "洪門靈魂金幣箱",
                 "30",
                 "根據指定機率，從洪門證書：1金\n1個、3個、5個、10個、20個中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_15_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_15_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "冬蟲夏草恢復藥",
                 "16",
                 "使用後可在 10 秒內恢復點生命力 85925"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_16_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_16_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "聖君堂復活符",
                 "2",
                 "角色瀕死及死亡時可復活的個人復活符 (冷卻時間15分鐘)\n"
@@ -500,32 +500,32 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_6_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_6_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "洪門庇護恢復藥",
                 "使用時可恢復洪門庇護30點"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_7_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_7_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "渾天武功秘笈碎片箱 (最上級~傳說)",
                 "開啟時可依照指定機率獲得最上級武功秘笈碎片10個、\n英雄武功秘笈碎片2個、傳說武功秘笈碎片1個中的1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_8_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_8_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "廢礦圖畫箱 (英雄~傳說)",
                 "開啟時可依照指定機率獲得廢礦圖畫箱(英雄)、\n仙幻圖畫箱 (傳說) 中的1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_9_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_9_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "廢礦圖畫箱 (英雄)",
                 "開啟時可依照指定機率獲得包含野望的霜刃者霸拉鬃\n在內的英雄圖畫48種中的1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_10_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_10_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "仙幻圖畫箱 (傳說)",
                 "開啟時可依照指定機率獲得包含影子君主樂侯、\n不同時空的宙黎兒在內的傳說圖畫清單14種中的1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_11_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_11_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "洪門證書：1金",
                 "使用時可獲得1金"
               ]
@@ -589,52 +589,52 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_18_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_18_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "2VE 傳說武功秘笈碎片箱",
                 "開啟時可根據指定機率，\n從傳說武功秘笈碎片 1個、傳說武功秘笈碎片 (2個入)、\n仙幻綁定武功秘笈箱 (傳說) 中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_19_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_19_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "傳說武功秘笈碎片",
                 "點擊持有物品(I)下方的轉換圖示，\n即可嘗試轉換為傳說武功秘笈箱或祕典\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_20_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_20_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "仙幻綁定武功秘笈箱 (傳說) ",
                 "開啟時可根據指定機率，\n獲得符合自身職業的傳說綁定武功秘笈中的1種\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_21_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_21_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "2VE 仙幻圖畫箱 (傳說)",
                 "開啟時可根據指定機率，從仙幻圖畫箱 (傳說) 1個、\n仙幻圖畫箱 (傳說) (2個入)、高級仙幻圖畫箱 (傳說) 中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_22_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_22_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "高級仙幻圖畫箱 (傳說)\n",
                 "開啟時可根據指定機率，從影子君主樂侯、不同時空的宙黎兒、\n黑暗軍團長燭魔王、秦熙妍、力王洪玄公中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_25_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_25_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "2VE 仙幻神功牌碎片箱",
                 "開啟時可根據指定機率，從仙幻神功牌碎片 (10個入)、\n仙幻神功牌碎片 (12個入)、仙幻神功牌碎片 (15個入) 中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_26_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_26_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "仙幻神功牌碎片\n",
                 "可用於強化仙幻神功牌\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_27_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_27_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "2VE 名人的圖畫 (傳說) 箱",
                 "開啟時可根據指定機率，從名人的圖畫 (傳說) (2個入)、\n名人的圖畫 (傳說) (4個入) 中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_28_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_28_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "名人的圖畫 (傳說)",
                 "僅可作為傳說圖畫合成材料使用，無法用於緣分及蒐集\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/通行證/imgi_29_NEO DAY：2VE 靈魂通行證.png\" class=\"image-preview\" >",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_29_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\" >",
                 "靈魂補給箱",
                 "可確定獲得名人包子1個，\n並可根據指定機率從洪門庇護恢復藥、聖君堂復活符、\n緊急修理工具 1~5個、水晶蘭恢復藥3個中獲得1種"
               ]
@@ -815,17 +815,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/jpn_grocery_coin172.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/jpn_grocery_coin172.png\" class=\"image-preview\">",
                 "冥想的氣息",
                 " 可在飛龍工商兌換所需物品"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_soul_box_1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/grocery_soul_box_1.png\" class=\"image-preview\">",
                 "華仲的八卦牌成長選擇箱",
                 "開啟時可從風雷八卦牌選擇箱2個、風雷八卦牌盒4個、\n強化材料選擇箱4個中，選擇其中1種獲得\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/gb_grocery_randombox1-3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/gb_grocery_randombox1-3.png\" class=\"image-preview\">",
                 "傳說武功秘笈碎片大獎箱",
                 "開啟時可依照指定機率，\n從傳說武功秘笈碎片 1個、2個、3個、4個中獲得其中1種"
               ]
@@ -946,27 +946,27 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_ticket_treasureboard_04.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/grocery_ticket_treasureboard_04.png\" class=\"image-preview\">",
                 "華仲的傳說變更券 (活動)",
                 "在飛龍工商分頁中，從持有的傳說武功秘笈(或綁定)、\n高級圖畫清單中選擇1種後，\n支付1張變更券及1金兌換成想要的獎勵\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/ztx_grocery_box_08.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/ztx_grocery_box_08.png\" class=\"image-preview\">",
                 "華仲的圖畫選擇箱",
                 "可選擇1種獲得\n•廢礦圖畫箱 (英雄) 10個\n•名人的圖畫 (傳說) 2個\n•特殊圖畫箱 (英雄) 1個\n•特殊圖畫箱 (傳說) 1個 (需支付200金手續費)"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/jpn_grocery_box120.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/jpn_grocery_box120.png\" class=\"image-preview\">",
                 "華仲的支援選擇箱",
                 "可選擇1種獲得\n•風雷八卦盒15個\n•褪色的合成用真言珠：海 10個\n•風雷八卦選擇箱 15個 (需支付50金手續費)\n•真言珠：占 2個 (需支付200金手續費)\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/grocery_starstone_32.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/grocery_starstone_32.png\" class=\"image-preview\">",
                 "褪色的合成用真言珠：海",
                 "可作為合成材料使用，\n與其他真言珠組合後裝備，也無法套用真言效果\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/華仲師兄/gb_grocery_eventfield_box_3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/gb_grocery_eventfield_box_3.png\" class=\"image-preview\">",
                 "華仲的強化選擇箱",
                 "可選擇1種獲得\n•雪寒武器強化石5個\n•雪寒飾品強化石5個\n•白光武器強化石1個 (需支付100金手續費)\n•白光飾品強化石2個 (需支付100金手續費)\n強化石作為祭品使用時，不會額外消耗金幣及材料\n"
               ]
@@ -1143,7 +1143,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "### 妙言的寶物箱 1箱10金 / 10箱80金 (帳號每日限購 1次)\n- 開啟時將依指定機率，自商品內容中隨機獲得 1 種\n- 不死鳥翅膀\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/imgi_5_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍、跳躍繪畫、跳躍振翅、跳躍作戰\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/imgi_6_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍喵、跳躍喵帽子\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/imgi_7_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "### 妙言的寶物箱 1箱10金 / 10箱80金 (帳號每日限購 1次)\n- 開啟時將依指定機率，自商品內容中隨機獲得 1 種\n- 不死鳥翅膀\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_5_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍、跳躍繪畫、跳躍振翅、跳躍作戰\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_6_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍喵、跳躍喵帽子\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_7_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -1157,7 +1157,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:8】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_23m5_gachabox_02.png\" class=\"image-preview\">",
+                "【ROWSPAN:8】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_23m5_gachabox_02.png\" class=\"image-preview\">",
                 "綁定祕典武功秘笈箱",
                 "1",
                 "0.002%"
@@ -1319,7 +1319,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:2】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/jpn_grocery_coin3.png\" class=\"image-preview\">",
+                "【ROWSPAN:2】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/jpn_grocery_coin3.png\" class=\"image-preview\">",
                 "熾熱的遺物箱",
                 "1",
                 "/"
@@ -1342,32 +1342,32 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/event_box_dualbox3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/event_box_dualbox3.png\" class=\"image-preview\">",
                 "熾熱的遺物箱",
                 "開啟時可獲得熾熱的幸運挑戰券 (活動) 1個、月下圖畫箱 (英雄) 2個、\n真言珠選擇箱 1個、熾熱的印章箱 2個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/grocery_raidevent_ticket_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_raidevent_ticket_01.png\" class=\"image-preview\">",
                 "熾熱的幸運挑戰券 (活動)",
                 "可透過轉換挑戰獲得各種獎勵"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/grocery_event_2021_box_3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_event_2021_box_3.png\" class=\"image-preview\">",
                 "真言珠選擇箱",
                 "可選擇1種獲得\n•褪色的合成用真言珠：書 1個\n•耀眼的真言珠鎚 1個 (需支付手續費)\n•褪色的合成用真言珠：海 (需支付手續費)\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/event_box_steelseries2.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/event_box_steelseries2.png\" class=\"image-preview\">",
                 "繽紛的遺物箱",
                 "開啟時可獲得繽紛的幸運挑戰券 (活動) 1個、圖畫選擇箱 1個、\n名人的圖畫 (傳說) 1個、真言珠選擇箱 1個、繽紛的印章箱 1個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/grocery_raidevent_ticket_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_raidevent_ticket_02.png\" class=\"image-preview\">",
                 "繽紛的幸運挑戰券 (活動)",
                 "可透過轉換挑戰獲得各種獎勵"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocerybox_tianxia_03.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocerybox_tianxia_03.png\" class=\"image-preview\">",
                 "圖畫選擇箱",
                 "\t開啟時可從特殊圖畫箱 (英雄~傳說) 1個、\n仙幻圖畫箱 (傳說) 1個中選擇1種獲得"
               ]
@@ -1414,7 +1414,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:12】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocery_huolong_02.png\" class=\"image-preview\">",
+                "【ROWSPAN:12】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocery_huolong_02.png\" class=\"image-preview\">",
                 "魔龍耳環強化石 (活動) 50個",
                 "1"
               ],
@@ -1566,7 +1566,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:11】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/grocery_publicraid_generationbox_3.png\" class=\"image-preview\">",
+                "【ROWSPAN:11】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_publicraid_generationbox_3.png\" class=\"image-preview\">",
                 "+10 魔龍耳環 (活動)",
                 "1"
               ],
@@ -1643,7 +1643,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:9】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gn_22feb_gachacoinbox_01.png\" class=\"image-preview\">",
+                "【ROWSPAN:9】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gn_22feb_gachacoinbox_01.png\" class=\"image-preview\">",
                 "1等兌換券 (活動)",
                 "1",
                 "2%"
@@ -1804,27 +1804,27 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/jpn_grocery_event_certificate_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/jpn_grocery_event_certificate_01.png\" class=\"image-preview\">",
                 "1等兌換券 (活動)",
                 "可在飛龍工商的寶箱分頁兌換多種獎勵，\n使用時可在30分鐘內獲得戰鬥經驗值200%增加效果\n(瀕死、死亡時效果維持)"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/jpn_grocery_event_certificate_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/jpn_grocery_event_certificate_02.png\" class=\"image-preview\">",
                 "2等兌換券 (活動)",
                 "可在飛龍工商的寶箱分頁兌換多種獎勵，\n使用時可在30分鐘內獲得戰鬥經驗值100%增加效果\n(瀕死、死亡時效果維持)"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/jpn_grocery_event_certificate_03.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/jpn_grocery_event_certificate_03.png\" class=\"image-preview\">",
                 "3等兌換券 (活動)",
                 "可在飛龍工商的寶箱分頁兌換多種獎勵，\n使用時可在30分鐘內獲得戰鬥經驗值10%增加效果\n(瀕死、死亡時效果維持)"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocerybox_qudong_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocerybox_qudong_01.png\" class=\"image-preview\">",
                 "神獸的特殊圖畫箱 (傳說) ",
                 "開啟時可根據指定機率，從特：光雷豚、特：幻鬼易山雲、\n特：劍仙飛月、特：武神天盡拳中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocerybox_jueqi_04.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocerybox_jueqi_04.png\" class=\"image-preview\">",
                 "神獸圖畫挑戰箱",
                 "開啟時可根據指定機率，從光雷豚、丘姆龜、古龍、白蛙龍、\n神武龍、天角象、冥想圖畫箱 (英雄) 中獲得1種"
               ]
@@ -1850,7 +1850,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:8】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/ncw_grocery_selectionbox_bm_01.png\" class=\"image-preview\">",
+                "【ROWSPAN:8】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ncw_grocery_selectionbox_bm_01.png\" class=\"image-preview\">",
                 "無極的最上級選擇箱 1個",
                 "1"
               ],
@@ -1922,17 +1922,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/ncw_grocery_selectionbox_bm_03.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ncw_grocery_selectionbox_bm_03.png\" class=\"image-preview\">",
                 "無極的最上級選擇箱",
                 "開啟時可從傳說武功秘笈碎片 (8個入) 1個、高級仙幻圖畫箱 (傳說) 1個、\n繽紛的靈魂結晶 (2個入) 1個中，選擇1種獲得"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/ncw_grocery_selectionbox_bm_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ncw_grocery_selectionbox_bm_02.png\" class=\"image-preview\">",
                 "無極的高級選擇箱",
                 "開啟時可從仙幻綁定武功秘笈箱 (傳說) 1個、特殊圖畫箱 (傳說) 1個、\n仙幻圖畫箱 (傳說) (2個入) 1個中，選擇1種獲得"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocerybox_haojie_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocerybox_haojie_02.png\" class=\"image-preview\">",
                 "無極的高級幸運箱",
                 "開啟時可根據指定機率，獲得無極的高級選擇箱 (3個入) 1個、\n無極的高級選擇箱 2個、無極的高級選擇箱 1個"
               ]
@@ -1989,7 +1989,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:12】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/grocery_pohwaran_box_04.png\" class=\"image-preview\">",
+                "【ROWSPAN:12】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_pohwaran_box_04.png\" class=\"image-preview\">",
                 "高級仙幻圖畫箱 (傳說)",
                 "1"
               ],
@@ -2121,12 +2121,12 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocery_randombox1-2.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocery_randombox1-2.png\" class=\"image-preview\">",
                 "武功秘笈碎片大獎箱 (英雄~傳說)",
                 "開啟時可根據指定機率，從傳說武功秘笈碎片 8個、\n傳說武功秘笈碎片 4個、傳說武功秘笈碎片 1個、\n英雄武功秘笈碎片 5個中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocerybox_fengyun_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocerybox_fengyun_01.png\" class=\"image-preview\">",
                 "仙幻圖畫大獎箱 (傳說)",
                 "開啟時可根據指定機率，從仙幻圖畫箱 (傳說) 1個、\n仙幻圖畫箱 (傳說) (2個入) 1個、仙幻圖畫箱 (傳說) (3個入) 1個中獲得1種"
               ]
@@ -2179,7 +2179,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:11】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocery_goldbox_15.png\" class=\"image-preview\">",
+                "【ROWSPAN:11】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocery_goldbox_15.png\" class=\"image-preview\">",
                 "特殊圖畫箱 (傳說)\n",
                 "1",
                 "0.02%"
@@ -2256,7 +2256,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:9】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gb_grocery_goldbox_14.png\" class=\"image-preview\">",
+                "【ROWSPAN:9】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocery_goldbox_14.png\" class=\"image-preview\">",
                 "繽紛的靈魂結晶 (4個入)",
                 "1"
               ],
@@ -2408,7 +2408,7 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/金幣箱/gn_22may_gachacoinbox_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gn_22may_gachacoinbox_01.png\" class=\"image-preview\">",
                 "英雄武功秘笈碎片幸運箱",
                 "開啟時可根據指定機率，\n從英雄武功書碎片100個 [0.1%]、20個 [0.25%]、\n10個 [1%]、5個 [5%]、3個 [20%]、1個 [73.65%]中獲得1種"
               ],
@@ -2463,7 +2463,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 野豬、野豬帽\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_pig box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 豬豬、豬豬帽\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_pig box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 金豬、金豬帽\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_pig box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 樹蛙、樹蛙帽 [只可從「特殊的相信豬豬服裝箱」中獲得]\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_pig box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 野豬、野豬帽\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_pig-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 豬豬、豬豬帽\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_pig-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 金豬、金豬帽\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_pig-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 樹蛙、樹蛙帽 [只可從「特殊的相信豬豬服裝箱」中獲得]\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_pig-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2497,7 +2497,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 星光炫彩、星光炫彩圈、星光炫彩耳環、星光炫彩氣球\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 飄飄球幻影武器箱\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕衣、花斕風格、花斕服飾(花斕衣專用飾品)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_15_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵、三花喵帽子、三花喵背包\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_16_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_17_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑貚天、黑貚天頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_18_dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復仇\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_0422dressing room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 鬆獅犬\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_12_0422dressing room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">\n- 赤夜、赤夜頭飾、赤夜飾品\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_0422dressing room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 台客\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_0422dressing room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 赤夜幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_0422dressing room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 星光炫彩、星光炫彩圈、星光炫彩耳環、星光炫彩氣球\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 飄飄球幻影武器箱\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_9_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕衣、花斕風格、花斕服飾(花斕衣專用飾品)\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_10_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 花斕幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_15_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵、三花喵帽子、三花喵背包\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_16_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 三花喵幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_17_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑貚天、黑貚天頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_18_dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復仇\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_0422dressing-room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 鬆獅犬\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_12_0422dressing-room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">\n- 赤夜、赤夜頭飾、赤夜飾品\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_0422dressing-room.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 台客\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_11_0422dressing-room.png\" width=\"600\" style=\"display:block; margin:0 auto;\">\n- 赤夜幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_10_0422dressing-room.png\" width=\"601\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2511,7 +2511,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:2】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_dressing room.png\" class=\"image-preview\">",
+                "【ROWSPAN:2】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_dressing-room.png\" class=\"image-preview\">",
                 "魅力爆發線團",
                 "500",
                 "無限制"
@@ -2607,7 +2607,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 防風外套、漁夫帽\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_wind box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 希望\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_wind box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 約定\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_wind box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 練習生\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_wind box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 甜蜜的一天\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_wind box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 野餐\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_wind box.png\" width=\"430\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 防風外套、漁夫帽\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 希望\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 約定\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 練習生\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 甜蜜的一天\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 野餐\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_wind-box.png\" width=\"430\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2692,7 +2692,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 烈光服裝、烈光頭飾、烈光羽翼、烈光耳環\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 純白、羅曼蒂克\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 極致感官、極致感官頭飾、極致感官飾品\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_gold line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 上班族、型男\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_gold line.png\" width=\"396\" style=\"display:block; margin:0 auto;\">\n- 狂龍幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_gold line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 烈光服裝、烈光頭飾、烈光羽翼、烈光耳環\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_gold-line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 純白、羅曼蒂克\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_gold-line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 極致感官、極致感官頭飾、極致感官飾品\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_9_gold-line.png\" width=\"568\" style=\"display:block; margin:0 auto;\">\n- 白領族、圓邊眼鏡\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_10_gold-line.png\" width=\"396\" style=\"display:block; margin:0 auto;\">\n- 狂龍幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_11_gold-line.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2706,7 +2706,7 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_gold line.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_gold-line.png\" class=\"image-preview\">",
                 "金線團 1個",
                 "500",
                 "無限制"
@@ -2771,7 +2771,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 回憶\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_spring box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 回憶\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2846,7 +2846,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 龐克\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 雪紅衣\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 老鳥\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 龐克幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 拂曉\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 烈火\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 運動會\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_9_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 紅木魑鬼幻影武器\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_10_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 甜蜜誘惑、酸甜\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_11_punk box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 龐克\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 雪紅衣\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 老鳥\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 龐克幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 拂曉\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 烈火\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 運動會\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_9_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 紅木魑鬼幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_10_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 甜蜜誘惑、酸甜\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_11_punk-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2936,7 +2936,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- Y2K嘻哈、Y2K嘻哈頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_Y2K Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 雪冰衣\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_Y2K Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑雪\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_Y2K Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 璀璨自由之翼\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_6_Y2K Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">\n- 爛漫星光燦爛\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_7_Y2K Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">\n- 永劫不滅之翼\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_8_Y2K Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">",
+            "content": "- Y2K嘻哈、Y2K嘻哈頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_Y2K-Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 雪冰衣\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_Y2K-Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 黑雪\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_Y2K-Box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 璀璨自由之翼\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_Y2K-Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">\n- 爛漫星光燦爛\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_Y2K-Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">\n- 永劫不滅之翼\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_Y2K-Box.png\" width=\"416\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3006,7 +3006,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 彼岸花、彼岸花頭飾\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 千日之約\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_winter rose box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 彼岸花、彼岸花頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_winter-rose-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_winter-rose-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 千日之約\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_winter-rose-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3066,7 +3066,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 闊腿褲\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_5_style box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 朋友關係\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_3_style box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 青煙\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/imgi_4_style box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 闊腿褲\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_style-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 朋友關係\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_style-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">\n- 青煙\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_style-box.png\" width=\"756\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3080,7 +3080,7 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/服裝箱/grocery_shop_packagebox2.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/grocery_shop_packagebox2.png\" class=\"image-preview\">",
                 "風格服裝箱1個、寬版鑄幣 1個",
                 "500",
                 "無限制"
@@ -3200,12 +3200,12 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0054.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0054.png\" class=\"image-preview\">",
                 "綁定精氣選擇箱 (活動)",
                 "可選擇1種獲得\n•非風的綁定精氣 (活動)\n•黑蛇王后的綁定精氣 (活動)\n•殺鱗蛇的綁定精氣 (活動)\n•暴走雪人的綁定精氣 (活動)\n•青空號的綁定精氣 (活動)\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_grocery_event_coin_0030.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_grocery_event_coin_0030.png\" class=\"image-preview\">",
                 "八卦牌裝備效果重置珠",
                 " 使用1個可重置風雷八卦牌的裝備效果、\n使用10個可重置神木八卦牌的裝備效果"
               ]
@@ -3249,7 +3249,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "研究室又一團亂了？！ <紅絲的研究室> (4.15-4.29)\n活動期間完成每日任務「失控的法器」可獲得12個「鴻憤鑄幣」，\n擊殺「鴻憤法器」時可獲得3個「鴻憤鑄幣」 \n※ 完成書信任務「紅絲的緊急書信」後，方可進行每日任務「失控的法器」\n- 入場方式：透過仙幻島-明夜院地區進入活動副本「紅絲的研究室」\n- 進入紅絲的研究室後，與「鴻憤法器」戰鬥至指定血量\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 「鴻憤法器」達到指定血量時，會以保護罩保護自身並發射黑色球體\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 破壞生成的紅絲的槍械箱，或是從武器支架獲得紅絲的機關槍後，\n使用「砰砰砰」攻擊保護罩狀態的「鴻憤法器」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2604Jakdan.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 使用保護罩時，除了恢復體力外，還可抵抗「鴻憤法器」的攻擊\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 獲得波動砲彈藥後，即可使用更強大的攻擊 – 波動砲\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_14_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 保護罩被破壞後，可獲得能提升攻擊力及額外傷害效果的「南天的氣息」增益效果\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_16_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n\n\n",
+            "content": "研究室又一團亂了？！ <紅絲的研究室> (4.15-4.29)\n活動期間完成每日任務「失控的法器」可獲得12個「鴻憤鑄幣」，\n擊殺「鴻憤法器」時可獲得3個「鴻憤鑄幣」 \n※ 完成書信任務「紅絲的緊急書信」後，方可進行每日任務「失控的法器」\n- 入場方式：透過仙幻島-明夜院地區進入活動副本「紅絲的研究室」\n- 進入紅絲的研究室後，與「鴻憤法器」戰鬥至指定血量\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_9_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 「鴻憤法器」達到指定血量時，會以保護罩保護自身並發射黑色球體\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_10_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 破壞生成的紅絲的槍械箱，或是從武器支架獲得紅絲的機關槍後，\n使用「砰砰砰」攻擊保護罩狀態的「鴻憤法器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_11_2604Jakdan.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 使用保護罩時，除了恢復體力外，還可抵抗「鴻憤法器」的攻擊\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_12_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 獲得波動砲彈藥後，即可使用更強大的攻擊 – 波動砲\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_14_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 保護罩被破壞後，可獲得能提升攻擊力及額外傷害效果的「南天的氣息」增益效果\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_16_2604Jakdan.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n\n\n",
             "fontSize": "medium"
           },
           {
@@ -3262,22 +3262,22 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0056.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0056.png\" class=\"image-preview\">",
                 "紅絲的幸運圖畫箱",
                 "•最上級圖畫箱 3個\n•紅絲英雄圖畫箱 1個\n•傳說洪門圖畫箱 1個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0049.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0049.png\" class=\"image-preview\">",
                 "紅絲的怦怦跳雜貨袋",
                 "•鴻憤經驗值符(1萬) 3個 [固定獎勵]|\n•稀有元素 5個\n•英雄牌箱 1個\n•褪色的合成用真言珠：書 1個\n•褪色的合成用真言珠：海 1個\n•風雷八卦盒 1個\n•耀眼的真言珠鎚 1個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0046.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0046.png\" class=\"image-preview\">",
                 "紅絲的圖畫箱",
                 "•上級圖畫箱 (御龍林~仙幻島) 5個\n•最上級圖畫箱 1個\n•最上級圖畫箱 2個\n•最上級圖畫箱 3個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_box_phase15.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_box_phase15.png\" class=\"image-preview\">",
                 "紅絲的印章箱",
                 "•印章箱 5個\n•隱約的印章箱 3個\n•耀眼的印章箱 1個\n•耀眼的印章箱 2個\n•耀眼的印章箱 3個"
               ]
@@ -3331,7 +3331,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "惡蟲討厭賞花(4.8-4.22)\n活動期間內，於白青山脈地區的指定時間，風之平原將出現惡蟲派首領「襲擊者綠馬赤」，\n擊敗後可獲得1個「櫻花花瓣」\n- 活動期間完成每日書信任務(J) 「乘春風寄出的告白」可獲得5個「櫻花花瓣」\n※ 完成任務「笨拙的戀情」後，方可進行每日書信任務「乘春風寄出的告白」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_5_2604sakura.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[出現地點]\n\n- 活動期間，月光草原間歇性出現的「碧龍草」將被「粉紅草」取代，\n擊敗後可獲得1個「營養滿分培養土」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_8_2604sakura.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[粉紅草]\n",
+            "content": "惡蟲討厭賞花(4.8-4.22)\n活動期間內，於白青山脈地區的指定時間，風之平原將出現惡蟲派首領「襲擊者綠馬赤」，\n擊敗後可獲得1個「櫻花花瓣」\n- 活動期間完成每日書信任務(J) 「乘春風寄出的告白」可獲得5個「櫻花花瓣」\n※ 完成任務「笨拙的戀情」後，方可進行每日書信任務「乘春風寄出的告白」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_5_2604sakura.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[出現地點]\n\n- 活動期間，月光草原間歇性出現的「碧龍草」將被「粉紅草」取代，\n擊敗後可獲得1個「營養滿分培養土」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_8_2604sakura.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[粉紅草]\n",
             "fontSize": "medium"
           },
           {
@@ -3388,17 +3388,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box88.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box88.png\" class=\"image-preview\">",
                 "櫻花箱",
                 "櫻花經驗值符(1萬)\n1個、2個、3個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box89.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box89.png\" class=\"image-preview\">",
                 "華麗的櫻花箱",
                 "•櫻花經驗值符(1萬) 3個 [固定獎勵]\n•傳說洪門圖畫箱 1個\n•繽紛的印章箱 1個\n•熾熱的綁定武功秘笈箱 1個\n•櫻花英雄圖畫箱 1個\n•熾熱的印章箱 1個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_chipped_pot.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_chipped_pot.png\" class=\"image-preview\">",
                 "粗糙的花盆",
                 "昇天石、破碎的結晶 1個、破碎的結晶 5個、破碎的結晶 10個"
               ]
@@ -3437,7 +3437,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "限定上市！春白菜拌飯 (4.1-4.8)\n活動期間內，擊殺白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院的首領時，\n將根據指定機率獲得「春白菜」\n- 透過製作材料與「春白菜」的轉換公式獲得「辣椒醬」\n- 金牛 / 火牛 / 燃燒金牛 / 冰凍牛 / 鋼鐵牛 / 三豬五百\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/螢幕擷取畫面 2026-04-18 235109.png\" width=\"972\" style=\"display:block; margin:0 auto;\">",
+            "content": "限定上市！春白菜拌飯 (4.1-4.8)\n活動期間內，擊殺白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院的首領時，\n將根據指定機率獲得「春白菜」\n- 透過製作材料與「春白菜」的轉換公式獲得「辣椒醬」\n- 金牛 / 火牛 / 燃燒金牛 / 冰凍牛 / 鋼鐵牛 / 三豬五百\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/2026-04-18-235109.png\" width=\"972\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3450,17 +3450,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/event_grocery_food_title_0006.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/event_grocery_food_title_0006.png\" class=\"image-preview\">",
                 "神龍證書：春白菜拌飯食譜",
                 "可獲得新稱號「春白菜拌飯」"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_returning_eventbox_1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_returning_eventbox_1.png\" class=\"image-preview\">",
                 "GM哈利的主廚套餐箱",
                 "可選擇以下道具箱子獲得：\n金牛服裝箱 / 火牛服裝箱 / 燃燒金牛服裝箱 / \n冰凍牛服裝箱 / 鋼鐵牛服裝箱 / 三豬五百服裝箱"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box53.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box53.png\" class=\"image-preview\">",
                 "GM哈利的稱號套餐箱",
                 "可選擇獲得用於獲得新稱號的憑證：光復的氣息 / 神龍證書：CHILL GUY / \n神龍證書：SEXY FOOD / 金牛幸運憑證 / 王的文字幻丹"
               ]
@@ -3543,7 +3543,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "痞子盜的可疑外出 (4.1-4.8)\n活動期間，在仙幻島地區擊殺野外首領幻石怪/墨玄/雷擊天時，將確定出現「可疑的痞子盜」\n- 參與擊殺「可疑的痞子盜」後可獲得痞子盜留下的可疑箱子「絕對不要打開！」或痞子盜的經驗值符 (1萬) 1個\n※ 裝備效果重置珠可替代重置雪寒/白光武器、飾品裝備效果時所需的材料（雪寒裝備需1個、白光裝備需2個）\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_3_260401Ido.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[可疑的痞子盜]\n\n- 逆轉之戀 (服裝)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_260401Ido.png\" width=\"382\" style=\"display:block; margin:0 auto;\">",
+            "content": "痞子盜的可疑外出 (4.1-4.8)\n活動期間，在仙幻島地區擊殺野外首領幻石怪/墨玄/雷擊天時，將確定出現「可疑的痞子盜」\n- 參與擊殺「可疑的痞子盜」後可獲得痞子盜留下的可疑箱子「絕對不要打開！」或痞子盜的經驗值符 (1萬) 1個\n※ 裝備效果重置珠可替代重置雪寒/白光武器、飾品裝備效果時所需的材料（雪寒裝備需1個、白光裝備需2個）\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_3_260401Ido.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[可疑的痞子盜]\n\n- 逆轉之戀 (服裝)\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_12_260401Ido.png\" width=\"382\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3556,7 +3556,7 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_corundum5phase__box.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_corundum5phase__box.png\" class=\"image-preview\">",
                 "絕對不要打開！",
                 "•這是真的嗎？\n•神龍票證：白金 5個\n"
               ],
@@ -3620,7 +3620,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "伴隨桃花香出現的神祕商人 (3.25-4.8)\n完成分裂迷宮:上層/下層、瘋狂雪人洞窟、女王祭壇、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院時，\n將依指定機率出現NPC「神秘商人神祕」\n- 可使用「金幣」向出現在副本中的「神秘商人」購買特別獎勵\n※ 未參與副本攻略的人員無法在該副本使用神秘商人\n※ 神秘商人販售的商品清單每次登場時可能有所不同，每次可購買的商品僅限1種\n※ 若再次攻略副本使神秘商人登場，購買機會將會刷新 (各品項無購買限制)\n※ 高級精氣傳承至裝備時，可獲得比普通精氣略高的能力值",
+            "content": "伴隨桃花香出現的神祕商人 (3.25-4.8)\n完成分裂迷宮:上層/下層、瘋狂雪人洞窟、女王祭壇、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院時，\n將依指定機率出現NPC「神秘商人辛蜜」\n- 可使用「金幣」向出現在副本中的「神秘商人」購買特別獎勵\n※ 未參與副本攻略的人員無法在該副本使用神秘商人\n※ 神秘商人販售的商品清單每次登場時可能有所不同，每次可購買的商品僅限1種\n※ 若再次攻略副本使神秘商人登場，購買機會將會刷新 (各品項無購買限制)\n※ 高級精氣傳承至裝備時，可獲得比普通精氣略高的能力值",
             "fontSize": "medium"
           },
           {
@@ -3694,7 +3694,7 @@
             ],
             "rows": [
               [
-                "【ROWSPAN:3】<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_bag_cloth_gunwon01.png\" class=\"image-preview\">",
+                "【ROWSPAN:3】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_bag_cloth_gunwon01.png\" class=\"image-preview\">",
                 "百想神功牌碎片",
                 "10個"
               ],
@@ -3730,9 +3730,9 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_box_tx10th_02.png\" width=\"80\" style=\"display:block; margin:0 auto;\">\n",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_4_19cfb960032-3a3c2caa-0c92-4e51-8c07-5e629e0313de.png\" width=\"179\" style=\"display:block; margin:0 auto;\">",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_5_19cfb960034-d7db7be6-e424-461e-98a4-4a1f6033a0dd.png\" width=\"163\" style=\"display:block; margin:0 auto;\">"
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_box_tx10th_02.png\" width=\"80\" style=\"display:block; margin:0 auto;\">\n",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_4_19cfb960032-3a3c2caa-0c92-4e51-8c07-5e629e0313de.png\" width=\"179\" style=\"display:block; margin:0 auto;\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_5_19cfb960034-d7db7be6-e424-461e-98a4-4a1f6033a0dd.png\" width=\"163\" style=\"display:block; margin:0 auto;\">"
               ],
               [
                 "購買每日活動任務選擇箱後\n選擇可攻略的任務",
@@ -3797,17 +3797,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ncw_grocery_bm_box_2.png\" class=\"image-preview\">\n",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ncw_grocery_bm_box_2.png\" class=\"image-preview\">\n",
                 "副本修煉初級箱",
                 "•耀眼的修煉證書 [固定獲得]\n•特殊印章箱 1個\n•最上級圖畫箱 1個\n•耀眼的印章箱 1個\n•熾熱的印章箱 1個\n•英雄圖畫箱 1個\n•洪門精髓 1個\n•風雷八卦牌選擇箱 1個\n•名人的圖畫 (傳說) 1個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ncw_grocery_bm_box_3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ncw_grocery_bm_box_3.png\" class=\"image-preview\">",
                 "副本修煉上級箱Ⅰ~Ⅲ",
                 "•熾熱的修煉證書 [固定獲得]\n•隱約的特殊印章箱 1個\n•最上級圖畫箱 1個\n•耀眼的印章箱 1個\n•熾熱的印章箱 1個\n•英雄圖畫箱 1個\n•洪門精髓 5個\n•風雷八卦牌選擇箱 1個\n•名人的圖畫 (傳說) 1個\n*箱子等級越高，獲得傳說等級獎勵的機率越高*\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ncw_grocery_bm_box_4.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ncw_grocery_bm_box_4.png\" class=\"image-preview\">",
                 "副本修煉大師箱Ⅰ~Ⅲ",
                 "•繽紛的修煉證書 [固定獲得]\n•耀眼的特殊印章箱 1個\n•熾熱的印章箱 1個\n•英雄圖畫箱 1個\n•洪門精髓 5個\n•風雷八卦牌選擇箱 1個\n•名人的圖畫 (傳說) 1個\n*箱子等級越高，獲得名人的圖畫 (傳說) 的機率越高*"
               ]
@@ -3861,7 +3861,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "嫩芽萌生的幸運袋 (3.18-4.1)\n活動期間內完成以下副本時，將獲得 1個「嫩芽袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院\n- 可以從仙幻島的武神荒野NPC「仙依」購買「藍色嫩芽」\n藍色嫩芽：1個5金 / 帳號限定 每日3次\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/quest_treegoblin_leaf.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[藍色嫩芽]",
+            "content": "嫩芽萌生的幸運袋 (3.18-4.1)\n活動期間內完成以下副本時，將獲得 1個「嫩芽袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦、冥想庭院\n- 可以從仙幻島的武神荒野NPC「仙依」購買「藍色嫩芽」\n藍色嫩芽：1個5金 / 帳號限定 每日3次\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/quest_treegoblin_leaf.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[藍色嫩芽]",
             "fontSize": "medium"
           },
           {
@@ -3874,17 +3874,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_event_box_14.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_event_box_14.png\" class=\"image-preview\">",
                 "嫩芽袋",
                 "嫩芽\n1個、2個、3個、4個、5個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box145.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box145.png\" class=\"image-preview\">",
                 "春意嫩芽袋",
                 "春氣經驗值符(1萬)\n1個、2個、3個、4個、5個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box146.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box146.png\" class=\"image-preview\">",
                 "藍色春意嫩芽袋",
                 "•春氣經驗值符(1萬) 3個 [固定獲得]\n•傳說綁定武功秘笈變更券 1個\n•傳說武功秘笈碎片 1個\n•繽紛的印章箱 1個\n•傳說洪門圖畫箱 1個\n•名人的圖畫(傳說) 1個\n•熾熱的綁定武功秘笈箱 1個\n•英雄圖畫箱 1個\n•熾熱的印章箱 1個\n•春氣經驗值護符(1萬) 5個\n"
               ]
@@ -3918,7 +3918,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "仙幻首領野外大騷動 (3.4-3.25)\n活動期間內，於仙幻島地區的指定時間，幻鬼高原將出現「仙幻島副本首領」的活動野外首領，\n擊敗後可獲得掉落獎勵及活動鑄幣\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_3_19cb60e69d2-a01b3f70-4c09-44fe-b725-da21b6559bae.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[出現地點]\n\n- 棉花糖 (服裝)、 薄荷 (女角專用頭飾)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_1_section4-img4.png\" width=\"700\" style=\"display:block; margin:0 auto;\">",
+            "content": "仙幻首領野外大騷動 (3.4-3.25)\n活動期間內，於仙幻島地區的指定時間，幻鬼高原將出現「仙幻島副本首領」的活動野外首領，\n擊敗後可獲得掉落獎勵及活動鑄幣\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_3_19cb60e69d2-a01b3f70-4c09-44fe-b725-da21b6559bae.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[出現地點]\n\n- 棉花糖 (服裝)、 薄荷 (女角專用頭飾)\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_1_section4-img4.png\" width=\"700\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -3979,22 +3979,22 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/cash_goodsstore_coin_0003.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/cash_goodsstore_coin_0003.png\" class=\"image-preview\">",
                 "神祕的金幣箱",
                 "開啟時機率獲得支付證書：1金\n1個、2個、3個其中一種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_randombox2-2.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_randombox2-2.png\" class=\"image-preview\">",
                 "神祕的經驗值符箱",
                 "開啟時機率獲得神祕的經驗符 (1萬)\n1個、2個、3個其中一種\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0050.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0050.png\" class=\"image-preview\">",
                 "神祕的鑄幣箱",
                 "開啟時機率獲得神祕鑄幣\n1個、2個、3個其中一種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_general_grocery_event_box_0041.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_general_grocery_event_box_0041.png\" class=\"image-preview\">",
                 "神祕的服裝選擇箱",
                 "開啟時可選擇獲得其中一種\n月影、滿滿心動服裝箱、NEO羽絨衣、黑陣、黑鬼、黑靈、零到一百\n"
               ]
@@ -4188,7 +4188,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "NEO DAY 成長的黃金票券！(3.4-3.25)\n於活動期間內，完成仙幻島與白青山脈的每日任務時，可獲得「金色袋子」\n※ 白青山脈最上級副本及悲嘆的雪獄宮：外苑/內城的每日任務可獲得 2個「金色袋子」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box28.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[金色袋子]\n- 完成每日任務 (3/3) 時可額外獲得1個「黃金碎片」\n- 完成每週任務 (2/3) 時可額外獲得1個「黃金碎片」\n-  完成每週任務 (3/3) 時可額外獲得2個「黃金碎片」",
+            "content": "NEO DAY 成長的黃金票券！(3.4-3.25)\n於活動期間內，完成仙幻島與白青山脈的每日任務時，可獲得「金色袋子」\n※ 白青山脈最上級副本及悲嘆的雪獄宮：外苑/內城的每日任務可獲得 2個「金色袋子」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box28.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[金色袋子]\n- 完成每日任務 (3/3) 時可額外獲得1個「黃金碎片」\n- 完成每週任務 (2/3) 時可額外獲得1個「黃金碎片」\n-  完成每週任務 (3/3) 時可額外獲得2個「黃金碎片」",
             "fontSize": "medium"
           },
           {
@@ -4201,12 +4201,12 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_bmpet_piece1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_bmpet_piece1.png\" class=\"image-preview\">",
                 "金色碎片",
                 "開啟時可根據指定機率，從金色碎片1個、2個中獲得1種"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_fullmoon_piece1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_fullmoon_piece1.png\" class=\"image-preview\">",
                 "黃金碎片",
                 "固定獲得 1個"
               ]
@@ -4260,7 +4260,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "會在哪裡呢？南天國的尋寶活動 (3.4-3.25)\n活動期間內完成以下副本時，將依指定機率獲得 2個「尋寶鑰匙袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box147.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[尋寶鑰匙袋]\n\n┄┄┄┄┄┄┄\n- 在尋寶進行時間 (10:00～14:00 / 19:00～23:00) 點擊尋寶UI，或透過選單(ESC)視窗進行尋寶\n\n- 消耗「尋寶鑰匙」參與尋寶時，將獲得1個1～100之間的隨機數字\n※ 數字不會重複，每次尋寶最多可參與10次\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_8_2603 treasure hunt.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 當尋寶參與次數達到100次，或進行時間結束時，將進行抽獎，並根據對應的名次發放獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_9_2603 treasure hunt.jpg\" width=\"265\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 若中得幸運獎，將可再次獲得可重新挑戰尋寶的「尋寶鑰匙」\n※ 幸運獎與對應名次獎勵將分開發放\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_10_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 可依據參與次數追加獲得參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_11_2603 treasure hunt.jpg\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 透過信箱(F6)領取尋寶獎勵，包含參與獎勵\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_12_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">",
+            "content": "會在哪裡呢？南天國的尋寶活動 (3.4-3.25)\n活動期間內完成以下副本時，將依指定機率獲得 2個「尋寶鑰匙袋」\n包括武神塔、白青最上級~傳說副本、幻獸練武場、鐵血修煉場、冰封的廢礦\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box147.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">[尋寶鑰匙袋]\n\n┄┄┄┄┄┄┄\n- 在尋寶進行時間 (10:00～14:00 / 19:00～23:00) 點擊尋寶UI，或透過選單(ESC)視窗進行尋寶\n\n- 消耗「尋寶鑰匙」參與尋寶時，將獲得1個1～100之間的隨機數字\n※ 數字不會重複，每次尋寶最多可參與10次\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_8_2603 treasure hunt.jpg\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 當尋寶參與次數達到100次，或進行時間結束時，將進行抽獎，並根據對應的名次發放獎勵\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_9_2603 treasure hunt.jpg\" width=\"265\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 若中得幸運獎，將可再次獲得可重新挑戰尋寶的「尋寶鑰匙」\n※ 幸運獎與對應名次獎勵將分開發放\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_10_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 可依據參與次數追加獲得參與獎勵\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_11_2603 treasure hunt.jpg\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n- 透過信箱(F6)領取尋寶獎勵，包含參與獎勵\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_12_2603 treasure hunt.png\" width=\"378\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">",
             "fontSize": "medium"
           },
           {
@@ -4274,42 +4274,42 @@
             "rows": [
               [
                 "第1名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_giantheart_box_04.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_giantheart_box_04.png\" class=\"image-preview\">",
                 "1等袋子\n(稀有的南天國印章箱 1個 + 南天國金幣 1個)\n"
               ],
               [
                 "第2名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jptw_22aug_pouch_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jptw_22aug_pouch_01.png\" class=\"image-preview\">",
                 "2等袋子\n(稀有的南天國圖畫箱 1個 + 南天國金幣 1個)"
               ],
               [
                 "第3名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_giantheart_box_geumgang_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_giantheart_box_geumgang_01.png\" class=\"image-preview\">",
                 "3等袋子\n(南天國印章箱 1個 + 南天國圖畫箱 1個 + 南天國金幣 1個)"
               ],
               [
                 "第4~10名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_coin_tokengold.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_coin_tokengold.png\" class=\"image-preview\">",
                 "南天國金幣 1個"
               ],
               [
                 "第11~30名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_coin_tokensilver.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_coin_tokensilver.png\" class=\"image-preview\">",
                 "南天國銀幣 3個"
               ],
               [
                 "第31~60名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_coin_tokensilver.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_coin_tokensilver.png\" class=\"image-preview\">",
                 "南天國銀幣 2個"
               ],
               [
                 "第61~100名",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_coin_tokensilver.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_coin_tokensilver.png\" class=\"image-preview\">",
                 "南天國銀幣 1個"
               ],
               [
                 "幸運獎勵",
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_event_key_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_event_key_01.png\" class=\"image-preview\">",
                 "尋寶鑰匙 1個"
               ]
             ]
@@ -4415,32 +4415,32 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocerybox_tianxia_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocerybox_tianxia_01.png\" class=\"image-preview\">",
                 "稀有的南天國圖畫箱",
                 "南天國的傳說圖畫箱 1個、英雄圖畫箱 1個、最上級圖畫箱 1個\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box123.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box123.png\" class=\"image-preview\">",
                 "稀有的南天國印章箱",
                 "繽紛的印章箱 1個、熾熱的印章箱 1個、耀眼的印章箱 1個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_randombox2-5.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_randombox2-5.png\" class=\"image-preview\">",
                 "稀有的南天國武功秘笈箱",
                 "繽紛的綁定武功秘笈箱、熾熱的綁定武功秘笈選擇箱、\n熾熱的綁定武功秘笈箱\n"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocerybox_tianxia_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocerybox_tianxia_02.png\" class=\"image-preview\">",
                 "南天國的傳說圖畫箱",
                 "幽蘭、克鵬、武神天盡拳、\n劍仙飛月、幻鬼易山雲、風帝國皇帝君馬炎"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocerybox_jueqi_03.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocerybox_jueqi_03.png\" class=\"image-preview\">",
                 "南天國圖畫箱",
                 "英雄圖畫箱 1個、最上級圖畫箱 1個、\n上級圖畫箱 (御龍林~仙幻島) 3個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box122.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box122.png\" class=\"image-preview\">",
                 "南天國印章箱",
                 "熾熱的印章箱 1個、耀眼的印章箱 1個、隱約的印章箱 1個"
               ]
@@ -4466,27 +4466,27 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_glyph_box_0042.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_glyph_box_0042.png\" class=\"image-preview\">",
                 "飛龍印章箱",
                 "帳號限制 1日3次"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_giftbox_phase3.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_giftbox_phase3.png\" class=\"image-preview\">",
                 "仙幻飛龍圖畫箱",
                 "帳號限制 1日5次"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/ztx_2501_grocery_event_box_001.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/ztx_2501_grocery_event_box_001.png\" class=\"image-preview\">",
                 "飛龍進化石箱",
                 "帳號限制 1日2次"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/grocery_box_phase15.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/grocery_box_phase15.png\" class=\"image-preview\">",
                 "飛龍升天箱",
                 "帳號限制 1日5次"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_box_2023may_01.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_box_2023may_01.png\" class=\"image-preview\">",
                 "飛龍庇護箱",
                 "帳號限制 1日3次"
               ]
@@ -4499,7 +4499,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "今天起，情侶裝扮活動 (2.11-2.25)\n活動期間完成「武神塔」每日任務 <最終修練> 時可獲得1個「情人節巧克力箱子 (活動) 」\n收集「情人節巧克力 (活動)」可向「無名的代理人」兌換情人節紀念服裝與五色絲\n- 情侶 (服裝)、夥伴 (頭飾)\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/imgi_7_2602valentine.png\" width=\"418\" style=\"display:block; margin:0 auto;\">",
+            "content": "今天起，情侶裝扮活動 (2.11-2.25)\n活動期間完成「武神塔」每日任務 <最終修練> 時可獲得1個「情人節巧克力箱子 (活動) 」\n收集「情人節巧克力 (活動)」可向「無名的代理人」兌換情人節紀念服裝與五色絲\n- 情侶 (服裝)、夥伴 (頭飾)\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/imgi_7_2602valentine.png\" width=\"418\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -4543,17 +4543,17 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_cashchocolate_box2.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_cashchocolate_box2.png\" class=\"image-preview\">",
                 "情人節巧克力箱子 (活動)",
                 "開啟時依指定機率獲得\n情人節巧克力 (活動) 1~5個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_event_2019_food1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_event_2019_food1.png\" class=\"image-preview\">",
                 "情人節巧克力 (活動)",
                 "活動獎勵兌換材料"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_event_2020_box1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_event_2020_box1.png\" class=\"image-preview\">",
                 "情人節五色幸運箱 (活動)",
                 "開啟時依指定機率獲得\n五色絲 2~20個"
               ]
@@ -4566,7 +4566,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "收集春節氣息的神秘商人 (2.11-2.25) \n- 活動期間完成每日書信任務(J) 「惡童團長成哲的新年請求」可獲得5個「春節氣息」\n   書信任務：從白青山脈與仙幻島的最上級以上副本中，收集2個機率掉落的「遺失的紅包」\n- 活動期間內， 完成每週任務 (3/3) 時可額外獲得10個「春節氣息」\n<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_event_2020_box04.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n[春節氣息]\n\n- 完成分裂迷宮:上層/下層、瘋狂雪人洞窟、女王祭壇、幻獸練武場、鐵血修煉場、冰封的廢礦時，\n將依指定機率出現NPC「神秘商人神祕海」\n※ 神秘商人出現後不久便會離開；若未參與副本攻略的角色接近，神秘商人將會消失\n※ 神秘商人販售的商品清單每次登場時可能有所不同",
+            "content": "收集春節氣息的神秘商人 (2.11-2.25) \n- 活動期間完成每日書信任務(J) 「惡童團長成哲的新年請求」可獲得5個「春節氣息」\n   書信任務：從白青山脈與仙幻島的最上級以上副本中，收集2個機率掉落的「遺失的紅包」\n- 活動期間內， 完成每週任務 (3/3) 時可額外獲得10個「春節氣息」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_event_2020_box04.png\" style=\"display: block; margin: 15px 0; max-width: 100%; height: auto; border-radius: 8px;\">\n[春節氣息]\n\n- 完成分裂迷宮:上層/下層、瘋狂雪人洞窟、女王祭壇、幻獸練武場、鐵血修煉場、冰封的廢礦時，\n將依指定機率出現NPC「神秘商人神祕海」\n※ 神秘商人出現後不久便會離開；若未參與副本攻略的角色接近，神秘商人將會消失\n※ 神秘商人販售的商品清單每次登場時可能有所不同",
             "fontSize": "medium"
           },
           {
@@ -4707,27 +4707,27 @@
             ],
             "rows": [
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box6.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box6.png\" class=\"image-preview\">",
                 "喜鵲金幣箱",
                 "支付證書：1金\n1個、2個、3個、4個、5個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/jpn_grocery_box7.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/jpn_grocery_box7.png\" class=\"image-preview\">",
                 "超讚喜鵲金幣箱",
                 "支付證書：1金\n5個、10個、15個、50個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_bm_box1-1.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_bm_box1-1.png\" class=\"image-preview\">",
                 "喜鵲經驗值符箱",
                 "喜鵲的經驗符 (1萬)\n1個、2個、3個、4個、5個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_event_2021_box6.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_event_2021_box6.png\" class=\"image-preview\">",
                 "超讚喜鵲經驗值符箱",
                 "喜鵲的經驗符 (1萬)\n5個、10個、15個、20個"
               ],
               [
-                "<img src=\"https://cdn.jsdelivr.net/gh/Nerine52/game-images@main/images/福利活動/gb_grocery_box_2023jun_02.png\" class=\"image-preview\">",
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/events/gb_grocery_box_2023jun_02.png\" class=\"image-preview\">",
                 "繽紛的喜鵲圖畫箱",
                 "幽蘭、克鵬、武神天盡拳、\n劍仙飛月、幻鬼易山雲、風帝國皇帝君馬炎"
               ]
