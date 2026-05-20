@@ -1241,16 +1241,16 @@
         ]
       },
       {
-        "title": "妙言的寶物箱 (4.15-4.29)",
+        "title": "妙妍的寶物箱 (4.15-4.29)",
         "blocks": [
           {
             "type": "text",
-            "content": "### 妙言的寶物箱 1箱10金 / 10箱80金 (帳號每日限購 1次)\n- 開啟時將依指定機率，自商品內容中隨機獲得 1 種\n- 不死鳥翅膀\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_5_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍、跳躍繪畫、跳躍振翅、跳躍作戰\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_6_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍喵、跳躍喵帽子\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_7_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "### 妙妍的寶物箱 1箱10金 / 10箱80金 (帳號每日限購 1次)\n- 開啟時將依指定機率，自商品內容中隨機獲得 1 種\n- 不死鳥翅膀\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_5_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍、跳躍繪畫、跳躍振翅、跳躍作戰\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_6_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 跳躍喵、跳躍喵帽子\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/imgi_7_2604monn.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
             "type": "table",
-            "title": "妙言的寶物箱(活動) 商品內容",
+            "title": "妙妍的寶物箱(活動) 商品內容",
             "headers": [
               "商品",
               "商品內容",
