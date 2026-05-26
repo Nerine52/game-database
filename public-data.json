@@ -2625,7 +2625,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 春日\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_2605spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 春日\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_2605spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2640,13 +2640,13 @@
             "rows": [
               [
                 "新春服裝箱",
-                "復雲會徒服服裝箱、白鬼魂服裝箱、\n春日服裝箱\n",
+                "復雲會徒服服裝箱、白魂服裝箱、\n春日服裝箱\n",
                 "500",
                 "無限制"
               ],
               [
                 "特殊的新春服裝箱",
-                "復雲會徒服服裝箱 3個、白鬼魂服裝箱 3個、\n春日服裝箱\n",
+                "復雲會徒服服裝箱 3個、白魂服裝箱 3個、\n春日服裝箱\n",
                 "1500",
                 "無限制"
               ]
@@ -2967,7 +2967,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 回憶\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白鬼魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 回憶\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2982,13 +2982,13 @@
             "rows": [
               [
                 "春天氣息服裝箱",
-                "復雲會徒服服裝箱、白鬼魂服裝箱、\n回憶服裝箱",
+                "復雲會徒服服裝箱、白魂服裝箱、\n回憶服裝箱",
                 "500",
                 "無限制"
               ],
               [
                 "特殊的春天氣息服裝箱",
-                "復雲會徒服服裝箱 3個、白鬼魂服裝箱 3個、\n回憶服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
+                "復雲會徒服服裝箱 3個、白魂服裝箱 3個、\n回憶服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
                 "1500",
                 "無限制"
               ]
@@ -3025,12 +3025,12 @@
               ],
               [
                 "誘惑服裝套裝箱",
-                "白鬼魂服裝箱 14個",
+                "白魂服裝箱 14個",
                 "1"
               ],
               [
                 "網球服服裝套裝箱",
-                "白鬼魂服裝箱 14個",
+                "白魂服裝箱 14個",
                 "1"
               ]
             ]
