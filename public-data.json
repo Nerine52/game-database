@@ -171,7 +171,7 @@
             "rows": [
               [
                 "洪門靈魂金幣箱 50個",
-                "靈魂通行證 夢園的鑄幣 30個",
+                "靈魂通行證 夢原的鑄幣 30個",
                 "感謝的外觀鑄幣 1個"
               ],
               [
@@ -263,8 +263,8 @@
               ],
               [
                 "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/JPTW_23Mar_Coin_01.png\" class=\"image-preview\">",
-                "夢園的鑄幣",
-                "30級後的「夢園的靈魂支援箱」，每箱都可以額外獲得1個鑄幣\n**一個角色最多可獲得40個鑄幣**"
+                "夢原的鑄幣",
+                "30級後的「夢原的靈魂支援箱」，每箱都可以額外獲得1個鑄幣\n**一個角色最多可獲得40個鑄幣**"
               ],
               [
                 "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/jpn_grocery_coin24.png\" class=\"image-preview\">",
@@ -285,7 +285,7 @@
           },
           {
             "type": "text",
-            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「禮儀」、「和風暖陽」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -435,7 +435,7 @@
           },
           {
             "type": "text",
-            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「重逢」、「華胥之夢」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 使用鑄幣兌換時可獲得以下所有時裝，「魅影/魅力(其中一件)」、「禮儀」、「和風暖陽」及「貓咪幻影武器」\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153056.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153116.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-04-11-153125.png\" width=\"1020\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           }
         ]
@@ -1092,13 +1092,13 @@
             "rows": [
               [
                 "非風碎片 50個",
-                "•神獸的選擇箱 1個 []\n•非風碎片 10個 []",
+                "•神獸的選擇箱 1個\n•非風碎片 10個",
                 "50銀",
                 "每一輪 每個世界 3個\n"
               ],
               [
                 "非風碎片 50個",
-                "•祕典武功秘笈幸運箱 1個 []\n•非風碎片 10個 []\n",
+                "•祕典武功秘笈幸運箱 1個\n•非風碎片 10個\n",
                 "50銀",
                 "每一輪 每個世界 3個\n"
               ]
@@ -2903,7 +2903,7 @@
             "rows": [
               [
                 "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_gold-line.png\" class=\"image-preview\">",
-                "金線團 1個",
+                "金色線團 1個",
                 "500",
                 "無限制"
               ]
@@ -2920,42 +2920,42 @@
             "rows": [
               [
                 "烈光套裝箱",
-                "金線團 14個",
+                "金色線團 14個",
                 "1"
               ],
               [
                 "純白套裝箱\n*純白 限女角使用*\n",
-                "金線團 10個",
+                "金色線團 10個",
                 "1"
               ],
               [
                 "極致感官套裝箱\n",
-                "金線團 10個",
+                "金色線團 10個",
                 "1"
               ],
               [
                 "上班族套裝箱",
-                "金線團 10個",
+                "金色線團 10個",
                 "1"
               ],
               [
                 "玫瑰幻影",
-                "金線團 10個",
+                "金色線團 10個",
                 "1"
               ],
               [
                 "紅焰幻影輕功",
-                "金線團 10個",
+                "金色線團 10個",
                 "1"
               ],
               [
                 "極致感官幻影武器箱",
-                "金線團 5個",
+                "金色線團 5個",
                 "1"
               ],
               [
                 "狂龍幻影武器箱",
-                "金線團 5個",
+                "金色線團 5個",
                 "1"
               ]
             ]
@@ -2967,7 +2967,7 @@
         "blocks": [
           {
             "type": "text",
-            "content": "- 回憶\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、黑色蝴蝶、蝴蝶裝飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球服、網球服頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "content": "- 回憶外套\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誘惑、蝴蝶飾品、黑色蝴蝶\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 網球裝、網球裝頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
             "fontSize": "medium"
           },
           {
@@ -2982,13 +2982,13 @@
             "rows": [
               [
                 "春天氣息服裝箱",
-                "復雲會徒服服裝箱、白魂服裝箱、\n回憶服裝箱",
+                "復雲會徒服服裝箱、白魂服裝箱、\n回憶外套服裝箱",
                 "500",
                 "無限制"
               ],
               [
                 "特殊的春天氣息服裝箱",
-                "復雲會徒服服裝箱 3個、白魂服裝箱 3個、\n回憶服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
+                "復雲會徒服服裝箱 3個、白魂服裝箱 3個、\n回憶外套服裝箱\n嫩芽鑄幣 1個 (固定獲得)",
                 "1500",
                 "無限制"
               ]
@@ -3009,7 +3009,7 @@
                 "1"
               ],
               [
-                "回憶服裝箱\n",
+                "回憶外套服裝箱\n",
                 "嫩芽鑄幣 20個",
                 "1"
               ],
@@ -3019,7 +3019,7 @@
                 "1"
               ],
               [
-                "網球服服裝套裝箱",
+                "網球裝服裝套裝箱",
                 "復雲會徒服服裝箱 15個",
                 "1"
               ],
@@ -3029,7 +3029,7 @@
                 "1"
               ],
               [
-                "網球服服裝套裝箱",
+                "網球裝服裝套裝箱",
                 "白魂服裝箱 14個",
                 "1"
               ]
