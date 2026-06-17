@@ -20,11 +20,11 @@
     "name": "通行證",
     "subpages": [
       {
-        "title": "灰風洞窟 (5.27-6.24)",
+        "title": "灰光風穴 (5.27-6.24)",
         "blocks": [
           {
             "type": "text",
-            "content": "灰風洞窟 新傳說本版本\n- 5月27日至6月24日 (2400神石)\n### 靈魂通行證 Plus 的 3 種優惠將變更為以帳號為單位適用\n- 遠端使用倉庫\n- 使用靈魂倉庫\n- 將倉庫保管物品立即作為提煉、轉換、製作材料使用",
+            "content": "灰光風穴 新傳說本版本\n- 5月27日至6月24日 (2400神石)\n### 靈魂通行證 Plus 的 3 種優惠將變更為以帳號為單位適用\n- 遠端使用倉庫\n- 使用靈魂倉庫\n- 將倉庫保管物品立即作為提煉、轉換、製作材料使用",
             "fontSize": "medium"
           },
           {
@@ -3062,6 +3062,76 @@
     "id": 4,
     "name": "服裝箱",
     "subpages": [
+      {
+        "title": "熊貓不賣服裝箱 (6.10-6.24)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "- 與熊貓同行服裝套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_panda-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 願望\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 約定\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 熊貓幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_panda-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 滿月的香氣\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_panda-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 滿月的香氣、金蝶頭飾\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_panda-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "箱子",
+              "道具 (可按機率獲得其中一種)",
+              "神石",
+              "購買限制"
+            ],
+            "rows": [
+              [
+                "熊貓不賣服裝箱",
+                "願望服裝箱、約定服裝箱、與熊貓同行服裝套裝箱\n熊貓鑄幣 1個 [20%獲得]",
+                "500",
+                "\t無限制"
+              ],
+              [
+                "特殊的熊貓不賣服裝箱",
+                "願望服裝箱 3個、約定服裝箱 3個、與熊貓同行服裝套裝箱\n熊貓鑄幣 1個 (固定獲得)",
+                "1500",
+                "\t無限制"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "數量"
+            ],
+            "rows": [
+              [
+                "金蝶頭飾",
+                "熊貓鑄幣 5個",
+                "1"
+              ],
+              [
+                "滿月的香氣",
+                "熊貓鑄幣 10個",
+                "1"
+              ],
+              [
+                "特殊的熊貓不賣服裝箱",
+                "熊貓鑄幣 10個",
+                "1"
+              ],
+              [
+                "熊貓幻影武器箱",
+                "熊貓鑄幣 10個",
+                "1"
+              ],
+              [
+                "與熊貓同行服裝套裝箱",
+                "熊貓鑄幣 20個",
+                "1"
+              ]
+            ]
+          }
+        ]
+      },
       {
         "title": "若隱若現服裝箱 (5.27-6.10)",
         "blocks": [
