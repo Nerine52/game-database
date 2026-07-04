@@ -20,6 +20,144 @@
     "name": "通行證",
     "subpages": [
       {
+        "title": "投映之房 (6.24-7.22)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "投映之房 新單人副本版本\n- 6月24日至7月22日 (2400神石)\n- 藍色海洋、首席航海師 (藍色海洋套裝箱)\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/2026-06-24-094800.png\" width=\"300\" style=\"display:block; margin:0 auto;\">",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "通行證獎勵",
+            "headers": [
+              "【COLSPAN:3】通行證完成時獲得以下所有獎勵",
+              "",
+              ""
+            ],
+            "rows": [
+              [
+                "洪門靈魂金幣箱 50個\n",
+                "靈魂通行證 力王鑄幣 30個\n",
+                "幸運的灰風圖畫箱 (英雄~傳說) 2個"
+              ],
+              [
+                "灰風圖畫箱 (英雄) 3個\n",
+                "耀眼的真言珠鎚 5個\n",
+                "靈魂通行證 經驗值增加內丹 (200%) 2個"
+              ],
+              [
+                "藍色海洋套裝箱\n",
+                "灰風綁定武功秘笈箱 (英雄)",
+                "渾天武功秘笈碎片箱 (最上級~傳說) 30個"
+              ],
+              [
+                "最上級圖畫箱 30個\n",
+                "仙幻靈魂圖畫箱 50個",
+                "聖君堂高級復活符 10個"
+              ],
+              [
+                "聖君堂高級復甦符 10個\n",
+                "冬蟲夏草恢復藥 150個\n",
+                "狼肉餃子 150個\n"
+              ],
+              [
+                "洪門庇護恢復藥 (時效性) 12個\n",
+                "",
+                ""
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "所需鑄幣數量",
+              "可兌換物品",
+              "購買限制\n"
+            ],
+            "rows": [
+              [
+                "20",
+                "傳說武功秘笈碎片選擇箱 (下)",
+                "帳號限定 1次"
+              ],
+              [
+                "20",
+                "仙幻圖畫箱 (傳說)",
+                "帳號限定 1次"
+              ],
+              [
+                "20",
+                "神木八卦牌盒 (帳號專用)",
+                "帳號限定 1次"
+              ],
+              [
+                "20",
+                "繽紛的印章箱",
+                "帳號限定 1次"
+              ],
+              [
+                "10",
+                "名人的圖畫 (傳說)",
+                "帳號限定 2次"
+              ],
+              [
+                "5",
+                "靈魂通行證 綁定精氣選擇箱",
+                "帳號限定 8次"
+              ],
+              [
+                "5",
+                "特殊圖畫箱 (英雄~傳說)",
+                "帳號限定 4次"
+              ],
+              [
+                "5",
+                "灰風圖畫箱 (英雄~傳說)",
+                "角色限定 2次"
+              ],
+              [
+                "1",
+                "靈魂支援箱",
+                "無限制"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "物品",
+              "物品名稱",
+              "備註"
+            ],
+            "rows": [
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/gb_grocery_coin4-1.png\" class=\"image-preview\">",
+                "力王鑄幣",
+                "30級後的「靈魂支援箱」，每箱都可以額外獲得1個鑄幣\n**一個角色最多可獲得40個鑄幣**"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/gb_grocery_randombox2-1.png\" class=\"image-preview\">",
+                "傳說武功秘笈碎片選擇箱 (下)",
+                "開啟時可從傳說武功秘笈碎片1個、\n靈魂通行證 傳說綁定武功秘笈碎片 (下) 1個中，選擇1種獲得"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/imgi_19_NEO-DAY-2VE-soulpass.png\" class=\"image-preview\">",
+                "靈魂通行證 傳說綁定武功秘笈碎片 (下)",
+                "可與傳說綁定武功秘笈碎片(上) 一起用於兌換灰風綁定武功秘笈箱 (傳說)"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/passport/gb_normal_gachabox_02.png\" class=\"image-preview\">",
+                "靈魂通行證 綁定精氣選擇箱",
+                "開啟時可從冥鹿的綁定精氣 1個、鐵冰狼的綁定精氣 1個、\n霸拉鬃的綁定精氣 1個、非風的綁定精氣 1個 中，選擇1種獲得"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "title": "灰光風穴 (5.27-6.24)",
         "blocks": [
           {
@@ -777,6 +915,124 @@
     "name": "華仲師兄",
     "subpages": [
       {
+        "title": "華仲師兄氣息箱 (6.24-7.8)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "華仲師兄的祕笈 (6月24日至7月8日)\n- 4000神石 每月限購3 (最大可買6個)",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "商品內容",
+            "headers": [
+              "箱子",
+              "道具",
+              "數量"
+            ],
+            "rows": [
+              [
+                "【ROWSPAN:4】華仲師兄的祕笈\t",
+                "華仲的氣息",
+                "1"
+              ],
+              [
+                "",
+                "繽紛的印章箱",
+                "2"
+              ],
+              [
+                "",
+                "仙幻圖畫箱 (傳說)\n",
+                "1"
+              ],
+              [
+                "",
+                "特殊圖畫箱 (英雄~傳說)",
+                "1"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "物品",
+              "物品名稱",
+              "備註"
+            ],
+            "rows": [
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/grocery_bmevent_weapon4.png\" class=\"image-preview\">",
+                "金仙裝備強化石 (~+3)",
+                "可將金仙武器或飾品提煉至+3\n強化成功機率及其他材料、消耗金幣量與原有強化公式相同"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/gb_grocery_earthgembox_08.png\" class=\"image-preview\">",
+                "神木八卦牌成長箱",
+                "開啟時可獲得神木八卦牌選擇箱1個、神木八卦牌裝備效果變更券 (活動) 3個\n"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/HajoonBox/grocery_20231222_todaybox_02.png\" class=\"image-preview\">",
+                "印章支援箱 (傳說)",
+                "開啟時可獲得繽紛的印章箱 10個、印章欄位擴展券 1個\n"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "購買限制"
+            ],
+            "rows": [
+              [
+                "金仙裝備強化石 (~+3)\n",
+                "華仲的氣息 3個",
+                "/"
+              ],
+              [
+                "神木八卦牌成長箱",
+                "華仲的氣息 2個",
+                "帳號限定 2次"
+              ],
+              [
+                "印章支援箱 (傳說)",
+                "華仲的氣息 6個",
+                "/"
+              ],
+              [
+                "灰風綁定武功秘笈箱 (傳說)",
+                "傳說 綁定武功秘笈 1種 + 華仲的氣息 1個",
+                "/"
+              ],
+              [
+                "灰風武功秘笈箱 (傳說)",
+                "傳說 武功秘笈 1種 + 華仲的氣息 1個",
+                "/"
+              ],
+              [
+                "灰風綁定武功秘笈箱 (傳說)",
+                "華仲的氣息 3個",
+                "/"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種  + 華仲的氣息 1個",
+                "/"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "華仲的氣息 3個",
+                "/"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "title": "鬼靈成長華仲箱 (5.27-6.10)",
         "blocks": [
           {
@@ -1077,13 +1333,13 @@
               [
                 "仙幻綁定武功秘笈箱 (傳說)",
                 "冥想的氣息 10個",
-                "無限制",
+                "/",
                 "/"
               ],
               [
                 "神木八卦牌盒 (2個入)",
                 "冥想的氣息 10個",
-                "無限制",
+                "/",
                 "/"
               ],
               [
@@ -1095,7 +1351,7 @@
               [
                 "名人的圖畫 (傳說) (2個入)",
                 "冥想的氣息 2個",
-                "無限制",
+                "/",
                 "/"
               ],
               [
@@ -1240,6 +1496,279 @@
     "name": "金幣箱",
     "subpages": [
       {
+        "title": "投映的寶物箱 (6.24-7.8)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "### 投映的寶物箱 1箱10金\n- 開啟時將依指定機率，自商品內容中隨機獲得 1 種\n\n- 新增世界限定轉換 (總共7輪)",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "投映的寶物箱(活動) 商品內容",
+            "headers": [
+              "商品",
+              "商品內容",
+              "數量",
+              "機率"
+            ],
+            "rows": [
+              [
+                "【ROWSPAN:10】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ztx_general_grocery_event_box_0013.png\" class=\"image-preview\">",
+                "綁定祕典武功秘笈箱",
+                "1",
+                "0.002%"
+              ],
+              [
+                "",
+                "灰風綁定武功秘笈箱 (傳說)",
+                "1",
+                "0.1%"
+              ],
+              [
+                "",
+                "印章欄位擴展券",
+                "1",
+                "0.3%"
+              ],
+              [
+                "",
+                "繽紛的印章箱",
+                "1",
+                "1%"
+              ],
+              [
+                "",
+                "熾熱的印章箱 (10個入)",
+                "1",
+                "1.5%"
+              ],
+              [
+                "",
+                "投映碎片 (10個入)",
+                "1",
+                "2%"
+              ],
+              [
+                "",
+                "印章圖畫選擇箱 (英雄)",
+                "1",
+                "10%"
+              ],
+              [
+                "",
+                "投映碎片",
+                "5",
+                "2.5%"
+              ],
+              [
+                "",
+                "投映碎片",
+                "2",
+                "20%"
+              ],
+              [
+                "",
+                "投映碎片",
+                "1",
+                "62.598%"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "繽紛的投映寶物箱(活動) 商品內容",
+            "headers": [
+              "商品",
+              "商品內容",
+              "數量",
+              "機率"
+            ],
+            "rows": [
+              [
+                "【ROWSPAN:7】<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ztx_general_grocery_event_box_0022.png\" class=\"image-preview\">",
+                "祕典武功秘笈幸運箱",
+                "1",
+                "1%"
+              ],
+              [
+                "",
+                "高級仙幻圖畫箱 (傳說)",
+                "1",
+                "4%"
+              ],
+              [
+                "",
+                "灰風武功秘笈箱 (傳說)",
+                "1",
+                "8%"
+              ],
+              [
+                "",
+                "印章欄位擴展券",
+                "1",
+                "10%"
+              ],
+              [
+                "",
+                "繽紛的印章箱 (3個入)",
+                "1",
+                "10%"
+              ],
+              [
+                "",
+                "投映碎片 (50個入)",
+                "1",
+                "25%"
+              ],
+              [
+                "",
+                "繽紛的印章箱",
+                "1",
+                "42%"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "世界限定轉換清單",
+            "headers": [
+              "轉換材料",
+              "轉換結果 (可按機率獲得其中一種)",
+              "手續費",
+              "獲得限制"
+            ],
+            "rows": [
+              [
+                "投映碎片 4個",
+                "•綁定祕典武功秘笈箱 1個 [0.2%]\n•投映碎片 1個 [99.8%]",
+                "50銀",
+                "每個世界 2個"
+              ],
+              [
+                "投映碎片 50個",
+                "•神獸的選擇箱 1個\n•投映碎片 10個",
+                "50銀",
+                "每一輪 每個世界 2個"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "轉換清單",
+            "headers": [
+              "轉換材料",
+              "\t轉換結果 (可按機率獲得其中一種)",
+              "手續費"
+            ],
+            "rows": [
+              [
+                "投映碎片 5個",
+                "•裝備效果變更券幸運箱 (活動) 1個 [30%]\n•投映碎片 1個 [70%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 20個",
+                "•印章欄位擴展券 1個 [15%]\n•投映碎片 2個 [85%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 35個",
+                "•高級仙幻圖畫箱 (傳說) 1個 [20%]\n•投映碎片 2個 [80%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 25個",
+                "•灰風綁定武功秘笈箱 (傳說) 1個 [20%]\n•投映碎片 2個 [80%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 10個",
+                "•仙幻圖畫箱 (傳說) 1個 [20%]\n•投映碎片 2個 [80%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 20個",
+                "•繽紛的印章幸運箱 1個 [10%]\n•投映碎片 2個 [90%]",
+                "50銀"
+              ],
+              [
+                "投映碎片 3個",
+                "•褪色的合成用真言珠：海 1個 [100%]\n",
+                "50銀"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "物品",
+              "物品名稱",
+              "備註"
+            ],
+            "rows": [
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/jpn_grocery_box150.png\" class=\"image-preview\">",
+                "印章圖畫選擇箱 (英雄)",
+                "開啟時可從灰風圖畫箱 (英雄) 1個、熾熱的印章箱 1個中選擇1種獲得"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ztx_general_grocery_event_box_0011.png\" class=\"image-preview\">",
+                "祕典武功秘笈幸運箱",
+                "開啟時可按機率獲得祕典武功秘笈箱 [50%]、\n綁定祕典武功秘笈箱 [50%] 中的1種\n"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/ztx_general_grocery_event_box_0018.png\" class=\"image-preview\">",
+                "裝備效果變更券幸運箱 (活動)",
+                "開啟時可按機率獲得金仙裝備強化石 (~+3) 1個 [4%]、\n武神的靈魂石裝備效果變更券 (活動) 1個 [42%]、\n神木八卦牌裝備效果變更券 (活動) 1個 [54%] 中的1種"
+              ],
+              [
+                "<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/grocery_glyph_box_0033.png\" class=\"image-preview\">",
+                "繽紛的印章幸運箱",
+                "開啟時可按機率獲得繽紛的印章箱 (10個入) 1個 [1%]、\n繽紛的印章箱 (3個入) [45%] 1個、繽紛的印章箱 (2個入) [54%] 1個 中的1種"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "購買限制"
+            ],
+            "rows": [
+              [
+                "灰風綁定武功秘笈箱 (傳說)",
+                "傳說 綁定武功秘笈 1種 + 投映碎片 20個",
+                "無限制"
+              ],
+              [
+                "高級仙幻圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種 + 投映碎片 20個",
+                "無限制"
+              ],
+              [
+                "神獸的特殊圖畫箱 (傳說)",
+                "特殊 傳說 圖畫 1種  1種 + 投映碎片 20個",
+                "無限制"
+              ],
+              [
+                "繽紛的投映寶物箱",
+                "投映的寶物箱 50個",
+                "帳號每日限定 5次"
+              ],
+              [
+                "神獸的特殊圖畫箱 (傳說)",
+                "高級 傳說 圖畫 1種 + 投映碎片 10個",
+                "無限制"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "title": "黃龍的寶物箱 (6.10-6.24)",
         "blocks": [
           {
@@ -1253,7 +1782,7 @@
             "headers": [
               "商品",
               "商品內容",
-              "\t數量",
+              "數量",
               "機率"
             ],
             "rows": [
@@ -1597,7 +2126,7 @@
               [
                 "<img src= \"https://raw.githubusercontent.com/Nerine52/game-images/main/images/coin_box/gb_grocery_enchantgem_slot2_2022_1.png\" class=\" image-preview\">",
                 "鬼靈的成長支援券幸運箱",
-                "開啟時可根據指定機率，從鬼靈的成長支援券 (50個入) 1個 [2.5%]、鬼靈的成長支援券 (10個入) 1個 [27.5%]、鬼靈的成長支援券 5個 [70%] 中的1種"
+                "開啟時可按機率獲得鬼靈的成長支援券 (50個入) 1個 [2.5%]、\n鬼靈的成長支援券 (10個入) 1個 [27.5%]、鬼靈的成長支援券 5個 [70%] 中的1種"
               ]
             ]
           },
@@ -3344,6 +3873,81 @@
     "name": "服裝箱",
     "subpages": [
       {
+        "title": "月華令祕密服裝箱 (6.24-7.8)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "- 月華令服裝套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_62478.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 復雲會徒服\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 白魂\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_spring-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 狂熱幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_62478.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 貴公服裝套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_7_62478.png\" width=\"662\" style=\"display:block; margin:0 auto;\">\n- 狂熱喵套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_8_62478.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 兇暴喵套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_9_62478.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "箱子",
+              "道具 (可按機率獲得其中一種)",
+              "\t神石",
+              "購買限制"
+            ],
+            "rows": [
+              [
+                "月華令祕密服裝箱",
+                "復雲會徒服服裝箱、白魂服裝箱、月華令服裝套裝箱\n月光憑證 1個 [20%獲得]",
+                "500",
+                "無限制"
+              ],
+              [
+                "特殊的月華令祕密服裝箱",
+                "復雲會徒服服裝箱 3個、白魂服裝箱 3個、月華令服裝套裝箱 1個\n月光憑證 1個 (固定獲得)",
+                "1500",
+                "無限制"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "數量"
+            ],
+            "rows": [
+              [
+                "狂熱喵套裝箱",
+                "月光憑證 5個",
+                "1"
+              ],
+              [
+                "兇暴喵套裝箱",
+                "月光憑證 5個",
+                "1"
+              ],
+              [
+                "狂熱幻影武器箱",
+                "月光憑證 10個",
+                "1"
+              ],
+              [
+                "貴公服裝套裝",
+                "月光憑證 10個",
+                "1"
+              ],
+              [
+                "特殊的月華令祕密服裝箱",
+                "月光憑證 10個",
+                "1"
+              ],
+              [
+                "月華令服裝套裝箱",
+                "月光憑證 20個",
+                "1"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "title": "熊貓不賣服裝箱 (6.10-6.24)",
         "blocks": [
           {
@@ -3365,13 +3969,13 @@
                 "熊貓不賣服裝箱",
                 "願望服裝箱、約定服裝箱、與熊貓同行服裝套裝箱\n熊貓鑄幣 1個 [20%獲得]",
                 "500",
-                "\t無限制"
+                "無限制"
               ],
               [
                 "特殊的熊貓不賣服裝箱",
                 "願望服裝箱 3個、約定服裝箱 3個、與熊貓同行服裝套裝箱\n熊貓鑄幣 1個 (固定獲得)",
                 "1500",
-                "\t無限制"
+                "無限制"
               ]
             ]
           },
@@ -4194,6 +4798,42 @@
     "id": 5,
     "name": "一般活動",
     "subpages": [
+      {
+        "title": "印章合成特別週 (6.24-7.1)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "印章合成特別週 (6.24-7.1)\n- 特定印章合成時所消耗的手續費將獲得折扣",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "等級",
+              "變更前手續費",
+              "變更後手續費"
+            ],
+            "rows": [
+              [
+                "一般",
+                "25銀",
+                "10銀"
+              ],
+              [
+                "上級",
+                "75銀",
+                "30銀"
+              ],
+              [
+                "最上級",
+                "2金",
+                "1金"
+              ]
+            ]
+          }
+        ]
+      },
       {
         "title": "白光風雷成長選擇箱 (6.10-6.24)",
         "blocks": [
