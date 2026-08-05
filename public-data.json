@@ -4678,6 +4678,76 @@
     "name": "服裝箱",
     "subpages": [
       {
+        "title": "赤龍服裝箱 (8.5-8.19)",
+        "blocks": [
+          {
+            "type": "text",
+            "content": "- 紅月與龍服裝套裝\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_5_redmoon.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 祈盼\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_3_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 誓約\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_4_wind-box.png\" width=\"602\" style=\"display:block; margin:0 auto;\">\n- 紅月與龍幻影武器\n<img src=\"https://raw.githubusercontent.com/Nerine52/game-images/main/images/costume/imgi_6_redmoon.png\" width=\"602\" style=\"display:block; margin:0 auto;\">",
+            "fontSize": "medium"
+          },
+          {
+            "type": "table",
+            "title": "詳細內容",
+            "headers": [
+              "箱子",
+              "道具 (可按機率獲得其中一種)",
+              "神石",
+              "購買限制"
+            ],
+            "rows": [
+              [
+                "赤龍服裝箱",
+                "祈盼服裝箱、誓約服裝箱、紅月與龍套裝箱\n龍鑄幣 1個 [20%獲得]",
+                "500",
+                "無限制"
+              ],
+              [
+                "特殊的赤龍服裝箱",
+                "祈盼服裝箱 3個、誓約服裝箱 3個、紅月與龍套裝箱\n龍鑄幣 1個 (固定獲得)",
+                "1500",
+                "無限制"
+              ]
+            ]
+          },
+          {
+            "type": "table",
+            "title": "飛龍工商兌換清單",
+            "headers": [
+              "道具名稱",
+              "材料",
+              "\t數量"
+            ],
+            "rows": [
+              [
+                "龍之金庫\n",
+                "龍鑄幣 2個",
+                "1"
+              ],
+              [
+                "灰燼寶物箱 (5個入)\n",
+                "龍鑄幣 4個",
+                "1"
+              ],
+              [
+                "紅月與龍幻影武器箱",
+                "龍鑄幣 10個",
+                "1"
+              ],
+              [
+                "特殊的赤龍服裝箱",
+                "龍鑄幣 10個",
+                "1"
+              ],
+              [
+                "紅月與龍套裝箱",
+                "龍鑄幣 20個",
+                "1"
+              ]
+            ]
+          }
+        ]
+      },
+      {
         "title": "熱夏服裝精選 (7.22-8.5)",
         "blocks": [
           {
